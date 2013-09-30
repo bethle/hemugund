@@ -64,11 +64,11 @@ a{
     animation:notifications 0.275s;
     -webkit-animation:notification 0.275s; /* Safari and Chrome */   
 }
-@-webkit-keyframes notification 
+/*@-webkit-keyframes notification 
 {
     from {right:-100%;}
     to {right:0px;}
-}
+}*/
 /*#header-list-wrapper{
     animation:navigation 0.275s;
     -webkit-animation:navigation 0.275s;  Safari and Chrome    
@@ -77,11 +77,11 @@ a{
     animation:navigation 0.275s;
     -webkit-animation:navigation 0.275s; /* Safari and Chrome */   
 }
-@-webkit-keyframes navigation 
+/*@-webkit-keyframes navigation 
 {
     from {right:-100%;}
     to {right:0px;}
-}
+}*/
 #loginScreen{
     display: table-cell;    
     height: 100%;
@@ -791,9 +791,9 @@ input[type="submit"]:active{
     left: 100%;
 }
 .transition{
-    -moz-transition-duration: .100s;
-    -webkit-transition-duration: .100s;
-    -o-transition-duration: .100s;
+    -moz-transition-duration: .375s;
+    -webkit-transition-duration: .375s;
+    -o-transition-duration: .375s;
 }
 
 /*Extra*/
