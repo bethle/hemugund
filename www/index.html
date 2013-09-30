@@ -149,6 +149,144 @@
             </select>           
             </div>
         </script>
+        <script id="filter-req-type-tpl" type="text/x-handlebars-template">
+            <li>
+            <div>
+            {{#if pr}}
+            <input id="check1" type="checkbox" name="type" checked="checked" value="Purchase Requisition">
+            <label for="check1">PR</label>			
+            {{else}}
+            <input id="check1" type="checkbox" name="type" value="Purchase Requisition">
+            <label for="check1">PR</label>			
+            {{/if}}
+            </div>
+            </li>
+            <li>
+            <div>
+            {{#if ir}}
+            <input id="check2" type="checkbox" name="type" checked="checked" value="Internal Requisition">
+            <label for="check2">IR</label>			
+            {{else}}
+            <input id="check2" type="checkbox" name="type" value="Internal Requisition">
+            <label for="check2">IR</label>			
+            {{/if}}
+            </div>
+            </li>                        
+        </script>
+
+
+        <script id="filter-po-type-tpl" type="text/x-handlebars-template">
+            <li>
+            <div>
+            {{#if blanket}}
+            <input id="check1" type="checkbox" name="type" checked="checked" value="BLANKET">
+            <label for="check1">Blanket</label>			
+            {{else}}
+            <input id="check1" type="checkbox" name="type" value="BLANKET">
+            <label for="check1">Blanket</label>			
+            {{/if}}
+            </div>
+            </li>
+            <li>
+            <div>
+            {{#if planned}}
+            <input id="check2" type="checkbox" name="type" checked="checked" value="PLANNED">
+            <label for="check2">Planned</label>			
+            {{else}}
+            <input id="check2" type="checkbox" name="type" value="PLANNED">
+            <label for="check2">Planned</label>			
+            {{/if}}
+            </div>
+            </li>            
+            <li>
+            <div>
+            {{#if standard}}
+            <input id="check3" type="checkbox" name="type" checked="checked" value="STANDARD">
+            <label for="check3">Standard</label>			
+            {{else}}
+            <input id="check3" type="checkbox" name="type" value="STANDARD">
+            <label for="check3">Standard</label>			
+            {{/if}}
+            </div>
+            </li>            
+            <li>
+            <div>
+            {{#if contract}}
+            <input id="check4" type="checkbox" name="type" checked="checked" value="CONTRACT">
+            <label for="check4">Contract</label>			
+            {{else}}
+            <input id="check4" type="checkbox" name="type" value="CONTRACT">
+            <label for="check4">Contract</label>			
+            {{/if}}
+            </div>
+            </li>            
+        </script>
+
+
+        <script id="filter-view-tpl" type="text/x-handlebars-template">
+            <div class="ui-screen" >      
+            {{> headerdescription}}
+            <div id="filter" >
+            {{#if this.type_head}}
+            <p>{{this.type_head}}</p>
+            <ul class="filter-type-list">
+            </ul>
+            {{/if}}
+            <p>Notification Status</p>
+            <ul>
+            <li>
+            <div>
+            {{#with filter}}
+            {{#with status}}
+            {{#if ar}}
+            <input id="check5" type="checkbox" name="status" checked="checked" value="ACTION REQUIRED">
+            <label for="check5">Action Required</label>			
+            {{else}}
+            <input id="check5" type="checkbox" name="status" value="ACTION REQUIRED">
+            <label for="check5">Action Required</label>			
+            {{/if}}
+            </div>
+            </li>
+            <li>
+            <div>
+            {{#if fyi}}            
+            <input id="check6" type="checkbox" name="status" checked="checked" value="FYI">
+            <label for="check6">FYI</label>			
+            {{else}}
+            <input id="check6" type="checkbox" name="status" value="FYI">
+            <label for="check6">FYI</label>			
+            {{/if}}
+            </div>
+            </li>
+            <li>
+            <div>
+            {{#if closed}}
+            <input id="check7" type="checkbox" name="status" checked="checked" value="CLOSED">
+            <label for="check7">Closed</label>
+            {{else}}
+            <input id="check7" type="checkbox" name="status" value="CLOSED">
+            <label for="check7">Closed</label>
+            {{/if}}            
+            {{/with}}
+            {{/with}}
+            </div>
+            </li>                
+            </ul>            
+            <p>Days old</p>
+            <div>
+            <div id='select-day' >All</div>
+            <img src="img/arrow.png" />
+            <select onchange="document.getElementById('select-day').innerHTML=this.options[this.selectedIndex].text" >
+            <option value='0' >All</option>                                        
+            <option value='3' >3 days past</option>            
+            <option value='7' >7 days past</option>            
+            <option value='1' >1 month</option>                                   
+            </select>
+            </div>            
+            </div>
+            </div>
+            <div  id="loading-screen"><div><div></div></div></div>            
+        </script>
 
         <!--<script src="js/util/Notification.js"></script>-->
         <script src="js/LoginView.js"></script>
@@ -774,144 +912,6 @@
             <div  id="loading-screen"><div><div></div></div>
         </script>        
 
-        <script id="filter-req-type-tpl" type="text/x-handlebars-template">
-            <li>
-            <div>
-            {{#if pr}}
-            <input id="check1" type="checkbox" name="type" checked="checked" value="Purchase Requisition">
-            <label for="check1">PR</label>			
-            {{else}}
-            <input id="check1" type="checkbox" name="type" value="Purchase Requisition">
-            <label for="check1">PR</label>			
-            {{/if}}
-            </div>
-            </li>
-            <li>
-            <div>
-            {{#if ir}}
-            <input id="check2" type="checkbox" name="type" checked="checked" value="Internal Requisition">
-            <label for="check2">IR</label>			
-            {{else}}
-            <input id="check2" type="checkbox" name="type" value="Internal Requisition">
-            <label for="check2">IR</label>			
-            {{/if}}
-            </div>
-            </li>                        
-        </script>
-
-
-        <script id="filter-po-type-tpl" type="text/x-handlebars-template">
-            <li>
-            <div>
-            {{#if blanket}}
-            <input id="check1" type="checkbox" name="type" checked="checked" value="BLANKET">
-            <label for="check1">Blanket</label>			
-            {{else}}
-            <input id="check1" type="checkbox" name="type" value="BLANKET">
-            <label for="check1">Blanket</label>			
-            {{/if}}
-            </div>
-            </li>
-            <li>
-            <div>
-            {{#if planned}}
-            <input id="check2" type="checkbox" name="type" checked="checked" value="PLANNED">
-            <label for="check2">Planned</label>			
-            {{else}}
-            <input id="check2" type="checkbox" name="type" value="PLANNED">
-            <label for="check2">Planned</label>			
-            {{/if}}
-            </div>
-            </li>            
-            <li>
-            <div>
-            {{#if standard}}
-            <input id="check3" type="checkbox" name="type" checked="checked" value="STANDARD">
-            <label for="check3">Standard</label>			
-            {{else}}
-            <input id="check3" type="checkbox" name="type" value="STANDARD">
-            <label for="check3">Standard</label>			
-            {{/if}}
-            </div>
-            </li>            
-            <li>
-            <div>
-            {{#if contract}}
-            <input id="check4" type="checkbox" name="type" checked="checked" value="CONTRACT">
-            <label for="check4">Contract</label>			
-            {{else}}
-            <input id="check4" type="checkbox" name="type" value="CONTRACT">
-            <label for="check4">Contract</label>			
-            {{/if}}
-            </div>
-            </li>            
-        </script>
-
-
-        <script id="filter-view-tpl" type="text/x-handlebars-template">
-            <div class="ui-screen" >      
-            {{> headerdescription}}
-            <div id="filter" >
-            {{#if this.type_head}}
-            <p>{{this.type_head}}</p>
-            <ul class="filter-type-list">
-            </ul>
-            {{/if}}
-            <p>Notification Status</p>
-            <ul>
-            <li>
-            <div>
-            {{#with filter}}
-            {{#with status}}
-            {{#if ar}}
-            <input id="check5" type="checkbox" name="status" checked="checked" value="ACTION REQUIRED">
-            <label for="check5">Action Required</label>			
-            {{else}}
-            <input id="check5" type="checkbox" name="status" value="ACTION REQUIRED">
-            <label for="check5">Action Required</label>			
-            {{/if}}
-            </div>
-            </li>
-            <li>
-            <div>
-            {{#if fyi}}            
-            <input id="check6" type="checkbox" name="status" checked="checked" value="FYI">
-            <label for="check6">FYI</label>			
-            {{else}}
-            <input id="check6" type="checkbox" name="status" value="FYI">
-            <label for="check6">FYI</label>			
-            {{/if}}
-            </div>
-            </li>
-            <li>
-            <div>
-            {{#if closed}}
-            <input id="check7" type="checkbox" name="status" checked="checked" value="CLOSED">
-            <label for="check7">Closed</label>
-            {{else}}
-            <input id="check7" type="checkbox" name="status" value="CLOSED">
-            <label for="check7">Closed</label>
-            {{/if}}            
-            {{/with}}
-            {{/with}}
-            </div>
-            </li>                
-            </ul>            
-            <p>Days old</p>
-            <div>
-            <div id='select-day' >All</div>
-            <img src="img/arrow.png" />
-            <select onchange="document.getElementById('select-day').innerHTML=this.options[this.selectedIndex].text" >
-            <option value='0' >All</option>                                        
-            <option value='3' >3 days past</option>            
-            <option value='7' >7 days past</option>            
-            <option value='1' >1 month</option>                                   
-            </select>
-            </div>            
-            </div>
-            </div>
-            <div  id="loading-screen"><div><div></div></div></div>            
-        </script>
 
         <script id='action-tpl' type="text/x-handlebars-template"> 
             <div id="popup-bckgrnd" class="popup-hide" >

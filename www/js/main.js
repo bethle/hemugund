@@ -123,7 +123,7 @@ var app = {
         this.rejectURL = /^#Reject/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(.{1,})/;
         this.attachURL = /^#attach\/(.{6})\/.*/;
-        this.notify = new Notification();
+//        this.notify = new Notification();
         this.route();
     },
     slidePage: function(page) {
