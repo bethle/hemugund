@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.mobigesture.uploadTest" version="1.0.0">
+    <name>mobi</name>
+
+    <description>Oracle PhoneGap Application</description>
+
+    <author email="raja.bethleham@mobigesture.com" href="http://www.mobigesture.com">mobigesture</author>
+
+    <icon gap:platform="android" height="96" src="img/App_Display_Icon.png" width="96"/>
+    <icon gap:platform="ios" height="144" src="img/App_Display_Icon.png" width="144"/>
+    <gap:splash gap:platform="ios" height="768" src="img/EBS_Mobility_Logo_1024_768.png" width="1024"/>
+    <gap:splash gap:platform="ios" height="1024" src="img/EBS_Mobility_Logo_768_1024.png" width="768"/>
+    <gap:splash gap:platform="ios" height="1536" src="img/EBS_Mobility_Logo_2048.png" width="2048"/>
+    <gap:splash gap:platform="ios" height="2048" src="img/EBS_Mobility_Logo_1536_2048.png" width="1536"/>
+    <gap:splash gap:platform="ios" height="320" src="img/EBS_Mobility_Logo_480_320.png" width="480"/>
+    <gap:splash gap:platform="ios" height="480" src="img/EBS_Mobility_Logo_320_480.png" width="320"/>
+    <gap:splash gap:platform="ios" height="640" src="img/EBS_Mobility_Logo_960_640.png" width="960"/>
+    <gap:splash gap:platform="ios" height="960" src="img/EBS_Mobility_Logo_640_960.png" width="640"/>
+    <gap:splash gap:platform="android" height="480" src="img/EBS_Mobility_Logo_800_480.png" width="800"/>
+    <gap:splash gap:platform="android" height="800" src="img/EBS_Mobility_Logo_480_800.png" width="480"/>
+    <gap:splash gap:platform="android" height="200" src="img/EBS_Mobility_Logo_320_200.png" width="320"/>
+    <gap:splash gap:platform="android" height="320" src="img/EBS_Mobility_Logo_200_320.png" width="200"/>
+    <gap:splash gap:platform="android" height="320" src="img/EBS_Mobility_Logo_480_320.png" width="480"/>
+    <gap:splash gap:platform="android" height="480" src="img/EBS_Mobility_Logo_320_480.png" width="320"/>
+    <gap:splash gap:platform="android" height="720" src="img/EBS_Mobility_Logo_1280_720.png" width="1280"/>
+    <gap:splash gap:platform="android" height="1280" src="img/EBS_Mobility_Logo_720_1280.png" width="720"/>   
+    
+    <feature name="http://api.phonegap.com/1.0/device" />
+    <preference name="permissions" value="none"/>
+
+    <!-- Customize your app and platform with the preference element. -->
+    <preference name="phonegap-version" value="2.9.0" /> <!-- all: current version of PhoneGap -->
+    <preference name="orientation" value="default" /> <!-- all: default means both landscape and portrait are enabled -->
+    <preference name="target-device" value="universal" /> <!-- all: possible values handset, tablet, or universal -->
+    <preference name="DisallowOverscroll" value="true"/>
+    <preference name="fullscreen" value="true" /> <!-- all: hides the status bar at the top of the screen -->
+    <preference name="webviewbounce" value="false" /> <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
+    <preference name="prerendered-icon" value="true" /> <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
+    <preference name="stay-in-webview" value="false" /> <!-- ios: external links should open in the default browser, 'true' would use the webview the app lives in -->
+    <preference name="ios-statusbarstyle" value="black-opaque" /> <!-- ios: black-translucent will appear black because the PhoneGap webview doesn't go beneath the status bar -->
+    <preference name="detect-data-types" value="true" /> <!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
+    <preference name="exit-on-suspend" value="true" /> <!-- ios: if set to true, app will terminate when home button is pressed -->
+    <preference name="show-splash-screen-spinner" value="true" /> <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
+    <preference name="auto-hide-splash-screen" value="true" /> <!-- ios: if set to false, the splash screen must be hidden using a JavaScript API -->
+    <preference name="splash-screen-duration" value="3000" />    
+    <preference name="disable-cursor" value="false" /> <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
+    <preference name="android-minSdkVersion" value="7" /> <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
+    <preference name="android-installLocation" value="auto" /> <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
+    <preference name="load-url-timeout" value="30000" />   
+        
+    <access origin="*"/>
+</widget>
