@@ -149,7 +149,7 @@ var app = {
             $(page.el).attr('class', 'page stage-right');
             currentPageDest = "stage-left";
         }
-        $('body').html(page.el);
+        $('body').append(page.el);
         // Wait until the new page has been added to the DOM...
         setTimeout(function() {
             // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
