@@ -7,8 +7,7 @@
         <script src="js/util/script.js"></script>
     </head>
     <body>
-        <script type="text/x-handlebars-template" id="login-tpl">            
-            <div class="ui-screen">                         
+        <script type="text/x-handlebars-template" id="login-view-tpl">            
             <div id="loginScreen" >
             <div></div>
             <div></div>
@@ -37,36 +36,40 @@
             <p>Anblicks &#169; 2013. All rights reserved.</p>
             </div>            
             </div>            
-            <div  id="loading-screen" class="loading-hide" ><div><div></div></div>
+            <div  id="loading-screen" class="loading-hide" ><div><div></div>
         </script>
 
-        <script id="notifications-tpl" type="text/x-handlebars-template">
-            <div class="ui-screen" id="notifications">
-            {{> headerdescription}}
+
+
+        <script id="notifications-view-tpl" type="text/x-handlebars-template">
+            <div class="header" >     
+            <a href=""><div id='notification-logout-button' class="ui-back-button" >Logout</div></a>
+            <a><img src="img/actionmenu.png" id="actionIcon" onclick="slideDown(document.getElementById('ActionFooter'))"/ ></a>
+            <div class="ui-header-centered-text"><span>Notifications</span><span>Sysadmin</span></div>
+            </div>
             <div id='content-notify'> 
-            <div>
             <ul>
             <li>
             <a href="#Not/rqstns"><div>
-            <div>{{this.rqstns}}</div>
+            <div></div>
             <div>Requisition</div>
             </div></a>
             </li>   
             <li>
             <a href="#Not/xpnsap"><div>
-            <div>{{this.xpnsap}}</div>
+            <div></div>
             <div>Exp. Approval</div>
             </div></a>
             </li>   
             <li>
             <a href="#Not/pblnvc"><div>
-            <div>{{this.pblnvc}}</div>
+            <div></div>
             <div>Payable Invoice</div>
             </div></a>
             </li>   
             <li>
             <a href="#Not/prchrd"><div>
-            <div>{{this.prchrd}}</div>
+            <div></div>
             <div>Purchase Order</div>
             </div></a>
             </li>   
@@ -79,60 +82,30 @@
             </ul>
             </div>
             </div>
+
             </div>
-            <div  id="loading-screen"><div><div></div></div>
         </script>
 
-        <script id="header-list-tpl" type="text/x-handlebars-template">
-            <div class="ui-screen" id="header-list-wrapper" > 
-            {{> headerdescription}}            
-            <!--content start-->
+        <script id="notification-header-view-tpl" type="text/x-handlebars-template">
+            <div class='header' >     
+            <a href="#"><div id='notification-back-button' class="ui-back-button" >Back</div></a>
+            <a><img src="img/actionmenu.png" id="actionIcon" onclick="slideDown(document.getElementById('ActionFooter'))"/ ></a>
+            <div class="ui-header-centered-text"><span></span><span>Sysadmin</span></div>
+            </div>            
             <div id="search">
             <div><input type="search" id="search-input" /></div>
             <div class="search-button" >Search</div>
             </div>
             <div id='header-list'>                
-            <div>                    
             <ul class="search-header-list" >         
-            {{#each result}}
             <li>            
-            <a href="#Detail{{this.mod}}/{{this.hid}}-{{this.id}}" >
-            <table cellpadding="0" cellspacing="0" >
-            <tr>
-            <td>
-            <table cellpadding="0" cellspacing="0" >
-            <tr>
-            <td><div class={{icon}} ></div></div><span>&nbsp;{{this.num}}</span><span>{{this.name}}</span></td>                                                                                                            
-            </tr>
-            <tr>
-            <td>
-            <span>{{this.subject}}</span>
-            </td>                                                                                                            
-            </tr>
-            </table>
-            </td>
-            <td>           
-            <div><img class="list-arrow" src="img/arrow.png" /></div>
-            <ul>
-            <li>{{this.date}}</li>
-            <li>{{this.amount}}</li>                                        
-            <li class={{color}} ><span>{{this.status}}</span><span>&nbsp;&nbsp;{{this.code}}</span></li>
-            </ul>
-            </td>
-            </tr>                                
-            </table>                            
-            </a>                    
+            <a>Testing</a>
             </li>
-            {{/each}}
             </ul>
-            </div> 
             </div>
-            <!--content end-->
-            </div>
-            <div  id="loading-screen"><div><div></div></div>
         </script>
 
-        <script  id="header-search-list-tpl" type="text/x-handlebars-template" >                   
+        <script  id="header-list-tpl" type="text/x-handlebars-template" >                   
             {{#.}}
             <li>            
             <a href="#Detail{{this.mod}}/{{this.hid}}-{{this.id}}" >
@@ -164,12 +137,38 @@
             </li>
             {{/.}}         
         </script>
+        <script id="filter-orgs-list-tpl" type="text/x-handlebars-template">
+            <p>Organization codes</p>
+            <div>
+            <div id='select-org' >All</div>
+            <img src="img/arrow.png" />
+            <select onchange="document.getElementById('select-org').innerHTML=this.options[this.selectedIndex].text" >            
+            <option value='0' >All</option>          
+            {{#.}}
+            <option value='{{this}}' >{{this}}</option>            
+            {{/.}}
+            </select>           
+            </div>
+        </script>
 
+        <script src="js/util/Notification.js"></script>
+        <script src="js/LoginView.js"></script>
+        <script src="js/NotificationsView.js"></script>
+        <script src="js/NotificationHeaderView.js"></script>        
+        <script src="js/NotificationFilterview.js"></script>        
+        <script src="js/main.js"></script>
+
+    </body>
+</html>
+
+
+
+
+<!--
         <script id="header-details-requisition-tpl" type="text/x-handlebars-template">
             {{> ActionAlert}}
             <div class="ui-screen" id="details"> 
             {{> headerdescription}}            
-            <!--content start-->         
             {{#with result}}
             <div id="header-details" >
             <div>            
@@ -313,8 +312,6 @@
             </div>
             </div>
             {{/with}}
-            <!--content end-->
-            <!--footer start-->            
             {{>ActionFooter}}
             </div>            
             <div  id="loading-screen"><div><div></div></div>
@@ -324,7 +321,6 @@
             {{> ActionAlert}}
             <div class="ui-screen" id="details"> 
             {{> headerdescription}}            
-            <!--content start-->         
             {{#with result}}
             <div id="header-details" >
             <div>            
@@ -480,8 +476,6 @@
             </div>
             </div>
             {{/with}}
-            <!--content end-->
-            <!--footer start-->            
             {{>ActionFooter}}
             </div>            
             <div  id="loading-screen"><div><div></div></div>
@@ -491,7 +485,6 @@
             {{> ActionAlert}}
             <div class="ui-screen" id="details"> 
             {{> headerdescription}}            
-            <!--content start-->         
             {{#with result}}
             <div id="header-details" >
             <div>            
@@ -625,8 +618,6 @@
             </div>
             </div>
             {{/with}}
-            <!--content end-->
-            <!--footer start-->            
             {{>ActionFooter}}
             </div>            
             <div  id="loading-screen"><div><div></div></div>
@@ -636,7 +627,6 @@
             {{> ActionAlert}}
             <div class="ui-screen" id="details"> 
             {{> headerdescription}}            
-            <!--content start-->         
             {{#with result}}
             <div id="header-details" >
             <div>            
@@ -780,8 +770,6 @@
             </div>
             </div>
             {{/with}}
-            <!--content end-->
-            <!--footer start-->            
             {{>ActionFooter}}
             </div>            
             <div  id="loading-screen"><div><div></div></div>
@@ -926,20 +914,6 @@
             <div  id="loading-screen"><div><div></div></div></div>            
         </script>
 
-        <script id="filter-orgs-list-tpl" type="text/x-handlebars-template">
-            <p>Organization codes</p>
-            <div>
-            <div id='select-org' >All</div>
-            <img src="img/arrow.png" />
-            <select onchange="document.getElementById('select-org').innerHTML=this.options[this.selectedIndex].text" >            
-            <option value='0' >All</option>          
-            {{#.}}
-            <option value='{{this}}' >{{this}}</option>            
-            {{/.}}
-            </select>           
-            </div>
-        </script>
-
         <script id='action-tpl' type="text/x-handlebars-template"> 
             <div id="popup-bckgrnd" class="popup-hide" >
             <div>
@@ -990,7 +964,6 @@
         </script>
 
         <script id="forward-alert-tpl" type="text/x-handlebars-template">
-            <!--Forward Alert-->                        
             <img src="img/Close.png" onclick="closeAlert(this);" />
             <form action="" >
             <table cellspacing='0' cellpadding='0'>
@@ -1015,11 +988,9 @@
             </table>
             <div><input type="button" value="Send" onclick="location.href='#Forward'" /></div>
             </form>                        
-            <!--Forward Alert end-->
         </script>
 
         <script id="header-tpl" type="text/x-handlebars-template">
-            <!--header start-->
             <div class="ui-header" id='id-header' >     
             <div class='ui-action-wrapper sliding-effect' id="ActionHeader" >
             <table cellspacing='0' cellpadding='0' >
@@ -1039,15 +1010,12 @@
             <a href="{{done}}" id="filter-done" >Done</a>
             <div class="ui-header-centered-text"><span>{{head}}</span><span>{{username}}</span></div>
             </div>
-            <!--header end-->
         </script>
 
         <script id="footer-tpl" type="text/x-handlebars-template">
-            <!--footer start-->
             <div class="ui-footer" id='id-footer'>                                      
             <div class="ui-footer-centered-text">{{foot}}</div>
             </div>
-            <!--footer end-->
         </script>
 
         <script id="action-footer-tpl" type="text/x-handlebars-template">
@@ -1072,15 +1040,4 @@
             </table>
             </div>
         </script>
-        <script src="js/util/Notification.js"></script>
-        <script src="js/ActionView.js"></script>
-        <script src="js/LoginView.js"></script>
-        <script src="js/NotificationsView.js"></script>
-        <script src="js/NotificationHeaderView.js"></script>        
-        <script src="js/NotificationDetailView.js"></script>        
-        <script src="js/NotificationFilterview.js"></script>        
-        <script src="js/main.js"></script>
-
-    </body>
-</html>
-
+-->

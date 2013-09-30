@@ -9,5 +9,5 @@ var LoginView = function() {
 
     this.initialize();
 };
-LoginView.template = Handlebars.compile(document.getElementById("login-tpl").innerHTML);
+LoginView.template = Handlebars.compile(document.getElementById("login-view-tpl").innerHTML);
 

@@ -23,14 +23,23 @@ body{
 a{
     text-decoration: none;
 }
-.ui-screen{
+/*.page{
     width: 100%;
     height: 100%;    
     float: left;   
     position: relative; 
     display: table;
     height: 100%;           
+}*/
+
+.page{
+    position: absolute;
+    width: 100%;    
+    height: 100%;
+    background-image: url('../img/bg.png');
+    background-repeat: repeat; 
 }
+
 .error{
     color: #FF0000;
     font-family: 'Arial';
@@ -60,10 +69,10 @@ a{
     from {right:-100%;}
     to {right:0px;}
 }
-#header-list-wrapper{
+/*#header-list-wrapper{
     animation:navigation 0.275s;
-    -webkit-animation:navigation 0.275s; /* Safari and Chrome */   
-}
+    -webkit-animation:navigation 0.275s;  Safari and Chrome    
+}*/
 #details{
     animation:navigation 0.275s;
     -webkit-animation:navigation 0.275s; /* Safari and Chrome */   
@@ -202,20 +211,16 @@ input[type="submit"]:active{
 /*Login page css end*/
 
 /*header css*/
-#id-header{
+.header{
     width: 100%;
     height: 44px;
     background-image:url('../img/headerstrip.png');
     background-repeat: repeat-x;
     border-bottom: 1px solid #cccccc;
     position: relative;
-    background-size: 2px 44px;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
+    background-size: 1px 44px;
 }
-#id-header>div:nth-child(1){
+.header>div:nth-child(1){
     width: 100%;
     height: auto;
     position: absolute;  
@@ -230,16 +235,16 @@ input[type="submit"]:active{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=0 ); /* IE6-9 */
     z-index: 999;    
 }
-#id-header>div:nth-child(1)>table{
+.header>div:nth-child(1)>table{
     width: 100%;
     height: 100%;    
 }
-#id-header>div:nth-child(1)>table tr>td{    
+.header>div:nth-child(1)>table tr>td{    
     width: 50%;
     text-align: center;    
 }
 /*backbutton css*/
-#id-header>a>div{             
+.header>a>div{             
     width: 67px;
     height: 37px;
     background-image: url('../img/back_notext.png');
@@ -259,10 +264,10 @@ input[type="submit"]:active{
     border: 0;
     font-weight: bold;
 }
-#id-header>a>div:active{
+.header>a>div:active{
     color: #3399cc;
 }
-#id-header>a>img{
+.header>a>img{
     height: 37px;
     float: right;
     margin-top: 3px;
@@ -270,7 +275,7 @@ input[type="submit"]:active{
     cursor: pointer;
 }
 /*backbutton css end*/
-#id-header>a:nth-child(5){
+.header>a:nth-child(5){
     background-image: url('../img/searchbutton.png');
     background-size: 70px 35px;
     background-position: center center;
@@ -288,7 +293,7 @@ input[type="submit"]:active{
     font-weight: bold;
     margin-right: 5px;
 }
-#id-header>div:nth-child(6){
+.header>div:nth-child(6){
     width: 64%;
     height: 100%;
     margin: 0 auto;
@@ -297,12 +302,12 @@ input[type="submit"]:active{
     line-height: 27px;
     color: #ffffff;       
 }
-#id-header>div:nth-child(6)>span:nth-child(1){
+.header>div:nth-child(6)>span:nth-child(1){
     font-size: 110%;
     font-weight: bold;
     white-space: nowrap;
 }
-#id-header>div:nth-child(6)>span:nth-child(2){
+.header>div:nth-child(6)>span:nth-child(2){
     display: block;
     font-size: 90%;
     line-height: 10px;
@@ -312,33 +317,33 @@ input[type="submit"]:active{
 /*notification content css start*/
 #content-notify{
     width: 100%;
-    float: left;
+    /*float: left;*/
     position: relative;
     /*overflow: scroll;*/
     -webkit-overflow-scrolling: touch;
     top: 44px;
-    z-index: 888;
+    /*z-index: 888;*/
     padding-top: 5px;
 }
-#content-notify>div{
+/*#content-notify>div{
     float: right;
     left: -50%;
     padding-top: 6px;
     position: relative;
-}
+}*/
 /*grid css start*/
-#content-notify>div>ul{
+#content-notify>ul{
     position: relative;
-    left: 50%;
+    /*left: 50%;*/
     margin: 0 auto;
 }
-#content-notify>div>ul>li{      
+#content-notify>ul>li{      
     float: left;
     list-style: none;
     margin:  10px 15px 5px 15px;  
     cursor: pointer;    
 }
-#content-notify>div>ul>li>a>div{
+#content-notify>ul>li>a>div{
     width: 120px;
     height: 110px;    
     position: relative;
@@ -347,37 +352,37 @@ input[type="submit"]:active{
     background-size: 80px 80px;
     background-position: center top;
 }
-#content-notify>div>ul>li:nth-child(1)>a>div{
+#content-notify>ul>li:nth-child(1)>a>div{
     background-image: url('../img/approvals.png');    
 }
-#content-notify>div>ul>li:nth-child(1)>a>div:active{
+#content-notify>ul>li:nth-child(1)>a>div:active{
     background-image: url('../img/approvals_glow.png');
 }
-#content-notify>div>ul>li:nth-child(2)>a>div{
+#content-notify>ul>li:nth-child(2)>a>div{
     background-image: url('../img/expenses.png');    
 }
-#content-notify>div>ul>li:nth-child(2)>a>div:active{
+#content-notify>ul>li:nth-child(2)>a>div:active{
     background-image: url('../img/expenses_glow.png');
 }
-#content-notify>div>ul>li:nth-child(3)>a>div{
+#content-notify>ul>li:nth-child(3)>a>div{
     background-image: url('../img/settings.png');    
 }
-#content-notify>div>ul>li:nth-child(3)>a>div:active{
+#content-notify>ul>li:nth-child(3)>a>div:active{
     background-image: url('../img/settings_glow.png');  
 }
-#content-notify>div>ul>li:nth-child(4)>a>div{
+#content-notify>ul>li:nth-child(4)>a>div{
     background-image: url('../img/timesheet.png');    
 }
-#content-notify>div>ul>li:nth-child(4)>a>div:active{
+#content-notify>ul>li:nth-child(4)>a>div:active{
     background-image: url('../img/timesheet_glow.png');    
 }
-#content-notify>div>ul>li:nth-child(5)>a>div{
+#content-notify>ul>li:nth-child(5)>a>div{
     background-image: url('../img/Others_Icon.png');    
 }
-#content-notify>div>ul>li:nth-child(5)>a>div:active{
+#content-notify>ul>li:nth-child(5)>a>div:active{
     background-image: url('../img/timesheet_glow.png');    
 }
-#content-notify>div>ul>li>a>div>div:nth-child(2){
+#content-notify>ul>li>a>div>div:nth-child(2){
     width: 120px;    
     font-family: 'Arial';
     font-size: 100%;
@@ -389,7 +394,7 @@ input[type="submit"]:active{
     padding-top: 84px;    
     float: left;
 }
-#content-notify>div>ul>li>a>div>div:nth-child(1){
+#content-notify>ul>li>a>div>div:nth-child(1){
     width: 25px;
     height: 25px;
     border:2px solid #ffffff;
@@ -773,14 +778,6 @@ input[type="submit"]:active{
     right: 0px;
 }
 
-.page{
-    position: absolute;
-    width: 100%;    
-    height: 100%;
-    background-image: url('../img/bg.png');
-    background-repeat: repeat; 
-}
-
 .stage-center{
     top: 0;
     left: 0;
@@ -894,14 +891,14 @@ input[type="submit"]:active{
     text-align: center;
 }
 /*New Header List start*/
-#header-list{
+/*#header-list{
     width: 100%;
     float: left;
     position: relative;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     top: 44px;
-}
+}*/
 #header-list>div{
     width: 100%;
     float: left;
@@ -1074,8 +1071,8 @@ input[type="submit"]:active{
     display: table;
     /*float: left;*/
     height: 46px;    
-    position: relative;
-    top: 44px;
+    /*position: relative;*/
+    /*top: 44px;*/
     width: 100%;
 }
 #search>div:nth-child(1){
