@@ -62,13 +62,13 @@ var app = {
                         if (data.message) {
                             self.showAlert(data.message, "ERROR");
                         }
-                        location.href="#Error"
+                        location.href = "#Error"
                     }
 
                 },
                 error: function() {
-                   self.showAlert("Ajax Error", "ERROR");
-                   location.href="#Error";
+                    self.showAlert("Ajax Error", "ERROR");
+                    location.href = "#Error";
                 }
             });
             return;
@@ -150,6 +150,7 @@ var app = {
             $(page.el).attr('class', 'page stage-right');
             currentPageDest = "stage-left";
         }
+        $('.stage-right, .stage-left').remove();
         $('body').append(page.el);
         // Wait until the new page has been added to the DOM...
         setTimeout(function() {
@@ -158,9 +159,6 @@ var app = {
             // Slide in the new page
             $(page.el).attr('class', 'page stage-center transition');
             self.currentPage = page;
-            window.setTimeout(function() {
-                $('.stage-right, .stage-left').remove();
-            }, 500);
         });
 
     }
