@@ -296,7 +296,7 @@ input[type="submit"]:active{
     cursor: pointer;
 }*/
 /*backbutton css end*/
-.header>a:nth-child(5){
+/*.header>a:nth-child(5){
     background-image: url('../img/searchbutton.png');
     background-size: 70px 35px;
     background-position: center center;
@@ -332,7 +332,7 @@ input[type="submit"]:active{
     display: block;
     font-size: 90%;
     line-height: 10px;
-}
+}*/
 /*header css end*/
 
 /*notification content css start*/

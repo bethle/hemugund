@@ -14,16 +14,26 @@ var NotificationHeaderView = function(headers) {
     };
     this.registerEvents = function() {
         if (document.documentElement.hasOwnProperty('ontouchstart')) {
-            $("body").on('touch', '.search-button', this.search);
-        }else{
-            $("body").on('click', '.search-button', this.search);            
+            $("body").on('touchend', '#search-notify-header', this.search);
+        } else {
+            $("body").on('mouseup', '#search-notify-header', this.search);
         }
     };
     this.search = function() {
-        var data = $("#search-input").val();
-        var username = app.username;
-        app.notify.getSearchHeaders(app.URL + "Search/" + app.list, data, username, function(data) {
-            $(".search-header-list").html(NotificationHeaderView.liTemplate(data.result));
+        $.ajax({
+            url: app.URL + "Search/" + app.mod,
+            data: "notify={\"query\":\"" + $("#search-input").val() + "\",\"user\": \"" + app.user + "\"}",
+            success: function(data) {
+                if (data.response === "SUCCESS") {
+                    $(".search-header-list").html(NotificationHeaderView.liTemplate(data.result));
+                } else {
+                    app.showAlert(data.response, "Notification Header Request Errored");
+                }
+            },
+            error: function() {
+                app.showAlert('Ajax Error');
+                location.href = "#Error";
+            }
         });
         return;
     };

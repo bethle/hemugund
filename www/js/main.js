@@ -76,6 +76,7 @@ var app = {
 
         match = hash.match(app.notifyURL);
         if (match) {
+            this.mod = match[1];
             this.prevPage = new NotificationHeaderView().render();
             this.slidePage(self.prevPage);
             return;
