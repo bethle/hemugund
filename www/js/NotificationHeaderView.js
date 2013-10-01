@@ -6,6 +6,22 @@ var NotificationHeaderView = function(headers) {
         this.registerEvents();
     };
     this.render = function() {
+        $.ajax({
+            url: app.URL + "Notifications/" + app.mod + "/1",
+            data: "notify={\"user\":\"" + app.user + "\"}",
+            success: function(data) {
+                if (data.response === "SUCCESS") {
+                    $(".search-header-list").html(NotificationHeaderView.liTemplate(data.result));
+                } else {
+                    app.showAlert(data.response, "Notification Header Request Errored");
+                    location.href = "#Error";
+                }
+            },
+            error: function() {
+                app.showAlert('Ajax Error');
+                location.href = "#Error";
+            }
+        });
         return this;
     };
     this.searchRender = function() {
@@ -14,9 +30,9 @@ var NotificationHeaderView = function(headers) {
     };
     this.registerEvents = function() {
         if (document.documentElement.hasOwnProperty('ontouchstart')) {
-            $("body").on('touchend', '#search-notify-header', this.search);
+            $(this.el).on('touchend', '#search-notify-header', this.search);
         } else {
-            $("body").on('mouseup', '#search-notify-header', this.search);
+            $(this.el).on('mouseup', '#search-notify-header', this.search);
         }
     };
     this.search = function() {
