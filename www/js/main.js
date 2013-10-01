@@ -88,25 +88,6 @@ var app = {
     },
     registerEvents: function() {
         var self = this;
-        //check of browser if support touch events
-        if (document.documentElement.hasOwnProperty('ontouchstart')) {
-            //   if yes: Register the touch event listener to change the selected state of the item
-            $('body').on('touchstart', 'a', function(event) {
-                $(event.target).addClass('tappable-active');
-            });
-            $('body').on('touchend', 'a', function(event) {
-                $(event.target).removeClass('tappable-active');
-            });
-        } else {
-            //   if not: register mouce events instead
-            $('body').on('moucedown', 'a', function(event) {
-                $(event.target).addClass('tappable-active');
-            });
-            $('body').on('mouceup', 'a', function(event) {
-                $(event.target).removeClass('tappable-active');
-            });
-        }
-
         // Add an Event Listener to Listen to URL hash tag Changes
         $(window).on('hashchange', $.proxy(this.route, this));
     },

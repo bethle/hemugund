@@ -41,11 +41,7 @@
 
 
         <script id="notifications-view-tpl" type="text/x-handlebars-template">
-            <div class="header" >     
-            <a href=""><div id='notification-logout-button' class="ui-back-button" >Logout</div></a>
-            <a><img src="img/actionmenu.png" id="actionIcon" onclick="slideDown(document.getElementById('ActionFooter'))"/ ></a>
-            <div class="ui-header-centered-text"><span>Notifications</span><span>Sysadmin</span></div>
-            </div>
+            <div class='header'><a href='' class='button header-button header-button-left'>Logout</a><h1>Notifications</h1></div>
             <div id='content-notify'> 
             <ul>
             <li>
@@ -86,11 +82,7 @@
         </script>
 
         <script id="notification-header-view-tpl" type="text/x-handlebars-template">
-            <div class='header' >     
-            <a href="#"><div id='notification-back-button' class="ui-back-button" >Back</div></a>
-            <a><img src="img/actionmenu.png" id="actionIcon" onclick="slideDown(document.getElementById('ActionFooter'))"/ ></a>
-            <div class="ui-header-centered-text"><span></span><span>Sysadmin</span></div>
-            </div>            
+            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>Sysadmin</h1></div>
             <div id="search">
             <div><input type="search" id="search-input" /></div>
             <div class="search-button" >Search</div>
