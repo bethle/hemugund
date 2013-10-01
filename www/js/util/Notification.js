@@ -27,7 +27,6 @@ var createXHR = (function() {
 })();
 
 var Notification = function() {
-    var self = this;
     this.logIn = function(url, user, password, callback) {
         this.ajax({
             url: url,

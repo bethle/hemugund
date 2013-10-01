@@ -10,8 +10,6 @@
             <div id="loginScreen" >
             <div></div>
             <div></div>
-            <!--logo div end-->
-            <!--form-->  
             <div>
             <table cellspacing="0" cellpadding="0">
             <tr>
@@ -41,30 +39,30 @@
 
 
         <script id="notifications-view-tpl" type="text/x-handlebars-template">
-            <div class='header'><a href='' class='button header-button header-button-left'>Logout</a><h1>Notifications</h1></div>
+            <div class='header'><a href='#Logout' class='button header-button header-button-left notify-logout'>Logout</a><h1>Notifications</h1></div>
             <div id='content-notify'> 
             <ul>
             <li>
             <a href="#Not/rqstns"><div>
-            <div><img src="img/mini-loading.gif"/></div>
+            <div id="requistion-count"><img src="img/mini-loading.gif"/></div>
             <div>Requisition</div>
             </div></a>
             </li>   
             <li>
             <a href="#Not/xpnsap"><div>
-            <div><img src="img/mini-loading.gif"/></div>
+            <div id="expense-app-count"><img src="img/mini-loading.gif"/></div>
             <div>Exp. Approval</div>
             </div></a>
             </li>   
             <li>
             <a href="#Not/pblnvc"><div>
-            <div><img src="img/mini-loading.gif"/></div>
+            <div id="pay-inv-count"><img src="img/mini-loading.gif"/></div>
             <div>Payable Invoice</div>
             </div></a>
             </li>   
             <li>
             <a href="#Not/prchrd"><div>
-            <div><img src="img/mini-loading.gif"/></div>
+            <div id="purch-ord-count"><img src="img/mini-loading.gif"/></div>
             <div>Purchase Order</div>
             </div></a>
             </li>   

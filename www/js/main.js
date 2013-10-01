@@ -48,9 +48,29 @@ var app = {
 
         match = hash.match(app.loginURL);
         if (match) {
-            this.homePage = new NotificationsView().render();
-            this.currentPage = null;
-            this.slidePage(self.homePage);
+            this.user = $('#user-name').val();
+            $.ajax({
+                url: self.URL + "Login",
+                data: "login={\"user_name\": \"" + self.user + "\" , \"password\": \"" + $('#password').val() + "\"}",
+                dataType: 'json',
+                success: function(data) {
+                    if (data.response === "SUCCESS") {
+                        self.homePage = new NotificationsView().render();
+                        self.currentPage = null;
+                        self.slidePage(self.homePage);
+                    } else {
+                        if (data.message) {
+                            self.showAlert(data.message, "ERROR");
+                        }
+                        location.href="#Error"
+                    }
+
+                },
+                error: function() {
+                   self.showAlert("Ajax Error", "ERROR");
+                   location.href="#Error";
+                }
+            });
             return;
         }
 
