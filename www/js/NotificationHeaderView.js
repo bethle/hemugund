@@ -5,6 +5,7 @@ var NotificationHeaderView = function(headers) {
         this.el.innerHTML = NotificationHeaderView.template();
         this.registerEvents();
     };
+    
     this.render = function() {
         $.ajax({
             url: app.URL + "Notifications/" + app.mod + "/1",
@@ -24,10 +25,7 @@ var NotificationHeaderView = function(headers) {
         });
         return this;
     };
-    this.searchRender = function() {
-        this.el.innerHTML = NotificationHeaderView.liTemplate(headers);
-        return this;
-    };
+    
     this.registerEvents = function() {
         if (document.documentElement.hasOwnProperty('ontouchstart')) {
             $(this.el).on('touchend', '#search-notify-header', this.search);
@@ -35,6 +33,7 @@ var NotificationHeaderView = function(headers) {
             $(this.el).on('mouseup', '#search-notify-header', this.search);
         }
     };
+    
     this.search = function() {
         $.ajax({
             url: app.URL + "Search/" + app.mod,

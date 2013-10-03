@@ -50,6 +50,7 @@ var NotificationsView = function() {
     };
     this.initialize();
 };
+
 NotificationsView.template = Handlebars.compile(document.getElementById("notifications-view-tpl").innerHTML);
 
 /*
