@@ -77,11 +77,11 @@ var app = {
         match = hash.match(app.notifyURL);
         if (match) {
             this.mod = match[1];
-            if (this.isMobile()) {
+//            if (this.isMobile()) {
                 this.prevPage = new NotificationHeaderView().render();
-            } else {
-                this.prevPage = new NotificationFullView().render();
-            }
+//            } else {
+//                this.prevPage = new NotificationFullView().render();
+//            }
             this.slidePage(self.prevPage);
             return;
         }
