@@ -16,14 +16,14 @@
     <gap:splash gap:platform="ios" height="480" src="img/EBS_Mobility_Logo_320_480.png" width="320"/>
     <gap:splash gap:platform="ios" height="640" src="img/EBS_Mobility_Logo_960_640.png" width="960"/>
     <gap:splash gap:platform="ios" height="960" src="img/EBS_Mobility_Logo_640_960.png" width="640"/>
-    <gap:splash gap:platform="android" height="480" src="img/EBS_Mobility_Logo_800_480.png" width="800"/>
+    <gap:splash gap:platform="android" height="480" src="img/EBS_Mobility_Logo_480_320.png" width="800"/>
     <gap:splash gap:platform="android" height="800" src="img/EBS_Mobility_Logo_480_320.png" width="480"/>
     <gap:splash gap:platform="android" height="200" src="img/EBS_Mobility_Logo_320_480.png" width="320"/>
-    <gap:splash gap:platform="android" height="320" src="img/EBS_Mobility_Logo_200_320.png" width="200"/>
+    <gap:splash gap:platform="android" height="320" src="img/EBS_Mobility_Logo_480_320.png" width="200"/>
     <gap:splash gap:platform="android" height="320" src="img/EBS_Mobility_Logo_480_320.png" width="480"/>
     <gap:splash gap:platform="android" height="480" src="img/EBS_Mobility_Logo_320_480.png" width="320"/>
-    <gap:splash gap:platform="android" height="720" src="img/EBS_Mobility_Logo_1280_720.png" width="1280"/>
-    <gap:splash gap:platform="android" height="1280" src="img/EBS_Mobility_Logo_720_1280.png" width="720"/>   
+    <gap:splash gap:platform="android" height="720" src="img/EBS_Mobility_Logo_480_320.png" width="1280"/>
+    <gap:splash gap:platform="android" height="1280" src="img/EBS_Mobility_Logo_480_320.png" width="720"/>   
     
     <feature name="http://api.phonegap.com/1.0/device" />
     <preference name="permissions" value="none"/>
