@@ -77,8 +77,11 @@ var app = {
         match = hash.match(app.notifyURL);
         if (match) {
             this.mod = match[1];
-            this.showAlert("Width of the screen is: "+this.deviceInfo(), "INFO");
-            this.prevPage = new NotificationHeaderView().render();
+            if (this.isMobile()) {
+                this.prevPage = new NotificationHeaderView().render();
+            } else {
+                this.prevPage = new NotificationFullView().render();
+            }
             this.slidePage(self.prevPage);
             return;
         }
@@ -163,8 +166,12 @@ var app = {
         });
 
     },
-    deviceInfo: function() {
-        return screen.width;
+    isMobile: function() {
+        if (screen.width < 480) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

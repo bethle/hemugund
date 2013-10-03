@@ -1,8 +1,5 @@
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link href="css/style.css" rel="stylesheet">
         <script src="lib/jquery.js"></script>
         <script src="lib/handlebars.js"></script>
@@ -97,6 +94,20 @@
             </div>
         </script>
 
+        <script id="notification-full-view-tpl" type="text/x-handlebars-template">
+            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>Sysadmin</h1></div>
+            <div id="search">
+            <div><input type="search" id="search-input" /></div>
+            <div id="search-notify-header" class="search-button" >Search</div>
+            </div>
+            <div id='header-list'>                
+            <ul class="search-header-list scroll" >         
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 20px;" />
+            </li>
+            </ul>
+            </div>
+        </script>
         <script  id="header-list-tpl" type="text/x-handlebars-template" >                   
             {{#.}}
             <li>            
