@@ -77,6 +77,7 @@ var app = {
         match = hash.match(app.notifyURL);
         if (match) {
             this.mod = match[1];
+            this.showAlert("Width of the screen is: "+this.deviceInfo(), "INFO");
             this.prevPage = new NotificationHeaderView().render();
             this.slidePage(self.prevPage);
             return;
@@ -161,9 +162,21 @@ var app = {
             self.currentPage = page;
         });
 
+    },
+    deviceInfo: function() {
+        document.getElementById("platform").innerHTML = device.platform;
+        document.getElementById("version").innerHTML = device.version;
+        document.getElementById("uuid").innerHTML = device.uuid;
+        document.getElementById("name").innerHTML = device.name;
+        document.getElementById("width").innerHTML = screen.width;
+        document.getElementById("height").innerHTML = screen.height;
+        document.getElementById("colorDepth").innerHTML = screen.colorDepth;
+        return screen.width;
     }
 
+
 };
+
 app.orgListTemplate = Handlebars.compile(document.getElementById("filter-orgs-list-tpl").innerHTML);
 app.initialize();
 
