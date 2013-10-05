@@ -75,9 +75,6 @@ a{
     background-size: 310px 4px;         
     margin: 0 auto 28px auto;
 }
-/*#loginScreen>div:nth-child(1)>img{
-    width: 100%;    
-}*/
 /*form css*/
 input[type="text"],input[type="password"]{
     width: 254px;
@@ -174,9 +171,6 @@ input[type="button"]:active{
 input[type="submit"]:active{
     background: #f2f2f2;
 }
-/*login button css end*/
-
-/*Login page css end*/
 
 /*header css*/
 .header {
@@ -232,126 +226,11 @@ input[type="submit"]:active{
     background-size: 67px 37px;      
 }
 
-/*.header{
-    width: 100%;
-    height: 44px;
-    background-image:url('../img/headerstrip.png');
-    background-repeat: repeat-x;
-    border-bottom: 1px solid #cccccc;
-    position: relative;
-    background-size: 1px 44px;
-}*/
-/*.header>div:nth-child(1){
-    width: 100%;
-    height: auto;
-    position: absolute;  
-    top: 0;
-    background: rgb(240,183,161);  Old browsers 
-    background: -moz-linear-gradient(top, rgba(240,183,161,1) 0%, rgba(140,51,16,1) 50%, rgba(117,34,1,1) 51%, rgba(191,110,78,1) 100%);  FF3.6+ 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(240,183,161,1)), color-stop(50%,rgba(140,51,16,1)), color-stop(51%,rgba(117,34,1,1)), color-stop(100%,rgba(191,110,78,1)));  Chrome,Safari4+ 
-    background: -webkit-linear-gradient(top, rgba(240,183,161,1) 0%,rgba(140,51,16,1) 50%,rgba(117,34,1,1) 51%,rgba(191,110,78,1) 100%);  Chrome10+,Safari5.1+ 
-    background: -o-linear-gradient(top, rgba(240,183,161,1) 0%,rgba(140,51,16,1) 50%,rgba(117,34,1,1) 51%,rgba(191,110,78,1) 100%);  Opera 11.10+ 
-    background: -ms-linear-gradient(top, rgba(240,183,161,1) 0%,rgba(140,51,16,1) 50%,rgba(117,34,1,1) 51%,rgba(191,110,78,1) 100%);  IE10+ 
-    background: linear-gradient(to bottom, rgba(240,183,161,1) 0%,rgba(140,51,16,1) 50%,rgba(117,34,1,1) 51%,rgba(191,110,78,1) 100%);  W3C 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=0 );  IE6-9 
-    z-index: 999;    
-}
-.header>div:nth-child(1)>table{
-    width: 100%;
-    height: 100%;    
-}
-.header>div:nth-child(1)>table tr>td{    
-    width: 50%;
-    text-align: center;    
-}*/
-/*backbutton css*/
-/*.header>a>div{             
-    width: 67px;
-    height: 37px;
-    background-image: url('../img/back_notext.png');
-    background-repeat: no-repeat;
-    background-size: 67px 37px;      
-    padding-left: 3px;
-    font-family: 'Arial';
-    font-size: 95%;
-    text-align: center;    
-    display: inline;    
-    color: #5f6065;
-    cursor: pointer;
-    float: left;    
-    line-height: 37px;
-    margin: 4px 0px 0px 5px;
-    border-radius: 5px;
-    border: 0;
-    font-weight: bold;
-}
-.header>a>div:active{
-    color: #3399cc;
-}
-.header>a>img{
-    height: 37px;
-    float: right;
-    margin-top: 3px;
-    margin-right: 5px;
-    cursor: pointer;
-}*/
-/*backbutton css end*/
-/*.header>a:nth-child(5){
-    background-image: url('../img/searchbutton.png');
-    background-size: 70px 35px;
-    background-position: center center;
-    display: inline-block;
-    float: right;
-    height: 35px;
-    line-height: 35px;
-    margin-top: 3px;
-    width: 70px;
-    text-align: center;
-    font-size: 96%;
-    font-family: 'Arial';
-    text-shadow: 0 0px 0 rgba(0, 0, 0, 0.25);
-    color: #5F6065;
-    font-weight: bold;
-    margin-right: 5px;
-}
-.header>div:nth-child(6){
-    width: 64%;
-    height: 100%;
-    margin: 0 auto;
-    font-family: 'Arial';
-    text-align: center;
-    line-height: 27px;
-    color: #ffffff;       
-}
-.header>div:nth-child(6)>span:nth-child(1){
-    font-size: 110%;
-    font-weight: bold;
-    white-space: nowrap;
-}
-.header>div:nth-child(6)>span:nth-child(2){
-    display: block;
-    font-size: 90%;
-    line-height: 10px;
-}*/
-/*header css end*/
-
 /*notification content css start*/
 #content-notify{
     width: 100%;
-    /*float: left;*/
-    /*position: relative;*/
-    /*overflow: scroll;*/
-    /*-webkit-overflow-scrolling: touch;*/
-    /*top: 44px;*/
-    /*z-index: 888;*/
     padding-top: 5px;
 }
-/*#content-notify>div{
-    float: right;
-    left: -50%;
-    padding-top: 6px;
-    position: relative;
-}*/
 /*grid css start*/
 #content-notify>ul{
     position: relative;
@@ -465,153 +344,11 @@ input[type="submit"]:active{
 }
 
 
-/*#notifications{
-    position: relative;
-    animation:notifications 0.275s;
-    -webkit-animation:notification 0.275s;  Safari and Chrome    
-}*/
-/*@-webkit-keyframes notification 
-{
-    from {right:-100%;}
-    to {right:0px;}
-}*/
-/*#header-list-wrapper{
-    animation:navigation 0.275s;
-    -webkit-animation:navigation 0.275s;  Safari and Chrome    
-}*/
-/*#details{
-    animation:navigation 0.275s;
-    -webkit-animation:navigation 0.275s;  Safari and Chrome    
-}*/
-/*@-webkit-keyframes navigation 
-{
-    from {right:-100%;}
-    to {right:0px;}
-}*/
-
-
 /*grid css end
 
 notification content css end
 list content css start
-#content-details{
-    width: 100%;
-    float: left;
-    position: relative;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-#content-details>div:nth-child(1){
-    width: 100%;
-    float: left;
-    position: relative;
-}
-#content-details>div:nth-child(1)>table{
-    width: 100%;
-    background: #f2f2f2;
-    border-bottom: 1px solid #c2c2c2;
-}
-#content-details>div:nth-child(1)>table tr td{    
-    height: 50%;
-    font-family: 'Arial';
-    font-size: 80%;    
-    color: #888888;
-    padding: 5px 0;
-}
-#content-details>div:nth-child(1)>table tr td:nth-child(1){
-    width: 40%;
-    text-align: right;
-}
-#content-details>div:nth-child(1)>table tr td:nth-child(2){
-    width: 15%;
-}
-#content-details>div:nth-child(1)>table tr td:nth-child(3){
-    width: 45%;    
-    text-align: left;
-    font-weight: bold;
-}
-#content-details>div:nth-child(1)>table:nth-child(2n){
-    width: 100%;
-    background: rgb(255,255,255);  Old browsers 
-    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);  FF3.6+ 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));  Chrome,Safari4+ 
-    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Chrome10+,Safari5.1+ 
-    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Opera 11.10+ 
-    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  IE10+ 
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  W3C 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );     
-}
-#content-details>div:nth-child(1)>table:nth-child(2n) td{
-    width: 50% !important;
-    text-align: center !important;    
-}
-#content-details>div:nth-child(1)>div:nth-child(2){
-    width: 100%;
-    height: 20px;
-    font-family: 'Arial';
-    font-size: 100%;
-    line-height: 20px;
-    color: #000000;
-    background: rgb(255,255,255);  Old browsers 
-    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);  FF3.6+ 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));  Chrome,Safari4+ 
-    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Chrome10+,Safari5.1+ 
-    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Opera 11.10+ 
-    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  IE10+ 
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  W3C 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );         
-    text-align: center;
-    position: relative;
-    padding: 15px 0px;
-}
-#content-details>div:nth-child(1)>div:nth-child(2)>div{
-    background-image: url("../img/add-icon.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 35px 35px;
-    cursor: pointer;
-    height: 50px;
-    position: absolute;
-    right: 5px;
-    top: 0;
-    width: 41px;
-    z-index: 1;
-}
-#content-details>div:nth-child(1)>div:nth-child(3){
-    width: 100%;    
-    border-top: 1px solid #c2c2c2;
-    background: #f2f2f2;
-}
-#content-details>div:nth-child(1)>div:nth-child(3)>table{
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    border: 0;    
-    background: none;
-    table-layout: fixed;
-}
-#content-details>div:nth-child(1)>div:nth-child(3)>table tr>td{
-    width: 33%;
-    padding: 5px 0;
-    font-family: 'Arial';
-    font-size: 80%;
-    text-align: center;
-    color: #888888;
-    font-weight: normal !important;
-}
-#content-details>div:nth-child(1)>div:nth-child(3)>table tr>td:nth-child(1){
-    text-align: right;
-    width: 40%;
-    font-weight: bold;
-}
-#content-details>div:nth-child(1)>div:nth-child(3)>table tr>td:nth-child(2){
-    width: 15%;
-}
-#content-details>div:nth-child(1)>div:nth-child(3)>table tr>td:nth-child(3){
-    text-align: left;
-    width: 45%;
-    font-weight: bold !important;
-}
+*/
 .ui-list-details table tr td p{
     width: 63%;
     text-align: right;
@@ -626,7 +363,7 @@ list content css start
     transition-timing-function:ease-in-out;
     max-height:     0;
     overflow:       hidden;
-}
+}/*
 Action Footer
 #ActionFooter{
     width: 100%;
@@ -1108,19 +845,6 @@ contact form end
 #header-list>ul>li>a>table tr>td:nth-child(2)>ul>li:nth-child(3)>span:nth-child(2){
     color: #5F6065;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 #search{
     background-color: #FFFFFF;
     border-bottom: 1px solid #C2C2C2;
@@ -1191,7 +915,6 @@ contact form end
 /*list details tab start*/
 #header-details{
     width: 100%;
-    height: auto;
     float: left;
     background: rgb(255,255,255); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6+ */
@@ -1202,8 +925,6 @@ contact form end
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
     padding-top: 5px;    
-    top: 44px;
-    position: relative;
 }
 #header-details>div:nth-child(1){
     height: 30px;
@@ -1319,7 +1040,7 @@ contact form end
 #header-details>div:nth-child(4){
     width: 100%;
     float: left;
-    height: auto;
+    height: 53%;
 }
 .details {
     width: 100%;
@@ -1344,12 +1065,12 @@ contact form end
 }
 #list-items{
     padding: 10px 0;
-    height: auto;
+    height: 100%;
 }
-#list-items>div{
+/*#list-items>div{
     width: 100%;
-}
-#list-items>div>table{
+}*/
+/*#list-items>div>table{
     width: 90%;
     background: #3399cc;
     margin: 0 auto;
@@ -1370,9 +1091,32 @@ contact form end
 }
 #list-items>div>table tr>td:nth-child(4),#list-items>ul>li>table tr>td:nth-child(4){
     width: 35%;
+}*/
+#list-items>table{
+    width: 90%;
+    background: #3399cc;
+    margin: 0 auto;
+    padding:  10px 0;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Arial';
+    font-size: 95%;
 }
+#list-items>table tr>td:nth-child(1),#list-items>ul>li>table tr>td:nth-child(1) {
+    width: 15%;
+}
+#list-items>table tr>td:nth-child(2),#list-items>ul>li>table tr>td:nth-child(2){
+    width: 25%;
+}
+#list-items>table tr>td:nth-child(3),#list-items>ul>li>table tr>td:nth-child(3){
+    width: 25%;
+}
+#list-items>table tr>td:nth-child(4),#list-items>ul>li>table tr>td:nth-child(4){
+    width: 35%;
+}
+
 #list-items>ul{
-    width: 100%;    
+    width: 100%;
 }
 #list-items>ul>li{
     list-style: none;
@@ -1508,11 +1252,12 @@ contact form end
 }
 #information>div,#history>div{
     width: 94%;
-    height: auto;       
+    height: 100%;       
     margin: 0 auto;      
 }
 #information>div>ul,#history>div>ul{
     width: 100%;
+    top:10px;
 }
 #information>div>ul>li{
     width: 100%;
@@ -1743,3 +1488,140 @@ label {
     right: 6px;
     top: 10px;    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+#content-details{
+    width: 100%;
+    float: left;
+    position: relative;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+#content-details>div:nth-child(1){
+    width: 100%;
+    float: left;
+    position: relative;
+}
+#content-details>div:nth-child(1)>table{
+    width: 100%;
+    background: #f2f2f2;
+    border-bottom: 1px solid #c2c2c2;
+}
+#content-details>div:nth-child(1)>table tr td{    
+    height: 50%;
+    font-family: 'Arial';
+    font-size: 80%;    
+    color: #888888;
+    padding: 5px 0;
+}
+#content-details>div:nth-child(1)>table tr td:nth-child(1){
+    width: 40%;
+    text-align: right;
+}
+#content-details>div:nth-child(1)>table tr td:nth-child(2){
+    width: 15%;
+}
+#content-details>div:nth-child(1)>table tr td:nth-child(3){
+    width: 45%;    
+    text-align: left;
+    font-weight: bold;
+}
+#content-details>div:nth-child(1)>table:nth-child(2n){
+    width: 100%;
+    background: rgb(255,255,255);  Old browsers 
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);  FF3.6+ 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));  Chrome,Safari4+ 
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Chrome10+,Safari5.1+ 
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Opera 11.10+ 
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  IE10+ 
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  W3C 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );     
+}
+#content-details>div:nth-child(1)>table:nth-child(2n) td{
+    width: 50% !important;
+    text-align: center !important;    
+}
+#content-details>div:nth-child(1)>div:nth-child(2){
+    width: 100%;
+    height: 20px;
+    font-family: 'Arial';
+    font-size: 100%;
+    line-height: 20px;
+    color: #000000;
+    background: rgb(255,255,255);  Old browsers 
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);  FF3.6+ 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));  Chrome,Safari4+ 
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Chrome10+,Safari5.1+ 
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Opera 11.10+ 
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  IE10+ 
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  W3C 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );         
+    text-align: center;
+    position: relative;
+    padding: 15px 0px;
+}
+#content-details>div:nth-child(1)>div:nth-child(2)>div{
+    background-image: url("../img/add-icon.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 35px 35px;
+    cursor: pointer;
+    height: 50px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    width: 41px;
+    z-index: 1;
+}
+#content-details>div:nth-child(1)>div:nth-child(3){
+    width: 100%;    
+    border-top: 1px solid #c2c2c2;
+    background: #f2f2f2;
+}
+#content-details>div:nth-child(1)>div:nth-child(3)>table{
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 0;    
+    background: none;
+    table-layout: fixed;
+}
+#content-details>div:nth-child(1)>div:nth-child(3)>table tr>td{
+    width: 33%;
+    padding: 5px 0;
+    font-family: 'Arial';
+    font-size: 80%;
+    text-align: center;
+    color: #888888;
+    font-weight: normal !important;
+}
+#content-details>div:nth-child(1)>div:nth-child(3)>table tr>td:nth-child(1){
+    text-align: right;
+    width: 40%;
+    font-weight: bold;
+}
+#content-details>div:nth-child(1)>div:nth-child(3)>table tr>td:nth-child(2){
+    width: 15%;
+}
+#content-details>div:nth-child(1)>div:nth-child(3)>table tr>td:nth-child(3){
+    text-align: left;
+    width: 45%;
+    font-weight: bold !important;
+}
+*/
