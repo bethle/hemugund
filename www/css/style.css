@@ -325,6 +325,9 @@ input[type="submit"]:active{
     right: 0px;
 }
 
+
+
+
 .stage-center{
     top: 0;
     left: 0;
@@ -1040,7 +1043,7 @@ contact form end
 #header-details>div:nth-child(4){
     width: 100%;
     float: left;
-    height: 53%;
+    height: 63%;
 }
 .details {
     width: 100%;
