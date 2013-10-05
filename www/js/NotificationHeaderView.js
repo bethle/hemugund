@@ -5,27 +5,24 @@ var NotificationHeaderView = function(headers) {
         this.el.innerHTML = NotificationHeaderView.template();
         this.registerEvents();
     };
-    
     this.render = function() {
         $.ajax({
             url: app.URL + "Notifications/" + app.mod + "/1",
+            dataType: "json",
             data: "notify={\"user\":\"" + app.user + "\"}",
-            success: function(data) {
-                if (data.response === "SUCCESS") {
-                    $(".search-header-list").html(NotificationHeaderView.liTemplate(data.result));
-                } else {
-                    app.showAlert(data.response, "Notification Header Request Errored");
-                    location.href = "#Error";
-                }
-            },
-            error: function() {
-                app.showAlert('Ajax Error');
-                location.href = "#Error";
-            }
+            success: this.loadHeaderList,
+            error: app.errorAlert
         });
         return this;
     };
-    
+    this.loadHeaderList = function(data) {
+        if (data.response === "SUCCESS") {
+            $(".search-header-list").html(NotificationHeaderView.liTemplate(data.result));
+        } else {
+            app.showAlert(data.response, "Notification Header Request Errored");
+            location.href = "#Error";
+        }
+    };
     this.registerEvents = function() {
         if (document.documentElement.hasOwnProperty('ontouchstart')) {
             $(this.el).on('touchend', '#search-notify-header', this.search);
@@ -33,22 +30,13 @@ var NotificationHeaderView = function(headers) {
             $(this.el).on('mouseup', '#search-notify-header', this.search);
         }
     };
-    
+
     this.search = function() {
         $.ajax({
             url: app.URL + "Search/" + app.mod,
             data: "notify={\"query\":\"" + $("#search-input").val() + "\",\"user\": \"" + app.user + "\"}",
-            success: function(data) {
-                if (data.response === "SUCCESS") {
-                    $(".search-header-list").html(NotificationHeaderView.liTemplate(data.result));
-                } else {
-                    app.showAlert(data.response, "Notification Header Request Errored");
-                }
-            },
-            error: function() {
-                app.showAlert('Ajax Error');
-                location.href = "#Error";
-            }
+            success: this.loadHeaderList,
+            error: app.errorAlert
         });
         return;
     };

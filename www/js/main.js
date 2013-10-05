@@ -1,4 +1,8 @@
 var app = {
+    errorAlert: function() {
+        app.showAlert('Ajax Error');
+        location.href = "#Error";
+    },
     showAlert: function(message, title) {
         console.log('alerted: ' + message + ' : ' + title);
         if (navigator.notification) {
@@ -32,7 +36,7 @@ var app = {
         var hash = window.location.hash, self = this;
         if (!hash) {
             if (this.homePage) {
-                this.slidePage(this.homePage);
+                this.slidePage(this.homePage.render());
             } else {
                 this.homePage = new LoginView().render();
                 this.slidePage(this.homePage);
@@ -41,11 +45,7 @@ var app = {
         }
 
         var match;
-        var match = hash.match(/^#Home/);
-        if (match) {
-            this.slidePage(this.homePage);
-        }
-
+        
         match = hash.match(app.loginURL);
         if (match) {
             this.user = $('#user-name').val();
@@ -77,18 +77,19 @@ var app = {
         match = hash.match(app.notifyURL);
         if (match) {
             this.mod = match[1];
-//            if (this.isMobile()) {
+            if (this.isMobile()) {
                 this.prevPage = new NotificationHeaderView().render();
-//            } else {
+            } else {
+                this.prevPage = new NotificationHeaderView().render();
 //                this.prevPage = new NotificationFullView().render();
-//            }
+            }
             this.slidePage(self.prevPage);
             return;
         }
 
         match = hash.match(app.detailsURL);
         if (match) {
-            this.slidePage(new NotificationDetailView().render());
+            this.slidePage(new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3]}).render());
             return;
         }
 
@@ -119,7 +120,7 @@ var app = {
     initialize: function() {
 //        var self = this;
         this.registerEvents();
-        this.URL = "http://182.18.157.157:7001/mbs/"; //182.18.157.157:7001
+        this.URL = "http://192.168.10.50:8084/mbs/"; //182.18.157.157:7001
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.filterURL = /^#Filter\/(.{6})/;
@@ -127,12 +128,12 @@ var app = {
         this.forwardURL = /^#Forward/;
         this.approveURL = /^#Approve/;
         this.rejectURL = /^#Reject/;
-        this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(.{1,})/;
+        this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
         this.attachURL = /^#attach\/(.{6})\/.*/;
 //        this.notify = new Notification();
         this.route();
     },
-    slidePage: function(page) {
+    slidePage: function(page, isBack) {
         var currentPageDest,
                 self = this;
         // If there is no current page (app just started) -> No transition: Position new page in the view port
@@ -145,7 +146,7 @@ var app = {
 
 // Cleaning up: remove old pages that were moved out of the viewport
 
-        if (page === app.homePage) {
+        if (page === app.homePage || isBack) {
             // Always apply a Back transition (slide from left) when we go back to the search page
             $(page.el).attr('class', 'page stage-left');
             currentPageDest = "stage-right";
@@ -154,7 +155,6 @@ var app = {
             $(page.el).attr('class', 'page stage-right');
             currentPageDest = "stage-left";
         }
-        $('.stage-right, .stage-left').remove();
         $('body').append(page.el);
         // Wait until the new page has been added to the DOM...
         setTimeout(function() {
@@ -163,6 +163,7 @@ var app = {
             // Slide in the new page
             $(page.el).attr('class', 'page stage-center transition');
             self.currentPage = page;
+            $('.stage-right, .stage-left').remove();
         });
 
     },
@@ -172,12 +173,46 @@ var app = {
         } else {
             return false;
         }
+    },
+    tab: function(elem) {
+        var index = $(elem).index();
+        index = index + 1;
+        $("#ui-tab-content>div").removeClass('show');
+        $("#ui-tab-content>div:nth-child(" + index + ")").addClass('show');
+    },
+    toggle: function(e) {
+        var elem = this.next(e);
+        if (elem.style.maxHeight === '1000px') {
+            this.slideUp(elem);
+        }
+        else {
+            this.slideDown(elem);
+        }
+    },
+    slideDown: function(elem)
+    {
+        if (elem !== null) {
+            if (elem.className !== 'ui-list-arrow') {
+                elem.style.maxHeight = '1000px';
+                elem.style.borderBottom = '1px solid #c2c2c2';
+            }
+        }
+    },
+    slideUp: function(elem)
+    {
+        elem.style.maxHeight = '0';
+        elem.style.borderBottom = '0';
+    },
+    next: function(elem) {
+        do {
+            elem = elem.nextSibling;
+        } while (elem && elem.nodeType !== 1);
+        return elem;
     }
-
 
 };
 
-app.orgListTemplate = Handlebars.compile(document.getElementById("filter-orgs-list-tpl").innerHTML);
+//app.orgListTemplate = Handlebars.compile(document.getElementById("filter-orgs-list-tpl").innerHTML);
 app.initialize();
 
 
