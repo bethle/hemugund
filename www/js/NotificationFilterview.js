@@ -24,7 +24,7 @@ var NotificationFilterView = function(filter) {
 
     this.initialize();
 };
-NotificationFilterView.liPOTemplate = Handlebars.compile(document.getElementById("filter-po-type-tpl").innerHTML);
-NotificationFilterView.liPRTemplate = Handlebars.compile(document.getElementById("filter-req-type-tpl").innerHTML);
+//NotificationFilterView.liPOTemplate = Handlebars.compile(document.getElementById("filter-po-type-tpl").innerHTML);
+//NotificationFilterView.liPRTemplate = Handlebars.compile(document.getElementById("filter-req-type-tpl").innerHTML);
 NotificationFilterView.template = Handlebars.compile(document.getElementById("filter-view-tpl").innerHTML);
 

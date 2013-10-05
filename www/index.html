@@ -93,6 +93,39 @@
             </ul>
             </div>
         </script>
+ 
+        <script id="header-list-tpl" type="text/x-handlebars-template" >                   
+            {{#.}}
+            <li>            
+            <a href="#Detail{{this.mod}}/{{this.hid}}-{{this.id}}" >
+            <table cellpadding="0" cellspacing="0" >
+            <tr>
+            <td>
+            <table cellpadding="0" cellspacing="0" >
+            <tr>
+            <td><div class={{icon}} ></div></div>&nbsp;<span id="{{this.hid}}-num">{{this.num}}</span><span id="{{this.hid}}-name">{{this.name}}</span></td>                                                                                                            
+            </tr>
+            <tr>
+            <td>
+            <span>{{this.subject}}</span>
+            </td>                                                                                                            
+            </tr>
+            </table>
+            </td>
+            <td>           
+            <div><img class="list-arrow" src="img/arrow.png" /></div>
+            <ul>
+            <li id="{{this.hid}}-date">{{this.date}}</li>
+            <li id="{{this.hid}}-amount">{{this.amount}}</li>                                        
+            <li class={{color}} ><span>{{this.status}}</span>&nbsp;&nbsp;<span id="{{this.hid}}-code">{{this.code}}</span></li>
+            </ul>
+            </td>
+            </tr>                                
+            </table>                            
+            </a>                    
+            </li>
+            {{/.}}         
+        </script>
 
         <script id="notification-full-view-tpl" type="text/x-handlebars-template">
             <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>Sysadmin</h1></div>
@@ -108,194 +141,330 @@
             </ul>
             </div>
         </script>
-        <script  id="header-list-tpl" type="text/x-handlebars-template" >                   
+
+        
+        
+        
+        
+        
+        <script id="notification-lines-tpl" type="text/x-handlebars-template" >
             {{#.}}
-            <li>            
-            <a href="#Detail{{this.mod}}/{{this.hid}}-{{this.id}}" >
-            <table cellpadding="0" cellspacing="0" >
-            <tr>
-            <td>
-            <table cellpadding="0" cellspacing="0" >
-            <tr>
-            <td><div class={{icon}} ></div></div><span>&nbsp;{{this.num}}</span><span>{{this.name}}</span></td>                                                                                                            
-            </tr>
-            <tr>
-            <td>
-            <span>{{this.subject}}</span>
-            </td>                                                                                                            
-            </tr>
-            </table>
-            </td>
-            <td>           
-            <div><img class="list-arrow" src="img/arrow.png" /></div>
-            <ul>
-            <li>{{this.date}}</li>
-            <li>{{this.amount}}</li>                                        
-            <li class={{color}} ><span>{{this.status}}</span><span>&nbsp;&nbsp;{{this.code}}</span></li>
-            </ul>
-            </td>
-            </tr>                                
-            </table>                            
-            </a>                    
-            </li>
-            {{/.}}         
-        </script>
-        <script id="filter-orgs-list-tpl" type="text/x-handlebars-template">
-            <p>Organization codes</p>
-            <div>
-            <div id='select-org' >All</div>
-            <img src="img/arrow.png" />
-            <select onchange="document.getElementById('select-org').innerHTML=this.options[this.selectedIndex].text" >            
-            <option value='0' >All</option>          
-            {{#.}}
-            <option value='{{this}}' >{{this}}</option>            
+                        <li>                            
+                            <table cellspacing="0" cellpadding="0" onclick="app.toggle(this)" >
+                                <tr>
+                                    <td><span>{{this.num}}</span></td>
+                                    <td><span>{{this.qnty}}</span></td>
+                                    <td><span>{{this.price}}</span></td>
+                                    <td><span>{{this.amount}}</span></td>
+                                </tr>
+                                <tr><td colspan="4" >{{this.desc}}</td></tr>
+                            </table> 
+                            <div class="sliding-effect" >
+                                <ul>  
+                                    <li>
+                                        <span>Item Number:</span>
+                                        <span>{{this.item}}</span>
+                                    </li> 
+                                    <li>
+                                        <span>Category:</span>
+                                        <span>{{this.categ}}</span>
+                                    </li> 
+                                    <li>
+                                        <span>UOM:</span>
+                                        <span>{{this.uom}}</span>
+                                    </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                </ul> 
+                                <table cellspacing="0" cellpadding="0" >
+                                    <tr>
+                                        <td>Distribution No.</td>
+                                        <td>Charge Account</td>
+                                        <td>Project Name</td>
+                                        <td>Task Name</td>
+                                    </tr>
+                                </table>
+                                <ul id="{{this.num}}-dist">
+                                    <li style="text-align:center;">            
+                                        <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+                                    </li>
+                                </ul>            
+                            </div>
+                        </li>   
             {{/.}}
-            </select>           
-            </div>
-        </script>
-        <script id="filter-req-type-tpl" type="text/x-handlebars-template">
+        </script>            
+        
+        <script id="expense-lines-tpl" type="text/x-handlebars-template" >
+            {{#.}}
+            <li>                            
+            <table cellspacing="0" cellpadding="0" onclick="app.toggle(this)" >
+            <tr>
+            <td><span>{{this.num}}</span></td>
+            <td><span>{{this.rec_verify}}</span></td>            
+            <td><span>{{this.amount}}</span></td>
+            </tr>
+            <tr><td colspan="4" >{{this.desc}}</td></tr>
+            </table> 
+            <div class="sliding-effect" >
+            <ul>  
             <li>
-            <div>
-            {{#if pr}}
-            <input id="check1" type="checkbox" name="type" checked="checked" value="Purchase Requisition">
-            <label for="check1">PR</label>			
-            {{else}}
-            <input id="check1" type="checkbox" name="type" value="Purchase Requisition">
-            <label for="check1">PR</label>			
-            {{/if}}
-            </div>
-            </li>
+            <span>Item Number:</span>
+            <span>{{this.desc}}</span>
+            </li> 
             <li>
-            <div>
-            {{#if ir}}
-            <input id="check2" type="checkbox" name="type" checked="checked" value="Internal Requisition">
-            <label for="check2">IR</label>			
-            {{else}}
-            <input id="check2" type="checkbox" name="type" value="Internal Requisition">
-            <label for="check2">IR</label>			
-            {{/if}}
-            </div>
-            </li>                        
-        </script>
-
-
-        <script id="filter-po-type-tpl" type="text/x-handlebars-template">
+            <span>Justification:</span>
+            <span>{{this.just}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                </ul> 
+                                <table cellspacing="0" cellpadding="0" >
+                                    <tr>
+                                        <td>Distribution No.</td>
+                                        <td>Charge Account</td>
+                                        <td>Project Name</td>
+                                        <td>Task Name</td>
+                                    </tr>
+                                </table>
+                                <ul id="{{this.num}}-dist">
+                                    <li style="text-align:center;">            
+                                        <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+                                    </li>
+                                </ul>            
+                            </div>
+                        </li>   
+            {{/.}}
+        </script>            
+        
+        <script id="history-list-tpl" type="text/x-handlebars-template" >
+            {{#.}}
+                            <li>
+                                <table cellpadding="0" cellspacing="0"  >
+                                    <tr>
+                                        <td>{{this.code}}</td>
+                                        <td rowspan="2  " >{{this.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{this.date}}</td>
+                                    </tr>
+                                </table>
+                            </li>      
+           {{/.}}
+        </script>                    
+        <script id="distribution-list-tpl" type="text/x-handlebars-template" >
+            {{#.}}
             <li>
-            <div>
-            {{#if blanket}}
-            <input id="check1" type="checkbox" name="type" checked="checked" value="BLANKET">
-            <label for="check1">Blanket</label>			
-            {{else}}
-            <input id="check1" type="checkbox" name="type" value="BLANKET">
-            <label for="check1">Blanket</label>			
-            {{/if}}
-            </div>
-            </li>
-            <li>
-            <div>
-            {{#if planned}}
-            <input id="check2" type="checkbox" name="type" checked="checked" value="PLANNED">
-            <label for="check2">Planned</label>			
-            {{else}}
-            <input id="check2" type="checkbox" name="type" value="PLANNED">
-            <label for="check2">Planned</label>			
-            {{/if}}
-            </div>
-            </li>            
-            <li>
-            <div>
-            {{#if standard}}
-            <input id="check3" type="checkbox" name="type" checked="checked" value="STANDARD">
-            <label for="check3">Standard</label>			
-            {{else}}
-            <input id="check3" type="checkbox" name="type" value="STANDARD">
-            <label for="check3">Standard</label>			
-            {{/if}}
-            </div>
-            </li>            
-            <li>
-            <div>
-            {{#if contract}}
-            <input id="check4" type="checkbox" name="type" checked="checked" value="CONTRACT">
-            <label for="check4">Contract</label>			
-            {{else}}
-            <input id="check4" type="checkbox" name="type" value="CONTRACT">
-            <label for="check4">Contract</label>			
-            {{/if}}
-            </div>
-            </li>            
+            <table>
+            <tr>
+            <td>{{this.num}}</td>
+            <td>{{this.acnt}}</td>            
+            <td>{{this.prnum}}</td>
+            <td>{{this.tasknum}}</td>      
+            </tr>
+            </table>            
+            </li> 
+            {{/.}}
         </script>
 
-
-        <script id="filter-view-tpl" type="text/x-handlebars-template">
-            <div class="ui-screen" >      
-            {{> headerdescription}}
-            <div id="filter" >
-            {{#if this.type_head}}
-            <p>{{this.type_head}}</p>
-            <ul class="filter-type-list">
-            </ul>
-            {{/if}}
-            <p>Notification Status</p>
-            <ul>
+        <script  id="requistion-header-details-list-tpl" type="text/x-handlebars-template" >                   
+                            <li>
+                                <span>Operating Unit Name:</span>
+                                <span>{{this.org}}</span>
+                            </li> 
+                            <li>
+                                <span>Requisition Description:</span>
+                                <span>{{this.desc}}</span>
+                            </li>                                                                                                                                                                  
+                            <li>
+                                <span>Preparer:</span>
+                                <span>{{this.name}}</span>
+                            </li>              
+                            <li>
+                                <span>Status:</span>
+                                <span>{{this.status}}</span>
+                            </li> 
+                            <li>
+                                <span>Creation Date:</span>
+                                <span>{{this.crdate}}</span>
+                            </li>                                                                                                                                                                                                                                                                                                              
+                            <li>
+                                <span>Req Number:</span>
+                                <span>{{this.num}}</span>
+                            </li>                                                                                                                                                                                                                                                                                                              
+                            <li>
+                                <span>Type:</span>
+                                <span>{{this.type}}</span>
+                            </li>                                                                                                                                                                                                                                                                                                                          
+                            <li>
+                                <span>Requestor:</span>
+                                <span>{{this.name}}</span>
+                            </li>                                                                                                                                                                                                                                                                                                                                         
+            </script>
+            
+        <script  id="purchase-header-details-list-tpl" type="text/x-handlebars-template" >                   
             <li>
-            <div>
-            {{#with filter}}
-            {{#with status}}
-            {{#if ar}}
-            <input id="check5" type="checkbox" name="status" checked="checked" value="ACTION REQUIRED">
-            <label for="check5">Action Required</label>			
-            {{else}}
-            <input id="check5" type="checkbox" name="status" value="ACTION REQUIRED">
-            <label for="check5">Action Required</label>			
-            {{/if}}
-            </div>
+            <span>Operating Unit Name:</span>
+            <span>{{this.org}}</span>
+            </li> 
+            <li>
+            <span>PurchaseOrder Description:</span>
+            <span>{{this.desc}}</span>
+            </li>                                                                                                                                                                  
+            <li>
+            <span>Buyer:</span>
+            <span>{{this.buyer}}</span>
+            </li>  
+            <li>
+            <span>Type:</span>
+            <span>{{this.type}}</span>
+            </li>  
+            <li>
+            <span>PO Number:</span>
+            <span>{{this.num}}</span>
+            </li>  
+            <li>
+            <span>Vendor:</span>
+            <span>{{this.vendor_name}}</span>
+            </li>              
+            <li>
+            <span>Supplier Site:</span>
+            <span>{{this.v_site}}</span>
+            </li>             
+            <li>
+            <span>Ship To:</span>
+            <span>{{this.shipTo}}</span>
             </li>
             <li>
-            <div>
-            {{#if fyi}}            
-            <input id="check6" type="checkbox" name="status" checked="checked" value="FYI">
-            <label for="check6">FYI</label>			
-            {{else}}
-            <input id="check6" type="checkbox" name="status" value="FYI">
-            <label for="check6">FYI</label>			
-            {{/if}}
-            </div>
-            </li>
+            <span>Bill To:</span>
+            <span>{{this.billTo}}</span>
+            </li> 
             <li>
-            <div>
-            {{#if closed}}
-            <input id="check7" type="checkbox" name="status" checked="checked" value="CLOSED">
-            <label for="check7">Closed</label>
-            {{else}}
-            <input id="check7" type="checkbox" name="status" value="CLOSED">
-            <label for="check7">Closed</label>
-            {{/if}}            
-            {{/with}}
-            {{/with}}
+            <span>Status:</span>
+            <span>{{this.status}}</span>
+            </li> 
+            <li>
+            <span>Creation Date:</span>
+            <span>{{this.crdate}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+            </script>
+            
+        <script  id="expense-header-details-list-tpl" type="text/x-handlebars-template" >                   
+            <li>
+            <span>Operating Unit Name:</span>
+            <span>{{this.org}}</span>
+            </li> 
+            <li>
+            <span>Expense Description:</span>
+            <span>{{this.desc}}</span>
+            </li>                                                                                                                                                                  
+            <li>
+            <span>Employee:</span>
+            <span>{{this.name}}</span>
+            </li>              
+            <li>
+            <span>Status:</span>
+            <span>{{this.status}}</span>
+            </li> 
+            <li>
+            <span>Creation Date:</span>
+            <span>{{this.crdate}}</span>
+            </li>                                                                                                                                                                                                                                                                                                              
+            <li>
+            <span>Invoice Number:</span>
+            <span>{{this.inv_num}}</span>
+            </li>                                                                                                                                                                                                                                                                                                              
+            <li>
+            <span>Type:</span>
+            <span>{{this.type}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+            </script>
+            
+        <script  id="invoice-header-details-list-tpl" type="text/x-handlebars-template" >                   
+            <li>
+            <span>Operating Unit Name:</span>
+            <span>{{this.org}}</span>
+            </li> 
+            <li>
+            <span>Invoice Description:</span>
+            <span>{{this.desc}}</span>
+            </li>                                                                                                                                                                  
+            <li>
+            <span>Requestor:</span>
+            <span>{{this.requestor}}</span>
+            </li>              
+            <li>
+            <span>Vendor Name:</span>
+            <span>{{this.vendor_name}}</span>
+            </li> 
+            <li>
+            <span>Vendor Site:</span>
+            <span>{{this.vendor_site}}</span>
+            </li>             
+            <li>
+            <span>Status:</span>
+            <span>{{this.app_status}}</span>
+            </li> 
+            <li>
+            <span>Creation Date:</span>
+            <span>{{this.invDate}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+            <li>
+            <span>Type:</span>
+            <span>{{this.inv_type}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+            </script>
+                    
+        <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
+        <div class='header'><a class='button header-button header-button-left ' id='back-to-header-list'>Back</a><h1>Sysadmin</h1></div>
+        <div id="header-details" >
+            <div>            
+                <p>{{this.name}}</p>
+                <p>{{this.amount}}<span>{{this.code}}</span></p>            
+            </div>           
+            <div><span>{{this.date}}</span></div>
+            <div id="ui-tabs">
+                <ul>                    
+                    <li onclick="app.tab(this)" ></li>    
+                    <li onclick="app.tab(this)" ></li>            
+                    <li onclick="app.tab(this)" ></li>                    
+                </ul>         
+                <div><a onclick="showAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a></div>
             </div>
-            </li>                
-            </ul>            
-            <p>Days old</p>
-            <div>
-            <div id='select-day' >All</div>
-            <img src="img/arrow.png" />
-            <select onchange="document.getElementById('select-day').innerHTML=this.options[this.selectedIndex].text" >
-            <option value='0' >All</option>                                        
-            <option value='3' >3 days past</option>            
-            <option value='7' >7 days past</option>            
-            <option value='1' >1 month</option>                                   
-            </select>
-            </div>            
+            <div id="ui-tab-content">
+                <div class="details show" id="list-items" >
+                        <table cellspacing="0" cellpadding="0" >
+                            <tr>
+                                <td><span>Line</span></td>
+                                <td><span>Quantity</span></td>
+                                <td><span>Price</span></td>
+                                <td><span>Amount({{this.code}})</span></td>
+                            </tr>
+                        </table>
+                    <ul id="notify-lines-list"  class="scroll" style="top: 47px;">
+                        <li style="text-align:center;">            
+                                  <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+                        </li>
+                    </ul>
+                </div>            
+                <div class="details" id="information" >
+                    <div>
+                        <ul id="header-details-list" class="scroll">            
+                        </ul>
+                    </div>
+                </div>                                  
+                <div class="details" id="history" >
+                    <div>
+                        <ul id="history-list"  class="scroll">
+                        </ul>
+                    </div>
+                </div>             
             </div>
-            </div>
-            <div  id="loading-screen"><div><div></div></div></div>            
+        </div>
         </script>
-
+        
         <script src="js/LoginView.js"></script>
         <script src="js/NotificationsView.js"></script>
         <script src="js/NotificationHeaderView.js"></script>        
-        <script src="js/NotificationFilterview.js"></script>        
+        <script src="js/NotificationDetailView.js"></script>        
+        <!--<script src="js/NotificationFullView.js"></script>-->        
+        <!--<script src="js/NotificationFilterview.js"></script>-->        
         <script src="js/main.js"></script>
 
     </body>
@@ -705,34 +874,6 @@
             <div class="details" id="information" >
             <div>
             <ul>            
-            <li>
-            <span>Operating Unit Name:</span>
-            <span>{{this.org}}</span>
-            </li> 
-            <li>
-            <span>Expense Description:</span>
-            <span>{{this.desc}}</span>
-            </li>                                                                                                                                                                  
-            <li>
-            <span>Employee:</span>
-            <span>{{this.name}}</span>
-            </li>              
-            <li>
-            <span>Status:</span>
-            <span>{{this.status}}</span>
-            </li> 
-            <li>
-            <span>Creation Date:</span>
-            <span>{{this.crdate}}</span>
-            </li>                                                                                                                                                                                                                                                                                                              
-            <li>
-            <span>Invoice Number:</span>
-            <span>{{this.inv_num}}</span>
-            </li>                                                                                                                                                                                                                                                                                                              
-            <li>
-            <span>Type:</span>
-            <span>{{this.type}}</span>
-            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
             </ul>
             </div>
             </div>                                  
