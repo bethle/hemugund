@@ -15,19 +15,19 @@ var NotificationHeaderView = function(headers) {
         });
         return this;
     };
+    this.registerEvents = function() {
+        if (document.documentElement.hasOwnProperty('ontouchstart')) {
+            $(this.el).on('touchend', '#search-notify-header', this.search);
+        } else {
+            $(this.el).on('mouseup', '#search-notify-header', this.search);
+        }
+    };
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
             $(".search-header-list").html(NotificationHeaderView.liTemplate(data.result));
         } else {
             app.showAlert(data.response, "Notification Header Request Errored");
             location.href = "#Error";
-        }
-    };
-    this.registerEvents = function() {
-        if (document.documentElement.hasOwnProperty('ontouchstart')) {
-            $(this.el).on('touchend', '#search-notify-header', this.search);
-        } else {
-            $(this.el).on('mouseup', '#search-notify-header', this.search);
         }
     };
 

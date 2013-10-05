@@ -7,14 +7,9 @@ var NotificationDetailView = function(detail) {
         this.el.html(NotificationDetailView.template(detail));
         this.registerEvents();
     };
-    this.backToHeaderList = function(){
-      return app.slidePage(new NotificationHeaderView().render(), true);  
-    };
     this.registerEvents = function() {
         if (document.documentElement.hasOwnProperty('ontouchstart')) {
-            $(this.el).on('touchend', '#back-to-header-list', this.backToHeaderList);
         } else {
-            $(this.el).on('mouseup', '#back-to-header-list', this.backToHeaderList);
         }
     };
     this.render = function() {

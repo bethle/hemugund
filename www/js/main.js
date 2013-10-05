@@ -45,7 +45,7 @@ var app = {
         }
 
         var match;
-        
+
         match = hash.match(app.loginURL);
         if (match) {
             this.user = $('#user-name').val();
@@ -111,6 +111,22 @@ var app = {
             return;
         }
 
+        match = hash.match(/^#Back/);
+        if (match) {
+            this.slidePage(new NotificationHeaderView().render(), true);
+            return;
+        }
+
+        match = hash.match(/^#Logout/);
+        if (match) {
+            $.ajax({
+                url: app.URL + "Logout",
+                complete: function() {
+                    location.href = "";
+                }
+            });
+            return;
+        }
     },
     registerEvents: function() {
         var self = this;

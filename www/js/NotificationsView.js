@@ -7,15 +7,6 @@ var NotificationsView = function() {
         this.el.innerHTML = NotificationsView.template();
         this.registerEvents();
     };
-    this.registerEvents = function() {
-        if (document.documentElement.hasOwnProperty('ontouchend')) {
-            $(this.el).on('touchend', '.notify-logout', this.logout);
-        } else {
-            //   if not: register mouce events instead
-            $(this.el).on('mouseup', '.notify-logout', this.logout);
-        }
-
-    };
     this.render = function() {
         $.ajax({
             url: app.URL + "Home",
@@ -24,6 +15,12 @@ var NotificationsView = function() {
             error: app.errorAlert
         });
         return this;
+    };
+    this.registerEvents = function() {
+        if (document.documentElement.hasOwnProperty('ontouchend')) {
+        } else {
+        }
+
     };
     this.loadNotifCount = function(data) {
         if (data.response === "SUCCESS") {
@@ -35,14 +32,6 @@ var NotificationsView = function() {
             app.showAlert(data.response, "Notification Count Request Errored");
             location.href = "#Error"
         }
-    };
-    this.logout = function() {
-        $.ajax({
-            url: app.URL + "Logout",
-            complete: function() {
-                location.href = "";
-            }
-        });
     };
     this.initialize();
 };

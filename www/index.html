@@ -39,7 +39,7 @@
 
 
         <script id="notifications-view-tpl" type="text/x-handlebars-template">
-            <div class='header'><a href='#Logout' class='button header-button header-button-left notify-logout'>Logout</a><h1>Notifications</h1></div>
+            <div class='header'><a class='button header-button header-button-left' href="#Logout">Logout</a><h1>Notifications</h1></div>
             <div id='content-notify'> 
             <ul>
             <li>
@@ -94,6 +94,54 @@
             </div>
         </script>
  
+        <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
+        <div class='header'><a class='button header-button header-button-left ' href="#Back">Back</a><h1>Sysadmin</h1></div>
+        <div id="header-details" >
+            <div>            
+                <p>{{this.name}}</p>
+                <p>{{this.amount}}<span>{{this.code}}</span></p>            
+            </div>           
+            <div><span>{{this.date}}</span></div>
+            <div id="ui-tabs">
+                <ul>                    
+                    <li onclick="app.tab(this)" ></li>    
+                    <li onclick="app.tab(this)" ></li>            
+                    <li onclick="app.tab(this)" ></li>                    
+                </ul>         
+                <div><a onclick="showAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a></div>
+            </div>
+            <div id="ui-tab-content">
+                <div class="details show" id="list-items" >
+                        <table cellspacing="0" cellpadding="0" >
+                            <tr>
+                                <td><span>Line</span></td>
+                                <td><span>Quantity</span></td>
+                                <td><span>Price</span></td>
+                                <td><span>Amount({{this.code}})</span></td>
+                            </tr>
+                        </table>
+                    <ul id="notify-lines-list"  class="scroll" style="top: 47px;">
+                        <li style="text-align:center;">            
+                                  <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+                        </li>
+                    </ul>
+                </div>            
+                <div class="details" id="information" >
+                    <div>
+                        <ul id="header-details-list" class="scroll">            
+                        </ul>
+                    </div>
+                </div>                                  
+                <div class="details" id="history" >
+                    <div>
+                        <ul id="history-list"  class="scroll">
+                        </ul>
+                    </div>
+                </div>             
+            </div>
+        </div>
+        </script>
+        
         <script id="header-list-tpl" type="text/x-handlebars-template" >                   
             {{#.}}
             <li>            
@@ -141,10 +189,6 @@
             </ul>
             </div>
         </script>
-
-        
-        
-        
         
         
         <script id="notification-lines-tpl" type="text/x-handlebars-template" >
@@ -411,54 +455,6 @@
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
             </script>
                     
-        <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
-        <div class='header'><a class='button header-button header-button-left ' id='back-to-header-list'>Back</a><h1>Sysadmin</h1></div>
-        <div id="header-details" >
-            <div>            
-                <p>{{this.name}}</p>
-                <p>{{this.amount}}<span>{{this.code}}</span></p>            
-            </div>           
-            <div><span>{{this.date}}</span></div>
-            <div id="ui-tabs">
-                <ul>                    
-                    <li onclick="app.tab(this)" ></li>    
-                    <li onclick="app.tab(this)" ></li>            
-                    <li onclick="app.tab(this)" ></li>                    
-                </ul>         
-                <div><a onclick="showAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a></div>
-            </div>
-            <div id="ui-tab-content">
-                <div class="details show" id="list-items" >
-                        <table cellspacing="0" cellpadding="0" >
-                            <tr>
-                                <td><span>Line</span></td>
-                                <td><span>Quantity</span></td>
-                                <td><span>Price</span></td>
-                                <td><span>Amount({{this.code}})</span></td>
-                            </tr>
-                        </table>
-                    <ul id="notify-lines-list"  class="scroll" style="top: 47px;">
-                        <li style="text-align:center;">            
-                                  <img src="img/mini-loading.gif" style="padding-top: 5px;" />
-                        </li>
-                    </ul>
-                </div>            
-                <div class="details" id="information" >
-                    <div>
-                        <ul id="header-details-list" class="scroll">            
-                        </ul>
-                    </div>
-                </div>                                  
-                <div class="details" id="history" >
-                    <div>
-                        <ul id="history-list"  class="scroll">
-                        </ul>
-                    </div>
-                </div>             
-            </div>
-        </div>
-        </script>
-        
         <script src="js/LoginView.js"></script>
         <script src="js/NotificationsView.js"></script>
         <script src="js/NotificationHeaderView.js"></script>        
