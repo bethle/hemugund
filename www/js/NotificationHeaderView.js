@@ -1,5 +1,5 @@
 var NotificationHeaderView = function(headers) {
-    var self = this;
+    var self = this;    
     this.initialize = function() {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = document.createElement('div');
