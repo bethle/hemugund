@@ -5,7 +5,6 @@ var NotificationsView = function() {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = document.createElement('div');
         this.el.innerHTML = NotificationsView.template();
-        this.registerEvents();
     };
     this.render = function() {
         $.ajax({
@@ -16,12 +15,7 @@ var NotificationsView = function() {
         });
         return this;
     };
-    this.registerEvents = function() {
-        if (document.documentElement.hasOwnProperty('ontouchend')) {
-        } else {
-        }
 
-    };
     this.loadNotifCount = function(data) {
         if (data.response === "SUCCESS") {
             $('#requistion-count').html(data.result.rqstns);

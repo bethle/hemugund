@@ -40,8 +40,8 @@
 
         <script id="notifications-view-tpl" type="text/x-handlebars-template">
             <div class='header'><a class='button header-button header-button-left' href="#Logout">Logout</a><h1>Notifications</h1></div>
-            <div id='content-notify'> 
-            <ul>
+            <div id='content-notify' class="wrap"> 
+            <ul class="scrollable">
             <li>
             <a href="#Not/rqstns"><div>
             <div id="requistion-count"><img style="padding-top:4px;" src="img/mini-loading.gif"/></div>
@@ -75,7 +75,6 @@
             </ul>
             </div>
             </div>
-
             </div>
         </script>
 
@@ -85,17 +84,17 @@
             <div><input type="search" id="search-input" /></div>
             <div id="search-notify-header" class="search-button" >Search</div>
             </div>
-            <div id='header-list'>                
-            <ul class="search-header-list scroll" >         
+            <div id='header-list' class="scrollable" style="top:92px;bottom:0px;left0px;right:0px;">                
+            <ul class="search-header-list" >         
             <li style="text-align:center;">            
             <img src="img/mini-loading.gif" style="padding-top: 20px;" />
             </li>
             </ul>
             </div>
         </script>
- 
+
         <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
-        <div class='header'><a class='button header-button header-button-left ' href="#Back">Back</a><h1>Sysadmin</h1></div>
+        <div class='header'><a class='button header-button header-button-left ' href="#Back">Back</a><h1>{{num}}</h1></div>
         <div id="header-details" >
             <div>            
                 <p>{{this.name}}</p>
@@ -108,40 +107,86 @@
                     <li onclick="app.tab(this)" ></li>            
                     <li onclick="app.tab(this)" ></li>                    
                 </ul>         
-                <div><a onclick="showAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a></div>
+                <div><a onclick="app.showAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a>            <ul id="attachment-list" ></ul>
+                </div>
             </div>
             <div id="ui-tab-content">
                 <div class="details show" id="list-items" >
-                        <table cellspacing="0" cellpadding="0" >
-                            <tr>
-                                <td><span>Line</span></td>
-                                <td><span>Quantity</span></td>
-                                <td><span>Price</span></td>
-                                <td><span>Amount({{this.code}})</span></td>
-                            </tr>
-                        </table>
-                    <ul id="notify-lines-list"  class="scroll" style="top: 47px;">
+                    <table cellspacing="0" cellpadding="0" >
+                        <tr>
+                            <td><span>Line</span></td>
+                            <td><span>Quantity</span></td>
+                            <td><span>Price</span></td>
+                            <td><span>Amount({{this.code}})</span></td>
+                        </tr>
+                    </table>
+                    <ul id="notify-lines-list"  class="scrollable" style="top:47px;bottom:0px;">
                         <li style="text-align:center;">            
-                                  <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+                            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
                         </li>
                     </ul>
                 </div>            
                 <div class="details" id="information" >
                     <div>
-                        <ul id="header-details-list" class="scroll">            
+                        <ul id="header-details-list" class="scrollable">            
                         </ul>
                     </div>
                 </div>                                  
                 <div class="details" id="history" >
                     <div>
-                        <ul id="history-list"  class="scroll">
+                        <ul id="history-list" class="scrollable">
                         </ul>
                     </div>
                 </div>             
             </div>
         </div>
+        <div id="popup-bckgrnd" class="popup-hide" >
+            <div id="ApproveAlert" class="popup-hide" >
+                <img src="img/Close.png" onclick="closeAlert(this)" />
+                <p>Do you want to approve?</p>
+                <p>Comments:</p>  
+                <textarea id="approve-comment" ></textarea>
+                <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
+            </div>
+            <div id="ForwardAlert" class="popup-hide" >
+                <img src="img/Close.png" onclick="closeAlert(this);" />
+                <table cellspacing='0' cellpadding='0'>
+                    <tr>
+                        <td>
+                            Person Name:
+                        </td>
+                        <td>
+                            <div>
+                                <div id='select-user' >Choose a person...</div>
+                                <img src="img/arrow.png" />
+                                <select id="user-list" onchange="document.getElementById('select-user').innerHTML = this.options[this.selectedIndex].text" >
+                                    <option value='' >Choose a person...</option>                                        
+                                    <option value='sysadmin' >sysadmin</option>            
+                                    <option value='bpalmer' >bpalmer</option>            
+                                    <option value='tgreen' >tgreen</option>            
+                                    <option value='cbrown' >cbrown</option>            
+                                </select>
+                            </div>    
+                        </td>
+                    </tr>
+                </table>
+                <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
+            </div>
+            <div id="RejectAlert" class="popup-hide" >
+                <img src="img/Close.png" onclick="closeAlert(this)" />
+                <p>Do you want to Reject?</p>
+                <p>Comments:</p>  
+                <textarea id="reject-comment" ></textarea>
+                <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
+            </div>
+            <div id="AttachmentAlert" class="popup-hide" >
+                <img src="img/Close.png" onclick="closeAlert(this)" />
+                <ul id="attachment-list">
+                </ul>
+            </div>   
+        </div>            
         </script>
-        
+
         <script id="header-list-tpl" type="text/x-handlebars-template" >                   
             {{#.}}
             <li>            
@@ -189,53 +234,53 @@
             </ul>
             </div>
         </script>
-        
-        
+
+
         <script id="notification-lines-tpl" type="text/x-handlebars-template" >
             {{#.}}
-                        <li>                            
-                            <table cellspacing="0" cellpadding="0" onclick="app.toggle(this)" >
-                                <tr>
-                                    <td><span>{{this.num}}</span></td>
-                                    <td><span>{{this.qnty}}</span></td>
-                                    <td><span>{{this.price}}</span></td>
-                                    <td><span>{{this.amount}}</span></td>
-                                </tr>
-                                <tr><td colspan="4" >{{this.desc}}</td></tr>
-                            </table> 
-                            <div class="sliding-effect" >
-                                <ul>  
-                                    <li>
-                                        <span>Item Number:</span>
-                                        <span>{{this.item}}</span>
-                                    </li> 
-                                    <li>
-                                        <span>Category:</span>
-                                        <span>{{this.categ}}</span>
-                                    </li> 
-                                    <li>
-                                        <span>UOM:</span>
-                                        <span>{{this.uom}}</span>
-                                    </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                </ul> 
-                                <table cellspacing="0" cellpadding="0" >
-                                    <tr>
-                                        <td>Distribution No.</td>
-                                        <td>Charge Account</td>
-                                        <td>Project Name</td>
-                                        <td>Task Name</td>
-                                    </tr>
-                                </table>
-                                <ul id="{{this.num}}-dist">
-                                    <li style="text-align:center;">            
-                                        <img src="img/mini-loading.gif" style="padding-top: 5px;" />
-                                    </li>
-                                </ul>            
-                            </div>
-                        </li>   
+            <li>                            
+            <table cellspacing="0" cellpadding="0" onclick="app.toggle(this)" >
+            <tr>
+            <td><span>{{this.num}}</span></td>
+            <td><span>{{this.qnty}}</span></td>
+            <td><span>{{this.price}}</span></td>
+            <td><span>{{this.amount}}</span></td>
+            </tr>
+            <tr><td colspan="4" >{{this.desc}}</td></tr>
+            </table> 
+            <div class="sliding-effect" >
+            <ul>  
+            <li>
+            <span>Item Number:</span>
+            <span>{{this.item}}</span>
+            </li> 
+            <li>
+            <span>Category:</span>
+            <span>{{this.categ}}</span>
+            </li> 
+            <li>
+            <span>UOM:</span>
+            <span>{{this.uom}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+            </ul> 
+            <table cellspacing="0" cellpadding="0" >
+            <tr>
+            <td>Distribution No.</td>
+            <td>Charge Account</td>
+            <td>Project Name</td>
+            <td>Task Name</td>
+            </tr>
+            </table>
+            <ul id="{{this.id}}-dist-list">
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+            </li>
+            </ul>            
+            </div>
+            </li>   
             {{/.}}
         </script>            
-        
+
         <script id="expense-lines-tpl" type="text/x-handlebars-template" >
             {{#.}}
             <li>                            
@@ -257,40 +302,40 @@
             <span>Justification:</span>
             <span>{{this.just}}</span>
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                </ul> 
-                                <table cellspacing="0" cellpadding="0" >
-                                    <tr>
-                                        <td>Distribution No.</td>
-                                        <td>Charge Account</td>
-                                        <td>Project Name</td>
-                                        <td>Task Name</td>
-                                    </tr>
-                                </table>
-                                <ul id="{{this.num}}-dist">
-                                    <li style="text-align:center;">            
-                                        <img src="img/mini-loading.gif" style="padding-top: 5px;" />
-                                    </li>
-                                </ul>            
-                            </div>
-                        </li>   
+
+            </ul> 
+            <table cellspacing="0" cellpadding="0" >
+            <tr>
+            <td>Distribution No.</td>
+            <td>Charge Account</td>
+            <td>Project Name</td>
+            <td>Task Name</td>
+            </tr>
+            </table>
+            <ul id="{{this.id}}-dist-list">
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+            </li>
+            </ul>            
+            </div>
+            </li>   
             {{/.}}
         </script>            
-        
+
         <script id="history-list-tpl" type="text/x-handlebars-template" >
             {{#.}}
-                            <li>
-                                <table cellpadding="0" cellspacing="0"  >
-                                    <tr>
-                                        <td>{{this.code}}</td>
-                                        <td rowspan="2  " >{{this.name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>{{this.date}}</td>
-                                    </tr>
-                                </table>
-                            </li>      
-           {{/.}}
+            <li>
+            <table cellpadding="0" cellspacing="0"  >
+            <tr>
+            <td>{{this.code}}</td>
+            <td rowspan="2  " >{{this.name}}</td>
+            </tr>
+            <tr>
+            <td>{{this.date}}</td>
+            </tr>
+            </table>
+            </li>      
+            {{/.}}
         </script>                    
         <script id="distribution-list-tpl" type="text/x-handlebars-template" >
             {{#.}}
@@ -299,8 +344,8 @@
             <tr>
             <td>{{this.num}}</td>
             <td>{{this.acnt}}</td>            
-            <td>{{this.prnum}}</td>
-            <td>{{this.tasknum}}</td>      
+            <td>{{this.project}}</td>
+            <td>{{this.task}}</td>      
             </tr>
             </table>            
             </li> 
@@ -308,40 +353,40 @@
         </script>
 
         <script  id="requistion-header-details-list-tpl" type="text/x-handlebars-template" >                   
-                            <li>
-                                <span>Operating Unit Name:</span>
-                                <span>{{this.org}}</span>
-                            </li> 
-                            <li>
-                                <span>Requisition Description:</span>
-                                <span>{{this.desc}}</span>
-                            </li>                                                                                                                                                                  
-                            <li>
-                                <span>Preparer:</span>
-                                <span>{{this.name}}</span>
-                            </li>              
-                            <li>
-                                <span>Status:</span>
-                                <span>{{this.status}}</span>
-                            </li> 
-                            <li>
-                                <span>Creation Date:</span>
-                                <span>{{this.crdate}}</span>
-                            </li>                                                                                                                                                                                                                                                                                                              
-                            <li>
-                                <span>Req Number:</span>
-                                <span>{{this.num}}</span>
-                            </li>                                                                                                                                                                                                                                                                                                              
-                            <li>
-                                <span>Type:</span>
-                                <span>{{this.type}}</span>
-                            </li>                                                                                                                                                                                                                                                                                                                          
-                            <li>
-                                <span>Requestor:</span>
-                                <span>{{this.name}}</span>
-                            </li>                                                                                                                                                                                                                                                                                                                                         
-            </script>
-            
+            <li>
+            <span>Operating Unit Name:</span>
+            <span>{{this.org}}</span>
+            </li> 
+            <li>
+            <span>Requisition Description:</span>
+            <span>{{this.desc}}</span>
+            </li>                                                                                                                                                                  
+            <li>
+            <span>Preparer:</span>
+            <span>{{this.name}}</span>
+            </li>              
+            <li>
+            <span>Status:</span>
+            <span>{{this.status}}</span>
+            </li> 
+            <li>
+            <span>Creation Date:</span>
+            <span>{{this.crdate}}</span>
+            </li>                                                                                                                                                                                                                                                                                                              
+            <li>
+            <span>Req Number:</span>
+            <span>{{this.num}}</span>
+            </li>                                                                                                                                                                                                                                                                                                              
+            <li>
+            <span>Type:</span>
+            <span>{{this.type}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                          
+            <li>
+            <span>Requestor:</span>
+            <span>{{this.name}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                                         
+        </script>
+
         <script  id="purchase-header-details-list-tpl" type="text/x-handlebars-template" >                   
             <li>
             <span>Operating Unit Name:</span>
@@ -387,8 +432,8 @@
             <span>Creation Date:</span>
             <span>{{this.crdate}}</span>
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-            </script>
-            
+        </script>
+
         <script  id="expense-header-details-list-tpl" type="text/x-handlebars-template" >                   
             <li>
             <span>Operating Unit Name:</span>
@@ -418,8 +463,8 @@
             <span>Type:</span>
             <span>{{this.type}}</span>
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-            </script>
-            
+        </script>
+
         <script  id="invoice-header-details-list-tpl" type="text/x-handlebars-template" >                   
             <li>
             <span>Operating Unit Name:</span>
@@ -453,8 +498,16 @@
             <span>Type:</span>
             <span>{{this.inv_type}}</span>
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-            </script>
-                    
+        </script>
+
+        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
+            {{#.}}
+            <li>{{this.file}}&nbsp;({{this.entity}})&nbsp;<span>&nbsp;{{this.user}}</span><form action="http://182.18.157.157:7001/ebs/Download" method="POST" encrypt="multipart/form-data" id="form{{@index}}" ><input type="hidden" name="name" value="{{this.file}}" /><input type="hidden" name="type" value="{{this.mod}}" /><input type="hidden" name="mod" value="{{../../module}}" /><input type="hidden" name="format" value="{{this.type}}" /><input type="hidden" name="id" value="{{this.id}}" /><a class="download-file" onclick="document.getElementById('form{{@index}}').submit();" >Download</a></form></li>
+            {{else}}
+            <li>No Attachments</li>
+            {{/.}}
+        </script>
+
         <script src="js/LoginView.js"></script>
         <script src="js/NotificationsView.js"></script>
         <script src="js/NotificationHeaderView.js"></script>        
@@ -470,6 +523,65 @@
 
 
 <!--
+
+        <script id="approve-alert-tpl" type="text/x-handlebars-template">                        
+            <img src="img/Close.png" onclick="closeAlert(this)" />
+            <p>Do you want to approve?</p>
+            <p>Comments:</p>  
+            <textarea id="approve-comment" ></textarea>
+            <div><input type="button" value="OK" onclick="location.href='#Approve'" /></div>                     
+        </script>
+
+
+        <script id="reject-alert-tpl" type="text/x-handlebars-template">                        
+            <img src="img/Close.png" onclick="closeAlert(this)" />
+            <p>Do you want to Reject?</p>
+            <p>Comments:</p>  
+            <textarea id="reject-comment" ></textarea>
+            <div ><input type="button" value="OK" onclick="location.href='#Reject'" /></div>                     
+        </script>
+
+        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
+            <img src="img/Close.png" onclick="closeAlert(this)" />
+            <ul id="attachment-list" >
+            {{#with result}}
+            {{#each atch}}
+            <li>{{this.file}}&nbsp;({{this.entity}})&nbsp;<span>&nbsp;{{this.user}}</span><form action="http://182.18.157.157:7001/ebs/Download" method="POST" encrypt="multipart/form-data" id="form{{@index}}" ><input type="hidden" name="name" value="{{this.file}}" /><input type="hidden" name="type" value="{{this.mod}}" /><input type="hidden" name="mod" value="{{../../module}}" /><input type="hidden" name="format" value="{{this.type}}" /><input type="hidden" name="id" value="{{this.id}}" /><a class="download-file" onclick="document.getElementById('form{{@index}}').submit();" >Download</a></form></li>
+            {{else}}
+            <li>No Attachments</li>
+            {{/each}}
+            {{/with}}
+            </ul>                     
+        </script>
+
+        <script id="forward-alert-tpl" type="text/x-handlebars-template">
+            <img src="img/Close.png" onclick="closeAlert(this);" />
+            <form action="" >
+            <table cellspacing='0' cellpadding='0'>
+            <tr>
+            <td>
+            Person Name:
+            </td>
+            <td>
+            <div>
+            <div id='select-user' >Choose a person...</div>
+            <img src="img/arrow.png" />
+            <select id="user-list" onchange="document.getElementById('select-user').innerHTML=this.options[this.selectedIndex].text" >
+            <option value='' >Choose a person...</option>                                        
+            <option value='sysadmin' >sysadmin</option>            
+            <option value='bpalmer' >bpalmer</option>            
+            <option value='tgreen' >tgreen</option>            
+            <option value='cbrown' >cbrown</option>            
+            </select>
+            </div>    
+            </td>
+            </tr>
+            </table>
+            <div><input type="button" value="Send" onclick="location.href='#Forward'" /></div>
+            </form>                        
+        </script>
+
+
         <script id="header-details-requisition-tpl" type="text/x-handlebars-template">
             {{> ActionAlert}}
             <div class="ui-screen" id="details"> 
@@ -1072,62 +1184,6 @@
             </div>            
         </script>
 
-        <script id="approve-alert-tpl" type="text/x-handlebars-template">                        
-            <img src="img/Close.png" onclick="closeAlert(this)" />
-            <p>Do you want to approve?</p>
-            <p>Comments:</p>  
-            <textarea id="approve-comment" ></textarea>
-            <div><input type="button" value="OK" onclick="location.href='#Approve'" /></div>                     
-        </script>
-
-
-        <script id="reject-alert-tpl" type="text/x-handlebars-template">                        
-            <img src="img/Close.png" onclick="closeAlert(this)" />
-            <p>Do you want to Reject?</p>
-            <p>Comments:</p>  
-            <textarea id="reject-comment" ></textarea>
-            <div ><input type="button" value="OK" onclick="location.href='#Reject'" /></div>                     
-        </script>
-
-        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
-            <img src="img/Close.png" onclick="closeAlert(this)" />
-            <ul id="attachment-list" >
-            {{#with result}}
-            {{#each atch}}
-            <li>{{this.file}}&nbsp;({{this.entity}})&nbsp;<span>&nbsp;{{this.user}}</span><form action="http://182.18.157.157:7001/ebs/Download" method="POST" encrypt="multipart/form-data" id="form{{@index}}" ><input type="hidden" name="name" value="{{this.file}}" /><input type="hidden" name="type" value="{{this.mod}}" /><input type="hidden" name="mod" value="{{../../module}}" /><input type="hidden" name="format" value="{{this.type}}" /><input type="hidden" name="id" value="{{this.id}}" /><a class="download-file" onclick="document.getElementById('form{{@index}}').submit();" >Download</a></form></li>
-            {{else}}
-            <li>No Attachments</li>
-            {{/each}}
-            {{/with}}
-            </ul>                     
-        </script>
-
-        <script id="forward-alert-tpl" type="text/x-handlebars-template">
-            <img src="img/Close.png" onclick="closeAlert(this);" />
-            <form action="" >
-            <table cellspacing='0' cellpadding='0'>
-            <tr>
-            <td>
-            Person Name:
-            </td>
-            <td>
-            <div>
-            <div id='select-user' >Choose a person...</div>
-            <img src="img/arrow.png" />
-            <select id="user-list" onchange="document.getElementById('select-user').innerHTML=this.options[this.selectedIndex].text" >
-            <option value='' >Choose a person...</option>                                        
-            <option value='sysadmin' >sysadmin</option>            
-            <option value='bpalmer' >bpalmer</option>            
-            <option value='tgreen' >tgreen</option>            
-            <option value='cbrown' >cbrown</option>            
-            </select>
-            </div>    
-            </td>
-            </tr>
-            </table>
-            <div><input type="button" value="Send" onclick="location.href='#Forward'" /></div>
-            </form>                        
-        </script>
 
         <script id="header-tpl" type="text/x-handlebars-template">
             <div class="ui-header" id='id-header' >     

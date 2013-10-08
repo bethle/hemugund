@@ -28,6 +28,20 @@ var app = {
                 return "";
         }
     },
+    loadHome: function(data) {
+
+        if (data.response === "SUCCESS") {
+            app.homePage = new NotificationsView().render();
+            app.currentPage = null;
+            app.slidePage(app.homePage);
+        } else {
+            if (data.message) {
+                app.showAlert(data.message, "ERROR");
+            }
+            location.href = "#Error"
+        }
+
+    },
     route: function() {
         /*
          * If there is no hash tag in the URL: display the Home View 
@@ -53,23 +67,8 @@ var app = {
                 url: self.URL + "Login",
                 data: "login={\"user_name\": \"" + self.user + "\" , \"password\": \"" + $('#password').val() + "\"}",
                 dataType: 'json',
-                success: function(data) {
-                    if (data.response === "SUCCESS") {
-                        self.homePage = new NotificationsView().render();
-                        self.currentPage = null;
-                        self.slidePage(self.homePage);
-                    } else {
-                        if (data.message) {
-                            self.showAlert(data.message, "ERROR");
-                        }
-                        location.href = "#Error"
-                    }
-
-                },
-                error: function() {
-                    self.showAlert("Ajax Error", "ERROR");
-                    location.href = "#Error";
-                }
+                success: this.loadHome,
+                error: this.errorAlert
             });
             return;
         }
@@ -224,6 +223,34 @@ var app = {
             elem = elem.nextSibling;
         } while (elem && elem.nodeType !== 1);
         return elem;
+    },
+    showAlert: function(id) {
+        var elem = document.getElementById(id);
+        elem.parentNode.parentNode.className = "popup-hide";
+        elem.className = "popup-hide";
+        elem.parentNode.parentNode.className = "ui-popup-show";
+        elem.className = "ui-popup-show";
+    },
+    closeAlert: function(elem) {
+//        var commentClear1 = document.getElementById('approve-comment');
+//        var commentClear2 = document.getElementById('reject-comment');
+        document.getElementById('approve-comment').value = "";
+        document.getElementById('reject-comment').value = "";
+        elem.parentNode.parentNode.parentNode.className = "popup-hide";
+        elem.parentNode.className = "popup-hide";
+        if (document.getElementById('header-list') !== null) {
+            document.getElementById('header-list').removeAttribute('style');
+            document.getElementById('header-list').style.height = 'auto';
+        }
+    },
+// Used to simulate async calls. This is done to provide a consistent
+// that use async data access APIs
+    callLater: function(callback, data) {
+        if (callback) {
+            setTimeout(function() {
+                callback(data);
+            }, 100);
+        }
     }
 
 };
@@ -232,7 +259,115 @@ var app = {
 app.initialize();
 
 
+(function($) {
 
+    $.fn.pullToRefresh = function(options) {
+
+        var isTouch = !!('ontouchstart' in window),
+                cfg = $.extend(true, {
+            message: {
+                pull: 'Pull to refresh',
+                release: 'Release to refresh',
+                loading: 'Loading'
+            }
+        }, options),
+                html = '<div class="pull-to-refresh">' +
+                '<div class="icon"></div>' +
+                '<div class="message">' +
+                '<i class="arrow"></i>' +
+                '<i class="spinner large"></i>' +
+                '<span class="pull">' + cfg.message.pull + '</span>' +
+                '<span class="release">' + cfg.message.release + '</span>' +
+                '<span class="loading">' + cfg.message.loading + '</span>' +
+                '</div>' +
+                '</div>';
+
+
+
+        return this.each(function() {
+            if (!isTouch) {
+                return;
+            }
+
+            var e = $(this).prepend(html),
+                    content = e.find('.wrap'),
+                    ptr = e.find('.pull-to-refresh'),
+                    arrow = e.find('.arrow'),
+                    spinner = e.find('.spinner'),
+                    pull = e.find('.pull'),
+                    release = e.find('.release'),
+                    loading = e.find('.loading'),
+                    ptrHeight = ptr.height(),
+                    arrowDelay = ptrHeight / 3 * 2,
+                    isActivated = false,
+                    isLoading = false;
+
+            content.on('touchstart', function(ev) {
+                if (e.scrollTop() === 0) { // fix scrolling
+                    e.scrollTop(1);
+                }
+            }).on('touchmove', function(ev) {
+                var top = e.scrollTop(),
+                        deg = 180 - (top < -ptrHeight ? 180 : // degrees to move for the arrow (starts at 180° and decreases)
+                        (top < -arrowDelay ? Math.round(180 / (ptrHeight - arrowDelay) * (-top - arrowDelay))
+                                : 0));
+
+                if (isLoading) { // if is already loading -> do nothing
+                    return true;
+                }
+
+                arrow.show();
+                arrow.css('transform', 'rotate(' + deg + 'deg)'); // move arrow
+
+                spinner.hide();
+
+                if (-top > ptrHeight) { // release state
+                    release.css('opacity', 1);
+                    pull.css('opacity', 0);
+                    loading.css('opacity', 0);
+
+
+                    isActivated = true;
+                } else if (top > -ptrHeight) { // pull state
+                    release.css('opacity', 0);
+                    loading.css('opacity', 0);
+                    pull.css('opacity', 1);
+
+                    isActivated = false;
+                }
+            }).on('touchend', function(ev) {
+                var top = e.scrollTop();
+
+                if (isActivated) { // loading state
+                    isLoading = true;
+                    isActivated = false;
+
+                    release.css('opacity', 0);
+                    ;
+                    pull.css('opacity', 0);
+                    loading.css('opacity', 1);
+                    arrow.hide();
+                    spinner.show();
+
+                    ptr.css('position', 'static');
+
+                    cfg.callback().done(function() {
+                        ptr.animate({
+                            height: 10
+                        }, 'fast', 'linear', function() {
+                            ptr.css({
+                                position: 'absolute',
+                                height: ptrHeight
+                            });
+                            isLoading = false;
+                        });
+                    });
+                }
+            });
+        });
+
+    };
+})(jQuery);
 
 
 

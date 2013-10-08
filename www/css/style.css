@@ -315,16 +315,11 @@ input[type="submit"]:active{
     line-height: 25px;    
     font-weight: bold;
 }
-.scroll{
+.scrollable {
     overflow: scroll;
     -webkit-overflow-scrolling : touch;
     position: absolute;
-    top: 92px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
 }
-
 
 
 
@@ -366,7 +361,163 @@ list content css start
     transition-timing-function:ease-in-out;
     max-height:     0;
     overflow:       hidden;
-}/*
+}
+
+#popup-bckgrnd{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color:rgba(0,0,0,0.4);
+    z-index: 1000;    
+    transition: opacity 1s ease-out;
+    transition: opacity 1s ease-in;
+    -webkit-transition: opacity 1s ease-out;    
+    -webkit-transition: opacity 1s ease-in; 
+    display: table;
+    vertical-align: middle;
+}
+#popup-bckgrnd>div{
+    width: 80%;
+    height: auto;
+    position: relative;    
+    margin: 0 auto;  
+    font-family: 'Arial';
+    font-size: 100%;
+    color: #ffffff;    
+    text-align: center;
+    background: rgb(30,87,153); 
+    background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(41,137,216,1) 50%, rgba(32,124,202,1) 51%, rgba(125,185,232,1) 100%);  
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(50%,rgba(41,137,216,1)), color-stop(51%,rgba(32,124,202,1)), color-stop(100%,rgba(125,185,232,1)));
+    background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);   
+    background: -o-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);  
+    background: -ms-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);   
+    background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);  
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 );      
+    border-radius: 10px;
+    padding: 5px 0;
+}
+#popup-bckgrnd>div>img{
+    height: 24px;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    cursor: pointer;
+}
+#popup-bckgrnd>div>table{
+    width: 90%;
+    padding: 20px 0px;
+}
+#popup-bckgrnd>div>table tr>td{    
+    font-family: 'Arial';
+    font-size: 100%;
+    text-align: right;
+    color: #000000;
+}
+#popup-bckgrnd>div>table tr>td:nth-child(1){
+    width: 50%;
+}
+#popup-bckgrnd>div>table tr>td:nth-child(2){
+    width: 50%;
+}
+#popup-bckgrnd>div>div,#popup-bckgrnd>div:nth-child(1)>div,#popup-bckgrnd>div>:nth-child(3)>div,#popup-bckgrnd>div:nth-child(4)>div{
+    width: 100%;    
+    text-align: center;
+}
+#popup-bckgrnd>div>div>input,#popup-bckgrnd>div:nth-child(1)>div>input,#popup-bckgrnd>div:nth-child(3)>div>input,#popup-bckgrnd>div:nth-child(4)>div>input{
+    height: 30px;  
+    font-family: 'Arial';
+    font-size: 95%;
+    color: #000000;    
+    border: 1px solid #666666;    
+    cursor: pointer;
+    line-height: 100%;
+    padding: 0 20%;
+    margin: 10px 0px;
+    background: rgb(228,245,252);
+    background: -moz-linear-gradient(top, rgba(228,245,252,1) 0%, rgba(191,232,249,1) 50%, rgba(159,216,239,1) 51%, rgba(42,176,237,1) 100%); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(228,245,252,1)), color-stop(50%,rgba(191,232,249,1)), color-stop(51%,rgba(159,216,239,1)), color-stop(100%,rgba(42,176,237,1))); 
+    background: -webkit-linear-gradient(top, rgba(228,245,252,1) 0%,rgba(191,232,249,1) 50%,rgba(159,216,239,1) 51%,rgba(42,176,237,1) 100%);  
+    background: -o-linear-gradient(top, rgba(228,245,252,1) 0%,rgba(191,232,249,1) 50%,rgba(159,216,239,1) 51%,rgba(42,176,237,1) 100%);
+    background: -ms-linear-gradient(top, rgba(228,245,252,1) 0%,rgba(191,232,249,1) 50%,rgba(159,216,239,1) 51%,rgba(42,176,237,1) 100%); 
+    background: linear-gradient(to bottom, rgba(228,245,252,1) 0%,rgba(191,232,249,1) 50%,rgba(159,216,239,1) 51%,rgba(42,176,237,1) 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4f5fc', endColorstr='#2ab0ed',GradientType=0 );  
+    border-radius: 5px;
+}
+#popup-bckgrnd>div>p:nth-child(2){   
+    border-bottom: 1px solid #000000;
+    padding: 10px 0px;
+    text-align: center;
+    float: left;
+    width: 100%;
+}
+#popup-bckgrnd>div>p:nth-child(3){
+    width: 95%;
+    float: left;
+    padding:10px;
+    text-align: left;
+}
+#popup-bckgrnd>div>textarea:nth-child(4){
+    width: 80%;
+    height: 150px;
+    margin: 0 auto;
+}
+#popup-bckgrnd>div:nth-child(4)>ul{
+    width: 90%;
+    margin: 10px auto;
+    background: #ffffff;
+    border: 1px solid #c2c2c2;
+    padding: 0;
+    display: table;
+    table-layout: fixed;
+}
+#popup-bckgrnd>div:nth-child(4)>ul>li{
+    height:  auto;
+    padding: 5px 10px;
+    border-bottom: 1px solid #c2c2c2;
+    font-family: 'Arial';
+    font-size: 100%;
+    color: #000000;
+    list-style: none;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    background: rgb(255,255,255);  
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);   
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));  
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); 
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+}
+#popup-bckgrnd>div:nth-child(4)>ul>li>span{
+    color: #F53F3F;
+}
+#popup-bckgrnd>div:nth-child(4)>ul>li:last-child{
+    border-bottom: 0;
+}
+#popup-bckgrnd>div:nth-child(4)>ul>li>form>a{
+    padding-left: 5px;
+    text-decoration: underline;
+    color: #3399cc;
+    position: relative;
+}
+.popup-hide{
+    display:none !important;
+}
+.ui-popup-show{    
+    opacity: 1;
+}
+
+
+
+
+
+
+
+/*
 Action Footer
 #ActionFooter{
     width: 100%;
@@ -431,160 +582,8 @@ Action Footer
 }
 Action Footer end
 popup
-#popup-bckgrnd{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color:rgba(0,0,0,0.4);
-    z-index: 1000;    
-    transition: opacity 1s ease-out;
-    transition: opacity 1s ease-in;
-    -webkit-transition: opacity 1s ease-out;    
-    -webkit-transition: opacity 1s ease-in; 
-    display: table;
-}
-#popup-bckgrnd>div{
-    display: table-cell;
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-}
-#popup-bckgrnd>div>div{
-    width: 80%;
-    height: auto;
-    position: relative;    
-    margin: 0 auto;  
-    font-family: 'Arial';
-    font-size: 100%;
-    color: #ffffff;    
-    text-align: center;
-    background: rgb(30,87,153);  Old browsers 
-    background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(41,137,216,1) 50%, rgba(32,124,202,1) 51%, rgba(125,185,232,1) 100%);  FF3.6+ 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(50%,rgba(41,137,216,1)), color-stop(51%,rgba(32,124,202,1)), color-stop(100%,rgba(125,185,232,1)));  Chrome,Safari4+ 
-    background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);  Chrome10+,Safari5.1+ 
-    background: -o-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);  Opera 11.10+ 
-    background: -ms-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);  IE10+ 
-    background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);  W3C 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 );  IE6-9     
-    border-radius: 10px;
-    padding: 5px 0;
-}
-#popup-bckgrnd>div>div>img{
-    height: 24px;
-    position: absolute;
-    top: -12px;
-    right: -12px;
-    cursor: pointer;
-}
-#popup-bckgrnd>div>div>form>table{
-    width: 90%;
-    padding: 20px 0px;
-}
-#popup-bckgrnd>div>div>form>table tr>td{    
-    font-family: 'Arial';
-    font-size: 100%;
-    text-align: right;
-    color: #000000;
-}
-#popup-bckgrnd>div>div>form>table tr>td:nth-child(1){
-    width: 50%;
-}
-#popup-bckgrnd>div>div>form>table tr>td:nth-child(2){
-    width: 50%;
-}
-#popup-bckgrnd>div>div>form>div,#popup-bckgrnd>div>div:nth-child(1)>div,#popup-bckgrnd>div>div:nth-child(3)>div,#popup-bckgrnd>div>div:nth-child(4)>div{
-    width: 100%;    
-    text-align: center;
-}
-#popup-bckgrnd>div>div>form>div>input,#popup-bckgrnd>div>div:nth-child(1)>div>input,#popup-bckgrnd>div>div:nth-child(3)>div>input,#popup-bckgrnd>div>div:nth-child(4)>div>input{
-    height: 30px;  
-    font-family: 'Arial';
-    font-size: 95%;
-    color: #000000;    
-    border: 1px solid #666666;    
-    cursor: pointer;
-    line-height: 100%;
-    padding: 0 20%;
-    margin: 10px 0px;
-    background: rgb(228,245,252);  Old browsers 
-    background: -moz-linear-gradient(top, rgba(228,245,252,1) 0%, rgba(191,232,249,1) 50%, rgba(159,216,239,1) 51%, rgba(42,176,237,1) 100%);  FF3.6+ 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(228,245,252,1)), color-stop(50%,rgba(191,232,249,1)), color-stop(51%,rgba(159,216,239,1)), color-stop(100%,rgba(42,176,237,1)));  Chrome,Safari4+ 
-    background: -webkit-linear-gradient(top, rgba(228,245,252,1) 0%,rgba(191,232,249,1) 50%,rgba(159,216,239,1) 51%,rgba(42,176,237,1) 100%);  Chrome10+,Safari5.1+ 
-    background: -o-linear-gradient(top, rgba(228,245,252,1) 0%,rgba(191,232,249,1) 50%,rgba(159,216,239,1) 51%,rgba(42,176,237,1) 100%);  Opera 11.10+ 
-    background: -ms-linear-gradient(top, rgba(228,245,252,1) 0%,rgba(191,232,249,1) 50%,rgba(159,216,239,1) 51%,rgba(42,176,237,1) 100%);  IE10+ 
-    background: linear-gradient(to bottom, rgba(228,245,252,1) 0%,rgba(191,232,249,1) 50%,rgba(159,216,239,1) 51%,rgba(42,176,237,1) 100%);  W3C 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4f5fc', endColorstr='#2ab0ed',GradientType=0 );  IE6-9 
-    border-radius: 5px;
-}
-#popup-bckgrnd>div>div>p:nth-child(2){   
-    border-bottom: 1px solid #000000;
-    padding: 10px 0px;
-    text-align: center;
-    float: left;
-    width: 100%;
-}
-#popup-bckgrnd>div>div>p:nth-child(3){
-    width: 95%;
-    float: left;
-    padding:10px;
-    text-align: left;
-}
-#popup-bckgrnd>div>div>textarea:nth-child(4){
-    width: 80%;
-    height: 150px;
-    margin: 0 auto;
-}
-#popup-bckgrnd>div>div:nth-child(4)>ul{
-    width: 90%;
-    margin: 10px auto;
-    background: #ffffff;
-    border: 1px solid #c2c2c2;
-    padding: 0;
-    display: table;
-    table-layout: fixed;
-}
-#popup-bckgrnd>div>div:nth-child(4)>ul>li{
-    height:  auto;
-    padding: 5px 10px;
-    border-bottom: 1px solid #c2c2c2;
-    font-family: 'Arial';
-    font-size: 100%;
-    color: #000000;
-    list-style: none;
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    background: rgb(255,255,255);  Old browsers 
-    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);  FF3.6+ 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)));  Chrome,Safari4+ 
-    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Chrome10+,Safari5.1+ 
-    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  Opera 11.10+ 
-    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  IE10+ 
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  W3C 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-}
-#popup-bckgrnd>div>div:nth-child(4)>ul>li>span{
-    color: #F53F3F;
-}
-#popup-bckgrnd>div>div:nth-child(4)>ul>li:last-child{
-    border-bottom: 0;
-}
-#popup-bckgrnd>div>div:nth-child(4)>ul>li>form>a{
-    padding-left: 5px;
-    text-decoration: underline;
-    color: #3399cc;
-    position: relative;
-}
-.popup-hide{
-    display:none !important;
-}
-.ui-popup-show{    
-    opacity: 1;
-}
 
-Extra
+ Extra
 .ui-message-text{
     width: 100%;
     height: 60px;
@@ -681,10 +680,10 @@ contact form end
 /*New Header List start*/
 #header-list{
     width: 100%;
-/*    float: left;
-    position: relative;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;*/
+    /*    float: left;
+        position: relative;
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;*/
     top: 44px;
 }
 #header-list>ul{
@@ -693,7 +692,7 @@ contact form end
 #header-list>ul>li{
     width: 100%;
     height: 60px;    
-/*    position: relative;*/
+    /*    position: relative;*/
     list-style: none;
     position: relative;
     background: rgb(255,255,255); /* Old browsers */
@@ -1259,7 +1258,8 @@ contact form end
     margin: 0 auto;      
 }
 #information>div>ul,#history>div>ul{
-    width: 100%;
+    width: 94%;
+    height:94%;
     top:10px;
 }
 #information>div>ul>li{
