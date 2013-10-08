@@ -67,8 +67,8 @@ var app = {
                 url: self.URL + "Login",
                 data: "login={\"user_name\": \"" + self.user + "\" , \"password\": \"" + $('#password').val() + "\"}",
                 dataType: 'json',
-                success: this.loadHome,
-                error: this.errorAlert
+                success: self.loadHome,
+                error: self.errorAlert
             });
             return;
         }
@@ -248,7 +248,7 @@ var app = {
         if (callback) {
             setTimeout(function() {
                 callback(data);
-            }, 100);
+            });
         }
     }
 
