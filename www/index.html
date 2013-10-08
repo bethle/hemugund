@@ -79,13 +79,13 @@
         </script>
 
         <script id="notification-header-view-tpl" type="text/x-handlebars-template">
-            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>Sysadmin</h1></div>
+            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{name}}</h1></div>
             <div id="search">
             <div><input type="search" id="search-input" /></div>
             <div id="search-notify-header" class="search-button" >Search</div>
             </div>
             <div id='header-list' class="scrollable" style="top:92px;bottom:0px;left0px;right:0px;">                
-            <ul class="search-header-list" >         
+            <ul id="search-header-list" >         
             <li style="text-align:center;">            
             <img src="img/mini-loading.gif" style="padding-top: 20px;" />
             </li>

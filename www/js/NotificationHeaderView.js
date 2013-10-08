@@ -1,8 +1,9 @@
 var NotificationHeaderView = function(headers) {
+    var self = this;
     this.initialize = function() {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = document.createElement('div');
-        this.el.innerHTML = NotificationHeaderView.template();
+        this.el.innerHTML = NotificationHeaderView.template(headers);
         this.registerEvents();
     };
     this.render = function() {
@@ -10,7 +11,7 @@ var NotificationHeaderView = function(headers) {
             url: app.URL + "Notifications/" + app.mod + "/1",
             dataType: "json",
             data: "notify={\"user\":\"" + app.user + "\"}",
-            success: this.loadHeaderList,
+            success: self.loadHeaderList,
             error: app.errorAlert
         });
         return this;
@@ -24,7 +25,7 @@ var NotificationHeaderView = function(headers) {
     };
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
-            $(".search-header-list").html(NotificationHeaderView.liTemplate(data.result));
+            $("#search-header-list").html(NotificationHeaderView.liTemplate(data.result));
         } else {
             app.showAlert(data.response, "Notification Header Request Errored");
             location.href = "#Error";
@@ -32,10 +33,11 @@ var NotificationHeaderView = function(headers) {
     };
 
     this.search = function() {
+        $("#search-header-list").prepend($("<li style='text-align:center;'><img src='img/mini-loading.gif' style='padding-top: 20px;' /> </li>"));
         $.ajax({
             url: app.URL + "Search/" + app.mod,
             data: "notify={\"query\":\"" + $("#search-input").val() + "\",\"user\": \"" + app.user + "\"}",
-            success: this.loadHeaderList,
+            success: self.loadHeaderList,
             error: app.errorAlert
         });
         return;

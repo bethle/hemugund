@@ -77,9 +77,9 @@ var app = {
         if (match) {
             this.mod = match[1];
             if (this.isMobile()) {
-                this.prevPage = new NotificationHeaderView().render();
+                this.prevPage = new NotificationHeaderView({name:self.user}).render();
             } else {
-                this.prevPage = new NotificationHeaderView().render();
+                this.prevPage = new NotificationHeaderView({name:self.user}).render();
 //                this.prevPage = new NotificationFullView().render();
             }
             this.slidePage(self.prevPage);
@@ -88,7 +88,7 @@ var app = {
 
         match = hash.match(app.detailsURL);
         if (match) {
-            this.slidePage(new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3]}).render());
+            this.slidePage(new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3],num:$('#' + match[2] + '-num').text()}).render());
             return;
         }
 
@@ -112,7 +112,7 @@ var app = {
 
         match = hash.match(/^#Back/);
         if (match) {
-            this.slidePage(new NotificationHeaderView().render(), true);
+            this.slidePage(new NotificationHeaderView({name:self.user}).render(), true);
             return;
         }
 
@@ -135,7 +135,7 @@ var app = {
     initialize: function() {
 //        var self = this;
         this.registerEvents();
-        this.URL = "http://182.18.157.157:7001/mbs/"; //182.18.157.157:7001
+        this.URL = "http://192.168.10.50:8084/mbs/"; //182.18.157.157:7001
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.filterURL = /^#Filter\/(.{6})/;
@@ -145,7 +145,6 @@ var app = {
         this.rejectURL = /^#Reject/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
         this.attachURL = /^#attach\/(.{6})\/.*/;
-//        this.notify = new Notification();
         this.route();
     },
     slidePage: function(page, isBack) {

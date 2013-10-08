@@ -40,8 +40,8 @@ var NotificationDetailView = function(detail) {
             $.ajax({
                 url: app.URL + "Distribution/" + app.mod,
                 dataType: "json",
-                data: "notify={\"id\":\"" + data[i].id + "\"}",
                 async: false,
+                data: "notify={\"id\":\"" + data[i].id + "\"}",
                 success: function(dist) {
                     $("#" + data[i].id + "-dist-list").html(NotificationDetailView.distLiTemplate(dist.result));
                 },
