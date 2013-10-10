@@ -16,7 +16,7 @@ var app = {
             case "rqstns":
                 return "Requisitions ";
             case "xpnsap":
-                return "Expense Approval ";
+                return "Expense Approval";
             case "prchrd":
                 return "Purchase Order ";
             case "pblnvc":
