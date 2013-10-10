@@ -6,6 +6,16 @@ var NotificationsView = function() {
         this.el = document.createElement('div');
         this.el.innerHTML = NotificationsView.template();
     };
+    this.registerBackEvent = function() {
+        document.addEventListener("backbutton", this.onBackKeyDown, false);
+    };
+
+    this.onBackKeyDown = function() { 
+        if(window.confirm("Are you sure you wish to logout?")){
+            location.href = "#Logout";
+        }
+            
+    }
     this.render = function() {
         $.ajax({
             url: app.URL + "Home",

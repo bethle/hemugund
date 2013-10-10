@@ -5,6 +5,9 @@ var NotificationHeaderView = function(headers) {
         this.el = document.createElement('div');
         this.el.innerHTML = NotificationHeaderView.template(headers);
         this.registerEvents();
+        if(document.documentElement.hasOwnProperty("backbutton")){
+            document.removeEventListener("backbutton");
+        }
     };
     this.render = function() {
         $.ajax({

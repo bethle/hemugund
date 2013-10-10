@@ -50,6 +50,7 @@ var app = {
         var hash = window.location.hash, self = this;
         if (!hash) {
             if (this.homePage) {
+                this.homePage.registerBackEvent();
                 this.slidePage(this.homePage.render());
             } else {
                 this.homePage = new LoginView().render();
