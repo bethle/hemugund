@@ -77,9 +77,9 @@ var app = {
         if (match) {
             this.mod = match[1];
             if (this.isMobile()) {
-                this.prevPage = new NotificationHeaderView({name:self.user}).render();
+                this.prevPage = new NotificationHeaderView({name:self.user,mod:self.mod,type:self.findMatch(self.mod)}).render();
             } else {
-                this.prevPage = new NotificationHeaderView({name:self.user}).render();
+                this.prevPage = new NotificationHeaderView({name:self.user,mod:self.mod,type:self.findMatch(self.mod)}).render();
 //                this.prevPage = new NotificationFullView().render();
             }
             this.slidePage(self.prevPage);
@@ -112,7 +112,7 @@ var app = {
 
         match = hash.match(/^#Back/);
         if (match) {
-            this.slidePage(new NotificationHeaderView({name:self.user}).render(), true);
+            this.slidePage(new NotificationHeaderView({name:self.user,mod:self.mod,type:self.findMatch(self.mod)}).render(), true);
             return;
         }
 
