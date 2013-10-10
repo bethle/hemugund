@@ -40,10 +40,9 @@ var NotificationDetailView = function(detail) {
             $.ajax({
                 url: app.URL + "Distribution/" + app.mod,
                 dataType: "json",
-                async: false,
                 data: "notify={\"id\":\"" + data[i].id + "\"}",
                 success: function(dist) {
-                    $("#" + data[i].id + "-dist-list").html(NotificationDetailView.distLiTemplate(dist.result));
+                    $("#" + dist.id + "-dist-list").html(NotificationDetailView.distLiTemplate(dist.result));
                 },
                 error: app.errorAlert
             });
@@ -52,7 +51,6 @@ var NotificationDetailView = function(detail) {
 
     this.loadDetails = function(data) {
         if (data.response === "SUCCESS") {
-            $("#history-list").html(NotificationDetailView.historyLiTemplate(data.result.hist));
             switch (app.mod) {
                 case "rqstns":
                     $("#header-details-list").html(NotificationDetailView.reqTemplate(data.result.head));
@@ -67,6 +65,10 @@ var NotificationDetailView = function(detail) {
                     $("#header-details-list").html(NotificationDetailView.xpnTemplate(data.result.head));
                     break;
             }
+            $("#history-list").html(NotificationDetailView.historyLiTemplate(data.result.hist));
+            $("#attachment-list").html(NotificationDetailView.attachmentLiTemplate(data.result.atch));
+        } else {
+            app.showAlert(data.message, "Details: ");
         }
     };
     this.initialize();

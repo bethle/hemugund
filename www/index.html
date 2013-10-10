@@ -3,7 +3,6 @@
         <link href="css/style.css" rel="stylesheet">
         <script src="lib/jquery.js"></script>
         <script src="lib/handlebars.js"></script>
-        <script src="js/util/script.js"></script>
     </head>
     <body>
         <script type="text/x-handlebars-template" id="login-view-tpl">            
@@ -94,103 +93,103 @@
         </script>
 
         <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
-        <div class='header'><a class='button header-button header-button-left ' href="#Back">Back</a><h1>{{num}}</h1></div>
-        <div id="header-details" >
+            <div class='header'><a class='button header-button header-button-left ' href="#Back">Back</a><h1>{{num}}</h1></div>
+            <div id="header-details" >
             <div>            
-                <p>{{this.name}}</p>
-                <p>{{this.amount}}<span>{{this.code}}</span></p>            
+            <p>{{this.name}}</p>
+            <p>{{this.amount}}<span>{{this.code}}</span></p>            
             </div>           
             <div><span>{{this.date}}</span></div>
             <div id="ui-tabs">
-                <ul>                    
-                    <li onclick="app.tab(this)" ></li>    
-                    <li onclick="app.tab(this)" ></li>            
-                    <li onclick="app.tab(this)" ></li>                    
-                </ul>         
-                <div><a onclick="app.showAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a>            <ul id="attachment-list" ></ul>
-                </div>
+            <ul>                    
+            <li onclick="app.tab(this)" ></li>    
+            <li onclick="app.tab(this)" ></li>            
+            <li onclick="app.tab(this)" ></li>                    
+            </ul>         
+            <div><a onclick="app.popAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a>            <ul id="attachment-list" ></ul>
+            </div>
             </div>
             <div id="ui-tab-content">
-                <div class="details show" id="list-items" >
-                    <table cellspacing="0" cellpadding="0" >
-                        <tr>
-                            <td><span>Line</span></td>
-                            <td><span>Quantity</span></td>
-                            <td><span>Price</span></td>
-                            <td><span>Amount({{this.code}})</span></td>
-                        </tr>
-                    </table>
-                    <ul id="notify-lines-list"  class="scrollable" style="top:47px;bottom:0px;">
-                        <li style="text-align:center;">            
-                            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
-                        </li>
-                    </ul>
-                </div>            
-                <div class="details" id="information" >
-                    <div>
-                        <ul id="header-details-list" class="scrollable">            
-                            <li style="text-align:center;">            
-                                <img src="img/mini-loading.gif" style="padding-top: 5px;" />
-                            </li>
-                        </ul>
-                    </div>
-                </div>                                  
-                <div class="details" id="history" >
-                    <div>
-                        <ul id="history-list" class="scrollable">
-                            <li style="text-align:center;">            
-                                <img src="img/mini-loading.gif" style="padding-top: 5px;" />
-                            </li>
-                        </ul>
-                    </div>
-                </div>             
+            <div class="details show" id="list-items" >
+            <table cellspacing="0" cellpadding="0" >
+            <tr>
+            <td><span>Line</span></td>
+            <td><span>Quantity</span></td>
+            <td><span>Price</span></td>
+            <td><span>Amount({{this.code}})</span></td>
+            </tr>
+            </table>
+            <ul id="notify-lines-list"  class="scrollable" style="top:47px;bottom:0px;">
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+            </li>
+            </ul>
+            </div>            
+            <div class="details" id="information" >
+            <div>
+            <ul id="header-details-list" class="scrollable">            
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+            </li>
+            </ul>
             </div>
-        </div>
-        <div id="popup-bckgrnd" class="popup-hide" >
+            </div>                                  
+            <div class="details" id="history" >
+            <div>
+            <ul id="history-list" class="scrollable">
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+            </li>
+            </ul>
+            </div>
+            </div>             
+            </div>
+            </div>
+            <div id="popup-bckgrnd" class="popup-hide" >
             <div id="ApproveAlert" class="popup-hide" >
-                <img src="img/Close.png" onclick="closeAlert(this)" />
-                <p>Do you want to approve?</p>
-                <p>Comments:</p>  
-                <textarea id="approve-comment" ></textarea>
-                <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
+            <img src="img/Close.png" onclick="closeAlert(this)" />
+            <p>Do you want to approve?</p>
+            <p>Comments:</p>  
+            <textarea id="approve-comment" ></textarea>
+            <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
             </div>
             <div id="ForwardAlert" class="popup-hide" >
-                <img src="img/Close.png" onclick="closeAlert(this);" />
-                <table cellspacing='0' cellpadding='0'>
-                    <tr>
-                        <td>
-                            Person Name:
-                        </td>
-                        <td>
-                            <div>
-                                <div id='select-user' >Choose a person...</div>
-                                <img src="img/arrow.png" />
-                                <select id="user-list" onchange="document.getElementById('select-user').innerHTML = this.options[this.selectedIndex].text" >
-                                    <option value='' >Choose a person...</option>                                        
-                                    <option value='sysadmin' >sysadmin</option>            
-                                    <option value='bpalmer' >bpalmer</option>            
-                                    <option value='tgreen' >tgreen</option>            
-                                    <option value='cbrown' >cbrown</option>            
-                                </select>
-                            </div>    
-                        </td>
-                    </tr>
-                </table>
-                <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
+            <img src="img/Close.png" onclick="closeAlert(this);" />
+            <table cellspacing='0' cellpadding='0'>
+            <tr>
+            <td>
+            Person Name:
+            </td>
+            <td>
+            <div>
+            <div id='select-user' >Choose a person...</div>
+            <img src="img/arrow.png" />
+            <select id="user-list" onchange="document.getElementById('select-user').innerHTML = this.options[this.selectedIndex].text" >
+            <option value='' >Choose a person...</option>                                        
+            <option value='sysadmin' >sysadmin</option>            
+            <option value='bpalmer' >bpalmer</option>            
+            <option value='tgreen' >tgreen</option>            
+            <option value='cbrown' >cbrown</option>            
+            </select>
+            </div>    
+            </td>
+            </tr>
+            </table>
+            <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
             </div>
             <div id="RejectAlert" class="popup-hide" >
-                <img src="img/Close.png" onclick="closeAlert(this)" />
-                <p>Do you want to Reject?</p>
-                <p>Comments:</p>  
-                <textarea id="reject-comment" ></textarea>
-                <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
+            <img src="img/Close.png" onclick="closeAlert(this)" />
+            <p>Do you want to Reject?</p>
+            <p>Comments:</p>  
+            <textarea id="reject-comment" ></textarea>
+            <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
             </div>
             <div id="AttachmentAlert" class="popup-hide" >
-                <img src="img/Close.png" onclick="closeAlert(this)" />
-                <ul id="attachment-list">
-                </ul>
+            <img src="img/Close.png" onclick="closeAlert(this)" />
+            <ul id="attachment-list">
+            </ul>
             </div>   
-        </div>            
+            </div>            
         </script>
 
         <script id="header-list-tpl" type="text/x-handlebars-template" >                   
@@ -342,7 +341,8 @@
             </table>
             </li>      
             {{/.}}
-        </script>                    
+        </script>  
+        
         <script id="distribution-list-tpl" type="text/x-handlebars-template" >
             {{#.}}
             <li>
@@ -506,23 +506,27 @@
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         </script>
 
-        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
-            {{#.}}
-            <li>{{this.file}}&nbsp;({{this.entity}})&nbsp;<span>&nbsp;{{this.user}}</span><form action="http://182.18.157.157:7001/ebs/Download" method="POST" encrypt="multipart/form-data" id="form{{@index}}" ><input type="hidden" name="name" value="{{this.file}}" /><input type="hidden" name="type" value="{{this.mod}}" /><input type="hidden" name="mod" value="{{../../module}}" /><input type="hidden" name="format" value="{{this.type}}" /><input type="hidden" name="id" value="{{this.id}}" /><a class="download-file" onclick="document.getElementById('form{{@index}}').submit();" >Download</a></form></li>
-            {{else}}
-            <li>No Attachments</li>
-            {{/.}}
-        </script>
+    <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
+    {{#.}}
+    <li>{{file}}&nbsp;({{entity}})&nbsp;
+        <span>&nbsp;{{user}}</span>
+        <form action="http://182.18.157.157:7001/ebs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
+            <input type="hidden" name="name" value="{{file}}" />
+            <input type="hidden" name="format" value="{{type}}" />
+            <input type="hidden" name="id" value="{{id}}" />
+            <a class="download-file" onclick="document.getElementById('form-{{id}}').submit();" >Download</a>
+        </form>
+    </li>
+    {{/.}}
+    </script>
 
-        <script src="js/LoginView.js"></script>
-        <script src="js/NotificationsView.js"></script>
-        <script src="js/NotificationHeaderView.js"></script>        
-        <script src="js/NotificationDetailView.js"></script>        
-        <!--<script src="js/NotificationFullView.js"></script>-->        
-        <!--<script src="js/NotificationFilterview.js"></script>-->        
-        <script src="js/main.js"></script>
+    <script src="js/LoginView.js"></script>
+    <script src="js/NotificationsView.js"></script>
+    <script src="js/NotificationHeaderView.js"></script>        
+    <script src="js/NotificationDetailView.js"></script>        
+    <script src="js/main.js"></script>
 
-    </body>
+</body>
 </html>
 
 
