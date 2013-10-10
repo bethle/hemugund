@@ -1,11 +1,11 @@
 
 
 var NotificationsView = function() {
+    var self = this;
     this.initialize = function() {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = document.createElement('div');
         this.el.innerHTML = NotificationsView.template();
-        document.addEventListener("backbutton", this.onBackKeyDown, false);
     };
 
     this.onBackKeyDown = function() {
@@ -22,6 +22,7 @@ var NotificationsView = function() {
             success: this.loadNotifCount,
             error: app.errorAlert
         });
+        document.addEventListener("backbutton", self.onBackKeyDown, false);
         return this;
     };
 
