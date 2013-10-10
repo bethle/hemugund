@@ -14,13 +14,13 @@ var app = {
     findMatch: function(ptrn) {
         switch (ptrn) {
             case "rqstns":
-                return "Requisitions ";
+                return "Requisitions";
             case "xpnsap":
-                return "Expense Approval";
+                return "Exp. Approval";
             case "prchrd":
-                return "Purchase Order ";
+                return "Purchase Order";
             case "pblnvc":
-                return "Payable Invoice ";
+                return "Payable Invoice";
             case "others":
                 return "Others";
             default:
