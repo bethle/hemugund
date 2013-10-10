@@ -5,16 +5,15 @@ var NotificationsView = function() {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = document.createElement('div');
         this.el.innerHTML = NotificationsView.template();
-    };
-    this.registerBackEvent = function() {
         document.addEventListener("backbutton", this.onBackKeyDown, false);
     };
 
-    this.onBackKeyDown = function() { 
-        if(window.confirm("Are you sure you wish to logout?")){
+    this.onBackKeyDown = function() {
+        app.showAlert("Back Key pressed");
+        if (window.confirm("Are you sure you wish to logout?")) {
             location.href = "#Logout";
         }
-            
+
     }
     this.render = function() {
         $.ajax({
