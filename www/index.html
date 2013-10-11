@@ -3,6 +3,14 @@
         <link href="css/style.css" rel="stylesheet">
         <script src="lib/jquery.js"></script>
         <script src="lib/handlebars.js"></script>
+        <script type="text/javascript">
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+            document.addEventListener("backbutton", function (e) {
+               e.preventDefault();
+            }, false );
+            }            
+       </script>
     </head>
     <body>
         <script type="text/x-handlebars-template" id="login-view-tpl">            
@@ -525,14 +533,6 @@
         <script src="js/NotificationHeaderView.js"></script>        
         <script src="js/NotificationDetailView.js"></script>        
         <script src="js/main.js"></script>
-        <script type="text/javascript">
-            document.addEventListener("deviceready", onDeviceReady, false);
-            function onDeviceReady() {
-            document.addEventListener("backbutton", function (e) {
-            app.showAlert("back button clicked", "HEAD");
-            }, false );
-            }            
-       </script>
     </body>
 </html>
 
