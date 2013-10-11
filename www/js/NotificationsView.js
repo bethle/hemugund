@@ -15,7 +15,6 @@ var NotificationsView = function() {
             success: this.loadNotifCount,
             error: app.errorAlert
         });
-        document.addEventListener("backbutton", app.onBackKeyDown, false);
         return this;
     };
 

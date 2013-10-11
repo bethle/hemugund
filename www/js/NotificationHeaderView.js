@@ -14,7 +14,6 @@ var NotificationHeaderView = function(headers) {
             success: self.loadHeaderList,
             error: app.errorAlert
         });
-        document.removeEventListener("backbutton", app.onBackKeyDown, false);
         return this;
     };
     this.registerEvents = function() {
