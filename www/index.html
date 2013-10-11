@@ -2,31 +2,35 @@
     <head>
         <link href="css/style.css" rel="stylesheet">
         <script type="text/javascript" src="phonegap.js"></script>        
-        <script type="text/javascript" >
-            // Call onDeviceReady when Cordova is loaded.
-            //
-            // At this point, the document has loaded but cordova-x.x.x.js has not.
-            // When Cordova is loaded and talking with the native device,
-            // it will call the event `deviceready`.
-            //
-            function onLoad() {
-            document.addEventListener("deviceready", onDeviceReady, false);
-            }
-
-            // Cordova is loaded and it is now safe to call Cordova methods
-            //
-            function onDeviceReady() {
-            // Register the event listener
-            document.addEventListener("backbutton", onBackKeyDown, false);
-            }
-
-            // Handle the back button
-            //
-            function onBackKeyDown() {
-            app.showAlert("Back Key has been pressed: " + location.href);
-            }
-        </script>
         <script type="text/javascript" src="lib/jquery.js"></script>
+        <script type="text/javascript" >
+            //Android back button handler methods
+            $(document).ready(function()
+            {
+            document.addEventListener("deviceready", setOverrideBackbutton, false);
+            });
+
+            /**
+            * Allow override of the back button on Android platforms
+            */
+            function setOverrideBackbutton()
+            {
+            if (typeof device != "undefined" && device.platform == "Android")
+            {
+            navigator.app.overrideBackbutton(true);
+            }
+            document.addEventListener("backbutton", backButtonTap, true);
+            }
+
+            /**
+            * Callback after a backbutton tap on Android and windows platforms.
+            * Do nothing.
+            */
+            function backButtonTap()
+            {
+            navigator.notification.alert("Back button clicked", null, "ALERT", 'OK');
+            }        
+        </script>
         <script type="text/javascript" src="lib/handlebars.js"></script>
     </head>
     <body>
