@@ -8,13 +8,6 @@ var NotificationsView = function() {
         this.el.innerHTML = NotificationsView.template();
     };
 
-    this.onBackKeyDown = function() {
-        app.showAlert("Back Key pressed");
-        if (window.confirm("Are you sure you wish to logout?")) {
-            location.href = "#Logout";
-        }
-
-    }
     this.render = function() {
         $.ajax({
             url: app.URL + "Home",
@@ -22,7 +15,7 @@ var NotificationsView = function() {
             success: this.loadNotifCount,
             error: app.errorAlert
         });
-        document.addEventListener("backbutton", self.onBackKeyDown, false);
+        document.addEventListener("backbutton", app.onBackKeyDown, false);
         return this;
     };
 

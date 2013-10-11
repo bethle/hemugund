@@ -249,7 +249,15 @@ var app = {
                 callback(data);
             });
         }
+    },
+    onBackKeyDown : function() {
+        app.showAlert("Back Key pressed");
+        if (window.confirm("Are you sure you wish to logout?")) {
+            location.href = "#Logout";
+        }
+
     }
+
 
 };
 
