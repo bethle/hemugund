@@ -1,11 +1,12 @@
 <html>
     <head>
         <link href="css/style.css" rel="stylesheet">
+        <script src="phonegap.js"></script>        
         <script src="lib/jquery.js"></script>
         <script src="lib/handlebars.js"></script>
         <script type="text/javascript">
             document.addEventListener("backbutton",function(e){
-            alert("Back Buttonclicked Current pge Url is: " + location.href);
+            app.showAlert("Back Buttonclicked Current pge Url is: " + location.href);
             },false);
         </script>
     </head>
@@ -530,6 +531,5 @@
         <script src="js/NotificationHeaderView.js"></script>        
         <script src="js/NotificationDetailView.js"></script>        
         <script src="js/main.js"></script>
-        <script src="phonegap.js"></script>
     </body>
 </html>
