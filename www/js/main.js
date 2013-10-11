@@ -63,9 +63,10 @@ var app = {
         match = hash.match(app.loginURL);
         if (match) {
             this.user = $('#user-name').val();
+            this.pass = $('#password').val();
             $.ajax({
                 url: self.URL + "Login",
-                data: "login={\"user_name\": \"" + self.user + "\" , \"password\": \"" + $('#password').val() + "\"}",
+                data: "login={\"user_name\": \"" + self.user + "\" , \"password\": \"" + self.pass + "\"}",
                 dataType: 'json',
                 success: self.loadHome,
                 error: self.errorAlert
