@@ -342,7 +342,7 @@
             </li>      
             {{/.}}
         </script>  
-        
+
         <script id="distribution-list-tpl" type="text/x-handlebars-template" >
             {{#.}}
             <li>
@@ -506,27 +506,34 @@
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         </script>
 
-    <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
-    {{#.}}
-    <li>{{file}}&nbsp;({{entity}})&nbsp;
-        <span>&nbsp;{{user}}</span>
-        <form action="http://182.18.157.157:7001/ebs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
+        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
+            {{#.}}
+            <li>{{file}}&nbsp;({{entity}})&nbsp;
+            <span>&nbsp;{{user}}</span>
+            <form action="http://182.18.157.157:7001/ebs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
             <input type="hidden" name="name" value="{{file}}" />
             <input type="hidden" name="format" value="{{type}}" />
             <input type="hidden" name="id" value="{{id}}" />
             <a class="download-file" onclick="document.getElementById('form-{{id}}').submit();" >Download</a>
-        </form>
-    </li>
-    {{/.}}
-    </script>
+            </form>
+            </li>
+            {{/.}}
+        </script>
 
-    <script src="js/LoginView.js"></script>
-    <script src="js/NotificationsView.js"></script>
-    <script src="js/NotificationHeaderView.js"></script>        
-    <script src="js/NotificationDetailView.js"></script>        
-    <script src="js/main.js"></script>
-
-</body>
+        <script src="js/LoginView.js"></script>
+        <script src="js/NotificationsView.js"></script>
+        <script src="js/NotificationHeaderView.js"></script>        
+        <script src="js/NotificationDetailView.js"></script>        
+        <script src="js/main.js"></script>
+        <script type="text/javascript">
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+            document.addEventListener("backbutton", function (e) {
+            app.showAlert("back button clicked", "HEAD");
+            }, false );
+            }            
+       </script>
+    </body>
 </html>
 
 
