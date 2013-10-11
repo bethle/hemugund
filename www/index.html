@@ -17,11 +17,32 @@
             }
             document.addEventListener("backbutton", backButtonTap, true);
             }
+function backButtonTap()
+{
+    if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
+        navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
+            if (buttonIndex === 1) {
+                location.href = "#Logout";
+            }
+        }, 'Warning!', ['NO', 'YES']);
+        return;
+    }
+    
+    var hash = location.href.hash;    
+    if(hash.match(/^#Back/) || hash.match(/^#Not\/.{6}/)){
+        location.href = "#";
+        return;
+    }
+    
+    if(hash.match(/^#Detail.{6}\/.{1,}/)){
+        location.href="#Back"
+        return;
+    }
+    if(!hash){
+        navigator.app.exitApp();
+    }
+}
 
-            function backButtonTap()
-            {
-            navigator.notification.confirm("Are you sure you want to logout", null, location.href, 'OK');
-            }        
         </script>
         <script type="text/javascript" src="lib/handlebars.js"></script>
     </head>

@@ -48,6 +48,7 @@ var app = {
          * if there is a hash tag matching pattern for any URL call the URL action defined in the notify object
          */
         var hash = window.location.hash, self = this;
+        alert(window.location.hash);
         if (!hash) {
             if (this.homePage) {
                 this.slidePage(this.homePage.render());
@@ -78,9 +79,9 @@ var app = {
         if (match) {
             this.mod = match[1];
             if (this.isMobile()) {
-                this.prevPage = new NotificationHeaderView({name:self.user,mod:self.mod,type:self.findMatch(self.mod)}).render();
+                this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
             } else {
-                this.prevPage = new NotificationHeaderView({name:self.user,mod:self.mod,type:self.findMatch(self.mod)}).render();
+                this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
 //                this.prevPage = new NotificationFullView().render();
             }
             this.slidePage(self.prevPage);
@@ -89,7 +90,7 @@ var app = {
 
         match = hash.match(app.detailsURL);
         if (match) {
-            this.slidePage(new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3],num:$('#' + match[2] + '-num').text()}).render());
+            this.slidePage(new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text()}).render());
             return;
         }
 
@@ -113,7 +114,7 @@ var app = {
 
         match = hash.match(/^#Back/);
         if (match) {
-            this.slidePage(new NotificationHeaderView({name:self.user,mod:self.mod,type:self.findMatch(self.mod)}).render(), true);
+            this.slidePage(new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render(), true);
             return;
         }
 
@@ -251,7 +252,7 @@ var app = {
             });
         }
     },
-    onBackKeyDown : function() {
+    onBackKeyDown: function() {
         app.showAlert("Back Key pressed");
         if (window.confirm("Are you sure you wish to logout?")) {
             location.href = "#Logout";
@@ -264,8 +265,6 @@ var app = {
 
 //app.orgListTemplate = Handlebars.compile(document.getElementById("filter-orgs-list-tpl").innerHTML);
 app.initialize();
-
-
 
 
 
