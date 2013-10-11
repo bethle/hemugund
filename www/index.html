@@ -4,15 +4,11 @@
         <script type="text/javascript" src="phonegap.js"></script>        
         <script type="text/javascript" src="lib/jquery.js"></script>
         <script type="text/javascript" >
-            //Android back button handler methods
             $(document).ready(function()
             {
             document.addEventListener("deviceready", setOverrideBackbutton, false);
             });
 
-            /**
-            * Allow override of the back button on Android platforms
-            */
             function setOverrideBackbutton()
             {
             if (typeof device != "undefined" && device.platform == "Android")
@@ -22,13 +18,9 @@
             document.addEventListener("backbutton", backButtonTap, true);
             }
 
-            /**
-            * Callback after a backbutton tap on Android and windows platforms.
-            * Do nothing.
-            */
             function backButtonTap()
             {
-            navigator.notification.alert("Back button clicked", null, "ALERT", 'OK');
+            navigator.notification.confirm("Are you sure you want to logout", null, location.href, 'OK');
             }        
         </script>
         <script type="text/javascript" src="lib/handlebars.js"></script>
