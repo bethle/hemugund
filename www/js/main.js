@@ -48,7 +48,7 @@ var app = {
          * if there is a hash tag matching pattern for any URL call the URL action defined in the notify object
          */
         var hash = window.location.hash, self = this;
-        alert(window.location.hash);
+        alert("Triggerd URL is: " + window.location.hash);
         if (!hash) {
             if (this.homePage) {
                 this.slidePage(this.homePage.render());

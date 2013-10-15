@@ -6,42 +6,48 @@
         <script type="text/javascript" >
             $(document).ready(function()
             {
-            document.addEventListener("deviceready", setOverrideBackbutton, false);
+                document.addEventListener("deviceready", setOverrideBackbutton, false);
             });
 
             function setOverrideBackbutton()
             {
-            if (typeof device != "undefined" && device.platform == "Android")
+                if ((typeof device != "undefined") && (device.platform == "Android"))
+                {
+                    navigator.app.overrideBackbutton(true);
+                }
+                document.addEventListener("backbutton", backButtonTap, true);
+            }
+            function backButtonTap()
             {
-            navigator.app.overrideBackbutton(true);
+                if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
+                    navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
+                        if (buttonIndex === 1) {
+                            location.href = "#Logout";
+                        }
+                    }, 'Warning!', ['YES', 'NO']);
+                    return;
+                }
+
+                var hash = location.href.hash, match;
+                match = hash.match(/^#Back/);
+                if ( match ) {
+                    location.href = "#";
+                    return;
+                }
+                match = hash.match(/^#Not\/.{6}/);
+                if ( match ) {
+                    location.href = "#";
+                    return;
+                }
+                match = hash.match(/^#Detail.{6}\/.{1,}/);
+                if (match) {
+                    location.href = "#Back";
+                    return;
+                }
+                if (!hash) {
+                    navigator.app.exitApp();
+                }
             }
-            document.addEventListener("backbutton", backButtonTap, true);
-            }
-function backButtonTap()
-{
-    if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
-        navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
-            if (buttonIndex === 1) {
-                location.href = "#Logout";
-            }
-        }, 'Warning!', ['NO', 'YES']);
-        return;
-    }
-    
-    var hash = location.href.hash;    
-    if(hash.match(/^#Back/) || hash.match(/^#Not\/.{6}/)){
-        location.href = "#";
-        return;
-    }
-    
-    if(hash.match(/^#Detail.{6}\/.{1,}/)){
-        location.href="#Back"
-        return;
-    }
-    if(!hash){
-        navigator.app.exitApp();
-    }
-}
 
         </script>
         <script type="text/javascript" src="lib/handlebars.js"></script>
