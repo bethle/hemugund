@@ -19,6 +19,7 @@
             }
             function backButtonTap()
             {
+                alert("Triggerd URL is: " + window.location.hash);
                 if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
                     navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
                         if (buttonIndex === 1) {
@@ -28,14 +29,14 @@
                     return;
                 }
 
-                var hash = location.href.hash, match;
+                var hash = window.location.hash, match;
                 match = hash.match(/^#Back/);
-                if ( match ) {
+                if (match) {
                     location.href = "#";
                     return;
                 }
                 match = hash.match(/^#Not\/.{6}/);
-                if ( match ) {
+                if (match) {
                     location.href = "#";
                     return;
                 }
