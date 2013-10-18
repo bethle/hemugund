@@ -117,6 +117,11 @@ var app = {
             return;
         }
 
+        match = hash.match(/^#Down(.{1,})-(.{1,})\/(.{1,})/);
+        if (match) {
+            this.slidePage(new FileView({file: match[1], type: match[3], id:match[2]}).render());
+            return;
+        }
         match = hash.match(/^#Logout/);
         if (match) {
             $.ajax({
@@ -179,7 +184,7 @@ var app = {
             self.currentPage = page;
             window.setTimeout(function() {
                 $('.stage-right, .stage-left').remove();
-            }, 400);
+            }, 500);
         });
 
     },

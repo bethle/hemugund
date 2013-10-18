@@ -128,6 +128,19 @@
             </div>
             </div>
         </script>
+        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
+            {{#.}}
+            <li>{{file}}&nbsp;({{entity}})&nbsp;
+            <span>&nbsp;{{user}}</span>
+            <a href="#Down{{file}}-{{id}}/{{type}}">Download</a>
+            </li>
+            {{/.}}
+        </script>
+
+        <script id="file-content-view-tpl" type="text/x-handlebars-template">
+            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{file}}</h1><h3>{{name}}</h3></div>
+            <object id="content-area" type="{{type}}"></object>
+        </script>
 
         <script id="notification-header-view-tpl" type="text/x-handlebars-template">
             <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{type}}</h1><h3>{{name}}</h3></div>
@@ -143,6 +156,7 @@
             </ul>
             </div>
         </script>
+
 
         <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
             <div class='header'><a class='button header-button header-button-left ' href="#Back">Back</a><h1 style="padding-top: 5px;">{{num}}</h1></div>
@@ -558,7 +572,7 @@
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         </script>
 
-        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
+<!--        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
             {{#.}}
             <li>{{file}}&nbsp;({{entity}})&nbsp;
             <span>&nbsp;{{user}}</span>
@@ -570,7 +584,7 @@
             </form>
             </li>
             {{/.}}
-        </script>
+        </script>-->
 
         <script type="text/javascript" src="js/LoginView.js"></script>
         <script type="text/javascript" src="js/NotificationsView.js"></script>
