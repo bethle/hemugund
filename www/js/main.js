@@ -117,7 +117,7 @@ var app = {
             return;
         }
 
-        match = hash.match(/^#Down(.{1,})-(\d{1,})|(.{1,})/);
+        match = hash.match(/^#Down(.{1,})-(\d{1,})~(.{1,})/);
         if (match) {
             this.slidePage(new FileView({file: match[1], type: match[3], id:match[2]}).render());
             return;
