@@ -225,9 +225,9 @@ var app = {
     },
     popAlert: function(id) {
         var elem = document.getElementById(id);
-        elem.parentNode.parentNode.className = "popup-hide";
+        elem.parentNode.className = "popup-hide";
         elem.className = "popup-hide";
-        elem.parentNode.parentNode.className = "ui-popup-show";
+        elem.parentNode.className = "ui-popup-show";
         elem.className = "ui-popup-show";
     },
     closeAlert: function(elem) {
