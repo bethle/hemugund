@@ -171,13 +171,15 @@ var app = {
         }
         $('body').append(page.el);
         // Wait until the new page has been added to the DOM...
+        // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
+        $(self.currentPage.el).attr('class', 'page transition ' + currentPageDest);
         setTimeout(function() {
-            // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
-            $(self.currentPage.el).attr('class', 'page transition ' + currentPageDest);
             // Slide in the new page
             $(page.el).attr('class', 'page stage-center transition');
             self.currentPage = page;
-            $('.stage-right, .stage-left').remove();
+            window.setTimeout(function() {
+                $('.stage-right, .stage-left').remove();
+            }, 400);
         });
 
     },
