@@ -231,8 +231,6 @@ var app = {
         elem.className = "ui-popup-show";
     },
     closeAlert: function(elem) {
-//        var commentClear1 = document.getElementById('approve-comment');
-//        var commentClear2 = document.getElementById('reject-comment');
         document.getElementById('approve-comment').value = "";
         document.getElementById('reject-comment').value = "";
         elem.parentNode.parentNode.parentNode.className = "popup-hide";
@@ -250,15 +248,7 @@ var app = {
                 callback(data);
             });
         }
-    },
-    onBackKeyDown: function() {
-        app.showAlert("Back Key pressed");
-        if (window.confirm("Are you sure you wish to logout?")) {
-            location.href = "#Logout";
-        }
-
     }
-
 
 };
 
