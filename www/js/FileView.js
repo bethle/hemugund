@@ -3,15 +3,16 @@ var FileView = function(file) {
         this.el = document.createElement('div');
     };
     this.render = function() {
-        this.el.innerHTML = FileView.template();
-        $.ajax({
-            url: app.URL + "Download",
-            data: "notify={\"id\":\"" + file.id + "\"}",
-            success: function(data){
-                $("#content-area").html(data.result);
-            },
-            error: app.errorAlert
-        });
+        this.el.innerHTML = FileView.template(file);
+//        $.ajax({
+//            url: app.URL + "Download",
+//            data: "notify={\"id\":\"" + file.id + "\"}",
+//            dataType:"json",
+//            success: function(data){
+//                $("#content-area").html(data.result);
+//            },
+//            error: app.errorAlert
+//        });
             
         return this;
     };

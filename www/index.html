@@ -132,14 +132,15 @@
             {{#.}}
             <li>{{file}}&nbsp;({{entity}})&nbsp;
             <span>&nbsp;{{user}}</span>
-            <a href="#Down{{file}}-{{id}}/{{type}}">Download</a>
+            <a href="#Down{{file}}-{{id}}|{{type}}">Download</a>
             </li>
             {{/.}}
         </script>
 
         <script id="file-content-view-tpl" type="text/x-handlebars-template">
             <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{file}}</h1><h3>{{name}}</h3></div>
-            <object id="content-area" type="{{type}}"></object>
+            <object id="content-area" data="http://192.168.10.50:8084/mbs/Download?id={{id}}" type="{{type}}" style="width:100%;">
+            </object>
         </script>
 
         <script id="notification-header-view-tpl" type="text/x-handlebars-template">
@@ -572,21 +573,22 @@
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         </script>
 
-<!--        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
-            {{#.}}
-            <li>{{file}}&nbsp;({{entity}})&nbsp;
-            <span>&nbsp;{{user}}</span>
-            <form action="http://192.168.10.50:8084/mbs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
-            <input type="hidden" name="name" value="{{file}}" />
-            <input type="hidden" name="format" value="{{type}}" />
-            <input type="hidden" name="id" value="{{id}}" />
-            <a class="download-file" onclick="document.getElementById('form-{{id}}').submit();" >Download</a>
-            </form>
-            </li>
-            {{/.}}
-        </script>-->
+        <!--        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
+                    {{#.}}
+                    <li>{{file}}&nbsp;({{entity}})&nbsp;
+                    <span>&nbsp;{{user}}</span>
+                    <form action="http://192.168.10.50:8084/mbs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
+                    <input type="hidden" name="name" value="{{file}}" />
+                    <input type="hidden" name="format" value="{{type}}" />
+                    <input type="hidden" name="id" value="{{id}}" />
+                    <a class="download-file" onclick="document.getElementById('form-{{id}}').submit();" >Download</a>
+                    </form>
+                    </li>
+                    {{/.}}
+                </script>-->
 
         <script type="text/javascript" src="js/LoginView.js"></script>
+        <script type="text/javascript" src="js/FileView.js"></script>
         <script type="text/javascript" src="js/NotificationsView.js"></script>
         <script type="text/javascript" src="js/NotificationHeaderView.js"></script>        
         <script type="text/javascript" src="js/NotificationDetailView.js"></script>        
