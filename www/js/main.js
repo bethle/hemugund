@@ -233,7 +233,7 @@ var app = {
     closeAlert: function(elem) {
         document.getElementById('approve-comment').value = "";
         document.getElementById('reject-comment').value = "";
-        elem.parentNode.parentNode.parentNode.className = "popup-hide";
+        elem.parentNode.parentNode.className = "popup-hide";
         elem.parentNode.className = "popup-hide";
         if (document.getElementById('header-list') !== null) {
             document.getElementById('header-list').removeAttribute('style');
