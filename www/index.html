@@ -199,14 +199,14 @@
             </div>
             <div id="popup-bckgrnd" class="popup-hide" >
             <div id="ApproveAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="closeAlert(this)" />
+            <img src="img/Close.png" onclick="app.closeAlert(this)" />
             <p>Do you want to approve?</p>
             <p>Comments:</p>  
             <textarea id="approve-comment" ></textarea>
             <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
             </div>
             <div id="ForwardAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="closeAlert(this);" />
+            <img src="img/Close.png" onclick="app.closeAlert(this);" />
             <table cellspacing='0' cellpadding='0'>
             <tr>
             <td>
@@ -230,14 +230,14 @@
             <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
             </div>
             <div id="RejectAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="closeAlert(this)" />
+            <img src="img/Close.png" onclick="app.closeAlert(this)" />
             <p>Do you want to Reject?</p>
             <p>Comments:</p>  
             <textarea id="reject-comment" ></textarea>
             <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
             </div>
             <div id="AttachmentAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="closeAlert(this)" />
+            <img src="img/Close.png" onclick="app.closeAlert(this)" />
             <ul id="attachment-list">
             </ul>
             </div>   
@@ -562,7 +562,7 @@
             {{#.}}
             <li>{{file}}&nbsp;({{entity}})&nbsp;
             <span>&nbsp;{{user}}</span>
-            <form action="http://182.18.157.157:7001/ebs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
+            <form action="http://192.168.10.50:8084/mbs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
             <input type="hidden" name="name" value="{{file}}" />
             <input type="hidden" name="format" value="{{type}}" />
             <input type="hidden" name="id" value="{{id}}" />
