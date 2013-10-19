@@ -3,7 +3,15 @@ var FileView = function(file) {
         this.el = document.createElement('div');
     };
     this.render = function() {
-        this.el.innerHTML = FileView.template(file);
+        this.el.innerHTML = FileView.template(file);            
+        return this;
+    };
+
+    this.initialize();
+};
+
+FileView.template = Handlebars.compile(document.getElementById("file-content-view-tpl").innerHTML);
+
 //        $.ajax({
 //            url: app.URL + "Download",
 //            data: "notify={\"id\":\"" + file.id + "\"}",
@@ -13,11 +21,4 @@ var FileView = function(file) {
 //            },
 //            error: app.errorAlert
 //        });
-            
-        return this;
-    };
-
-    this.initialize();
-};
-FileView.template = Handlebars.compile(document.getElementById("file-content-view-tpl").innerHTML);
 

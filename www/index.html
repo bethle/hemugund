@@ -39,7 +39,7 @@
                     location.href = "#";
                     return;
                 }
-                match = hash.match(/^#Detail.{6}\/.{1,}/);
+                match = hash.match(/^#Detail.{1,}/);
                 if (match) {
                     location.href = "#Back";
                     return;
@@ -138,9 +138,15 @@
         </script>
 
         <script id="file-content-view-tpl" type="text/x-handlebars-template">
-            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{file}}</h1><h3>{{name}}</h3></div>
+            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h3>{{file}}</h3></div>
+            <div id='header-list' class="scrollable" style="top:45px;bottom:0px;left0px;right:0px;">                
+            <ul> 
+            <li style="height:95%;">
             <object id="content-area" data="http://192.168.10.50:8084/mbs/Download?id={{id}}&type=\"{{type}}\"" type="{{type}}" style="width:100%;height:100%;">
             </object>
+            </li>
+            </ul>
+            </div>
         </script>
 
         <script id="notification-header-view-tpl" type="text/x-handlebars-template">
