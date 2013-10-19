@@ -139,7 +139,7 @@
 
         <script id="file-content-view-tpl" type="text/x-handlebars-template">
             <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h3>{{file}}</h3></div>
-            <object class="scrollable" id="content-area" data="http://192.168.10.50:8084/mbs/Download?id={{id}}&type=\"{{type}}\"" type="{{type}}" style="width:100%;height:96%;">
+            <object class="scrollable" standby="Loading..." id="content-area" data="http://192.168.10.50:8084/mbs/Download?id={{id}}&type={{type}}" type="{{type}}" style="width:100%;height:96%;">
             </object>
         </script>
 
