@@ -6,51 +6,51 @@
         <script type="text/javascript" >
             $(document).ready(function()
             {
-                document.addEventListener("deviceready", setOverrideBackbutton, false);
+            document.addEventListener("deviceready", setOverrideBackbutton, false);
             });
 
             function setOverrideBackbutton()
             {
-                if ((typeof device != "undefined") && (device.platform == "Android"))
-                {
-                    navigator.app.overrideBackbutton(true);
-                }
-                document.addEventListener("backbutton", backButtonTap, true);
+            if ((typeof device != "undefined") && (device.platform == "Android"))
+            {
+            navigator.app.overrideBackbutton(true);
+            }
+            document.addEventListener("backbutton", backButtonTap, true);
             }
             function backButtonTap()
             {
-                if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
-                    navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
-                        if (buttonIndex === 1) {
-                            location.href = "#Logout";
-                        }
-                    }, 'Warning!', ['YES', 'NO']);
-                    return;
-                }
+            if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
+            navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
+            if (buttonIndex === 1) {
+            location.href = "#Logout";
+            }
+            }, 'Warning!', ['YES', 'NO']);
+            return;
+            }
 
-                var hash = window.location.hash, match;
-                match = hash.match(/^#Back/);
-                if (match) {
-                    location.href = "#";
-                    return;
-                }
-                match = hash.match(/^#Not\/.{6}/);
-                if (match) {
-                    location.href = "#";
-                    return;
-                }
-                match = hash.match(/^#Detail.{1,}/);
-                if (match) {
-                    location.href = "#Back";
-                    return;
-                }
-                if (!match) {
-                    navigator.notification.confirm("Are you sure you want to exit from Application?", function(buttonIndex) {
-                        if (buttonIndex === 1) {
-                            navigator.app.exitApp();
-                        }
-                    }, 'Warning!', ['YES', 'NO']);
-                }
+            var hash = window.location.hash, match;
+            match = hash.match(/^#Back/);
+            if (match) {
+            location.href = "#";
+            return;
+            }
+            match = hash.match(/^#Not\/.{6}/);
+            if (match) {
+            location.href = "#";
+            return;
+            }
+            match = hash.match(/^#Detail.{1,}/);
+            if (match) {
+            location.href = "#Back";
+            return;
+            }
+            if (!match) {
+            navigator.notification.confirm("Are you sure you want to exit from Application?", function(buttonIndex) {
+            if (buttonIndex === 1) {
+            navigator.app.exitApp();
+            }
+            }, 'Warning!', ['YES', 'NO']);
+            }
             }
 
         </script>
@@ -138,10 +138,10 @@
         </script>
 
         <script id="file-content-view-tpl" type="text/x-handlebars-template">
+            <object id="content-area" data="http://192.168.10.50:8084/mbs/Download?id={{id}}&type={{type}}" type="{{type}}" style="width:100%; height:100%;" >
             <map>
             <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h3>{{file}}</h3></div>
             </map>
-            <object id="content-area" data="http://192.168.10.50:8084/mbs/Download?id={{id}}&type={{type}}" type="{{type}}" style="width:100%; height:96%;" >
             </object>
         </script>
 
