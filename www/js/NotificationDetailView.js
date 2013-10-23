@@ -19,7 +19,7 @@ var NotificationDetailView = function(detail) {
             url: app.URL + "Detail/" + app.mod,
             dataType: "json",
             data: "notify={\"hid\":\"" + detail.hid + "\",\"id\":\"" + detail.id + "\"}",
-            success: self.loadDetails,
+            success: self.loadHeaderDetails,
             error: app.errorAlert
         });
         return this;
@@ -49,7 +49,7 @@ var NotificationDetailView = function(detail) {
         }
     };
 
-    this.loadDetails = function(data) {
+    this.loadHeaderDetails = function(data) {
         if (data.response === "SUCCESS") {
             switch (app.mod) {
                 case "rqstns":

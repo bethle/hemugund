@@ -59,7 +59,12 @@ var app = {
         }
 
         var match;
-
+        match = hash.match(/^#Prev/);
+        if(match){
+            if(this.prevPage){
+                this.slidePage(this.prevPage, true);
+            }
+        }
         match = hash.match(app.loginURL);
         if (match) {
             this.user = $('#user-name').val();
@@ -80,8 +85,7 @@ var app = {
             if (this.isMobile()) {
                 this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
             } else {
-                this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
-//                this.prevPage = new NotificationFullView().render();
+                this.prevPage = new NotificationFullView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
             }
             this.slidePage(self.prevPage);
             return;
@@ -89,7 +93,13 @@ var app = {
 
         match = hash.match(app.detailsURL);
         if (match) {
-            this.slidePage(new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text()}).render());
+            if (this.isMobile()) {
+                this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text()}).render();
+                this.slidePage(this.prevPage);
+            } else {
+                
+                this.prevPage.loadDetail(match[3], match[2]);
+            }
             return;
         }
 
@@ -119,9 +129,10 @@ var app = {
 
         match = hash.match(/^#Down(.{1,})-(\d{1,})~(.{1,})/);
         if (match) {
-            this.slidePage(new FileView({file: match[1], type: match[3], id:match[2]}).render());
+            this.slidePage(new FileView({file: match[1], type: match[3], id: match[2]}).render());
             return;
         }
+
         match = hash.match(/^#Logout/);
         if (match) {
             $.ajax({
@@ -186,10 +197,9 @@ var app = {
                 $('.stage-right, .stage-left').remove();
             }, 500);
         });
-
     },
     isMobile: function() {
-        if (screen.width < 480) {
+        if (navigator.userAgent.match(/iPad|iPhone|iPod|android/i) != null || screen.width <= 568) {
             return true;
         } else {
             return false;

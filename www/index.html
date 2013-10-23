@@ -6,51 +6,51 @@
         <script type="text/javascript" >
             $(document).ready(function()
             {
-            document.addEventListener("deviceready", setOverrideBackbutton, false);
+                document.addEventListener("deviceready", setOverrideBackbutton, false);
             });
 
             function setOverrideBackbutton()
             {
-            if ((typeof device != "undefined") && (device.platform == "Android"))
-            {
-            navigator.app.overrideBackbutton(true);
-            }
-            document.addEventListener("backbutton", backButtonTap, true);
+                if ((typeof device != "undefined") && (device.platform == "Android"))
+                {
+                    navigator.app.overrideBackbutton(true);
+                }
+                document.addEventListener("backbutton", backButtonTap, true);
             }
             function backButtonTap()
             {
-            if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
-            navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
-            if (buttonIndex === 1) {
-            location.href = "#Logout";
-            }
-            }, 'Warning!', ['YES', 'NO']);
-            return;
-            }
+                if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
+                    navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
+                        if (buttonIndex === 1) {
+                            location.href = "#Logout";
+                        }
+                    }, 'Warning!', ['YES', 'NO']);
+                    return;
+                }
 
-            var hash = window.location.hash, match;
-            match = hash.match(/^#Back/);
-            if (match) {
-            location.href = "#";
-            return;
-            }
-            match = hash.match(/^#Not\/.{6}/);
-            if (match) {
-            location.href = "#";
-            return;
-            }
-            match = hash.match(/^#Detail.{1,}/);
-            if (match) {
-            location.href = "#Back";
-            return;
-            }
-            if (!match) {
-            navigator.notification.confirm("Are you sure you want to exit from Application?", function(buttonIndex) {
-            if (buttonIndex === 1) {
-            navigator.app.exitApp();
-            }
-            }, 'Warning!', ['YES', 'NO']);
-            }
+                var hash = window.location.hash, match;
+                match = hash.match(/^#Back/);
+                if (match) {
+                    location.href = "#";
+                    return;
+                }
+                match = hash.match(/^#Not\/.{6}/);
+                if (match) {
+                    location.href = "#";
+                    return;
+                }
+                match = hash.match(/^#Detail.{1,}/);
+                if (match) {
+                    location.href = "#Back";
+                    return;
+                }
+                if (!match) {
+                    navigator.notification.confirm("Are you sure you want to exit from Application?", function(buttonIndex) {
+                        if (buttonIndex === 1) {
+                            navigator.app.exitApp();
+                        }
+                    }, 'Warning!', ['YES', 'NO']);
+                }
             }
 
         </script>
@@ -86,8 +86,6 @@
             </div>            
             <div  id="loading-screen" class="loading-hide" ><div><div></div>
         </script>
-
-
 
         <script id="notifications-view-tpl" type="text/x-handlebars-template">
             <div class='header'><a class='button header-button header-button-left' href="#Logout">Logout</a><h1 style="padding-top: 5px;">Notifications</h1></div>
@@ -128,6 +126,7 @@
             </div>
             </div>
         </script>
+
         <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
             {{#.}}
             <li><a href="#Down{{file}}-{{id}}~{{type}}">{{file}}&nbsp;({{entity}})&nbsp;
@@ -138,10 +137,8 @@
         </script>
 
         <script id="file-content-view-tpl" type="text/x-handlebars-template">
+            <div class='header'><a href='#Prev' class='button header-button header-button-left'>Back</a><h3>{{file}}</h3></div>
             <object id="content-area" data="http://192.168.10.50:8084/mbs/Download?id={{id}}&type={{type}}" type="{{type}}" style="width:100%; height:100%;" >
-            <map>
-            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h3>{{file}}</h3></div>
-            </map>
             </object>
         </script>
 
@@ -160,6 +157,24 @@
             </div>
         </script>
 
+        <script id="notification-full-view-tpl" type="text/x-handlebars-template">
+        <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{type}}</h1><h3>{{name}}</h3></div>
+        <div style="float:left; width:30%;">
+            <div id="search">
+                <div><input type="search" id="search-input" /></div>
+                <div id="search-notify-header" class="search-button" >Search</div>
+            </div>
+            <div id='header-list'>                
+                <ul id="{{mod}}-header-list">         
+                    <li style="text-align:center;">            
+                        <img src="img/mini-loading.gif" style="padding-top: 20px;" />
+                    </li>
+                </ul>
+            </div>
+        </div>            
+        <div id="header-details" style="float:right; width:70%;">
+        </div>            
+        </script>        
 
         <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
             <div class='header'><a class='button header-button header-button-left ' href="#Back">Back</a><h1 style="padding-top: 5px;">{{num}}</h1></div>
@@ -293,22 +308,6 @@
             </li>
             {{/.}}         
         </script>
-
-        <script id="notification-full-view-tpl" type="text/x-handlebars-template">
-            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>Sysadmin</h1></div>
-            <div id="search">
-            <div><input type="search" id="search-input" /></div>
-            <div id="search-notify-header" class="search-button" >Search</div>
-            </div>
-            <div id='header-list'>                
-            <ul class="search-header-list scroll" >         
-            <li style="text-align:center;">            
-            <img src="img/mini-loading.gif" style="padding-top: 20px;" />
-            </li>
-            </ul>
-            </div>
-        </script>
-
 
         <script id="notification-lines-tpl" type="text/x-handlebars-template" >
             {{#.}}
@@ -540,60 +539,165 @@
             </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
         </script>
 
-        <script  id="invoice-header-details-list-tpl" type="text/x-handlebars-template" >                   
-            <li>
-            <span>Operating Unit Name:</span>
-            <span>{{this.org}}</span>
-            </li> 
-            <li>
-            <span>Invoice Description:</span>
-            <span>{{this.desc}}</span>
-            </li>                                                                                                                                                                  
-            <li>
-            <span>Requestor:</span>
-            <span>{{this.name}}</span>
-            </li>              
-            <li>
-            <span>Vendor Name:</span>
-            <span>{{this.vname}}</span>
-            </li> 
-            <li>
-            <span>Vendor Site:</span>
-            <span>{{this.vsite}}</span>
-            </li>             
-            <li>
-            <span>Status:</span>
-            <span>{{this.status}}</span>
-            </li> 
-            <li>
-            <span>Creation Date:</span>
-            <span>{{this.crdate}}</span>
-            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-            <li>
-            <span>Type:</span>
-            <span>{{this.type}}</span>
-            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+        <script id="notification-detail-partial-tpl" type="text/x-handlebars-template" >
+            <div>            
+                <p>{{this.name}}</p>
+                <p>{{this.amount}}<span>{{this.code}}</span></p>            
+            </div>           
+            <div><span>{{this.date}}</span></div>
+            <div id="ui-tabs">
+                <ul>                    
+                    <li onclick="app.tab(this)" ></li>    
+                    <li onclick="app.tab(this)" ></li>            
+                    <li onclick="app.tab(this)" ></li>                    
+                </ul>         
+                <div><a onclick="app.popAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a>
+                </div>
+            </div>
+            <div id="ui-tab-content">
+                <div class="details show" id="list-items" >
+                    <table cellspacing="0" cellpadding="0" >
+                        <tr>
+                            <td><span>Line</span></td>
+                            <td><span>Quantity</span></td>
+                            <td><span>Price</span></td>
+                            <td><span>Amount({{this.code}})</span></td>
+                        </tr>
+                    </table>
+                    <ul id="notify-lines-list"  class="scrollable" style="top:47px;bottom:0px;">
+                        <li style="text-align:center;">            
+                            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+                        </li>
+                    </ul>
+                </div>            
+                <div class="details" id="information" >
+                    <div>
+                        <ul id="header-details-list" class="scrollable">            
+                            <li style="text-align:center;">            
+                                <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>                                  
+                <div class="details" id="history" >
+                    <div>
+                        <ul id="history-list" class="scrollable">
+                            <li style="text-align:center;">            
+                                <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>             
+            </div>
+        </div>
+        <div id="popup-bckgrnd" class="popup-hide" >
+            <div id="ApproveAlert" class="popup-hide" >
+                <img src="img/Close.png" onclick="app.closeAlert(this)" />
+                <p>Do you want to approve?</p>
+                <p>Comments:</p>  
+                <textarea id="approve-comment" ></textarea>
+                <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
+            </div>
+            <div id="ForwardAlert" class="popup-hide" >
+                <img src="img/Close.png" onclick="app.closeAlert(this);" />
+                <table cellspacing='0' cellpadding='0'>
+                    <tr>
+                        <td>
+                            Person Name:
+                        </td>
+                        <td>
+                            <div>
+                                <div id='select-user' >Choose a person...</div>
+                                <img src="img/arrow.png" />
+                                <select id="user-list" onchange="document.getElementById('select-user').innerHTML = this.options[this.selectedIndex].text" >
+                                    <option value='' >Choose a person...</option>                                        
+                                    <option value='sysadmin' >sysadmin</option>            
+                                    <option value='bpalmer' >bpalmer</option>            
+                                    <option value='tgreen' >tgreen</option>            
+                                    <option value='cbrown' >cbrown</option>            
+                                </select>
+                            </div>    
+                        </td>
+                    </tr>
+                </table>
+                <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
+            </div>
+            <div id="RejectAlert" class="popup-hide" >
+                <img src="img/Close.png" onclick="app.closeAlert(this)" />
+                <p>Do you want to Reject?</p>
+                <p>Comments:</p>  
+                <textarea id="reject-comment" ></textarea>
+                <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
+            </div>
+            <div id="AttachmentAlert" class="popup-hide" >
+                <img src="img/Close.png" onclick="app.closeAlert(this)" />
+                <ul id="attachment-list">
+                </ul>
+            </div>   
         </script>
 
-        <!--        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
-                    {{#.}}
-                    <li>{{file}}&nbsp;({{entity}})&nbsp;
-                    <span>&nbsp;{{user}}</span>
-                    <form action="http://192.168.10.50:8084/mbs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
-                    <input type="hidden" name="name" value="{{file}}" />
-                    <input type="hidden" name="format" value="{{type}}" />
-                    <input type="hidden" name="id" value="{{id}}" />
-                    <a class="download-file" onclick="document.getElementById('form-{{id}}').submit();" >Download</a>
-                    </form>
-                    </li>
-                    {{/.}}
-                </script>-->
+        <script  id="invoice-header-details-list-tpl" type="text/x-handlebars-template" >                   
+        <li>
+        <span>Operating Unit Name:</span>
+        <span>{{this.org}}</span>
+        </li> 
+        <li>
+        <span>Invoice Description:</span>
+        <span>{{this.desc}}</span>
+        </li>                                                                                                                                                                  
+        <li>
+        <span>Requestor:</span>
+        <span>{{this.name}}</span>
+        </li>              
+        <li>
+        <span>Vendor Name:</span>
+        <span>{{this.vname}}</span>
+        </li> 
+        <li>
+        <span>Vendor Site:</span>
+        <span>{{this.vsite}}</span>
+        </li>             
+        <li>
+        <span>Status:</span>
+        <span>{{this.status}}</span>
+        </li> 
+        <li>
+        <span>Creation Date:</span>
+        <span>{{this.crdate}}</span>
+        </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+        <li>
+        <span>Type:</span>
+        <span>{{this.type}}</span>
+        </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+        </script>
 
         <script type="text/javascript" src="js/LoginView.js"></script>
         <script type="text/javascript" src="js/FileView.js"></script>
         <script type="text/javascript" src="js/NotificationsView.js"></script>
         <script type="text/javascript" src="js/NotificationHeaderView.js"></script>        
+        <script type="text/javascript" src="js/NotificationFullView.js"></script>        
         <script type="text/javascript" src="js/NotificationDetailView.js"></script>        
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>
+
+
+
+
+<!--        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
+            {{#.}}
+            <li>{{file}}&nbsp;({{entity}})&nbsp;
+            <span>&nbsp;{{user}}</span>
+            <form action="http://192.168.10.50:8084/mbs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
+            <input type="hidden" name="name" value="{{file}}" />
+            <input type="hidden" name="format" value="{{type}}" />
+            <input type="hidden" name="id" value="{{id}}" />
+            <a class="download-file" onclick="document.getElementById('form-{{id}}').submit();" >Download</a>
+            </form>
+            </li>
+            {{/.}}
+        </script>-->
+
+<!-- 
+
+-->
