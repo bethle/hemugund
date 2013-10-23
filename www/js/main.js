@@ -38,7 +38,7 @@ var app = {
             if (data.message) {
                 app.showAlert(data.message, "ERROR");
             }
-            location.href = "#Error"
+            location.href = "#Error";
         }
 
     },
@@ -96,8 +96,7 @@ var app = {
             if (this.isMobile()) {
                 this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text()}).render();
                 this.slidePage(this.prevPage);
-            } else {
-                
+            } else {                
                 this.prevPage.loadDetail(match[3], match[2]);
             }
             return;
