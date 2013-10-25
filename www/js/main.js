@@ -60,8 +60,8 @@ var app = {
 
         var match;
         match = hash.match(/^#Prev/);
-        if(match){
-            if(this.prevPage){
+        if (match) {
+            if (this.prevPage) {
                 this.slidePage(this.prevPage, true);
             }
         }
@@ -96,7 +96,7 @@ var app = {
             if (this.isMobile()) {
                 this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text()}).render();
                 this.slidePage(this.prevPage);
-            } else {                
+            } else {
                 this.prevPage.loadDetail(match[3], match[2]);
             }
             return;
@@ -117,6 +117,12 @@ var app = {
         match = hash.match(app.rejectURL);
         if (match) {
             this.notify.reject(self.URL + "Reject");
+            return;
+        }
+
+        match = hash.match(/^#Filter/);
+        if (match) {
+            this.filter();
             return;
         }
 
@@ -153,14 +159,63 @@ var app = {
         this.URL = "http://182.18.157.157:7001/mbs/"; //182.18.157.157:7001
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
-        this.filterURL = /^#Filter\/(.{6})/;
-        this.filterDoneURL = /^#Done\/(.{6})/;
         this.forwardURL = /^#Forward/;
         this.approveURL = /^#Approve/;
         this.rejectURL = /^#Reject/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
         this.attachURL = /^#attach\/(.{6})\/.*/;
         this.route();
+    },
+    filter: function() {
+        if ($("#filter").css("display") !== "none") {
+            var i = 0;
+            var checked = new Array();
+            $("#filter").find("input").each(function() {
+                if ($(this).is(":checked")) {
+                    checked[i] = $(this).val();
+                }
+                else {
+                    checked[i] = "";
+                }
+                i = i + 1;
+            });
+            $("select:visible").each(function() {
+                checked[i] = $(this).val();
+                i = i + 1;
+            });
+
+            var data;
+            if (app.mod === "rqstns") {
+                data = "{\"type\":{\"pr\":" + ((checked[0] !== "") ? true : false) + ",\"ir\":" + ((checked[1] !== "") ? true : false) + "},\"status\":{\"ar\":" + ((checked[2] !== "") ? true : false) + ",\"fyi\":" + ((checked[3] !== "") ? true : false) + ",\"closed\":" + ((checked[4] !== "") ? true : false) + "},\"day\":\"" + checked[5] + "\",\"org\":\"" + checked[6] + "\",\"user\":\"" + app.user + "\"}";
+            } else if (app.mod === "prchrd") {
+                data = "{\"type\":{\"blanket\":" + ((checked[0] !== "") ? true : false) + ",\"planned\":" + ((checked[1] !== "") ? true : false) + ",\"standard\":" + ((checked[2] !== "") ? true : false) + ",\"contract\":" + ((checked[3] !== "") ? true : false) + "},\"status\":{\"ar\":" + ((checked[4] !== "") ? true : false) + ",\"fyi\":" + ((checked[5] !== "") ? true : false) + ",\"closed\":" + ((checked[6] !== "") ? true : false) + "},\"day\":\"" + checked[7] + "\",\"org\":\"" + checked[8] + "\",\"user\":\"" + app.user + "\"}";
+            } else {
+                data = "{\"status\":{\"ar\":" + ((checked[0] !== "") ? true : false) + ",\"fyi\":" + ((checked[1] !== "") ? true : false) + ",\"closed\":" + ((checked[2] !== "") ? true : false) + "},\"day\":\"" + checked[3] + "\",\"org\":\"" + checked[4] + "\",\"user\":\"" + app.user + "\"}";
+            }
+            $("#" + app.mod + "-header-list").prepend($("<li style='text-align:center;'><img src='img/mini-loading.gif' style='padding-top: 20px;' /> </li>"));
+            $.ajax({
+                url: app.URL + "Filter/" + app.mod,
+                data: "notify=" + data,
+                dataType: "json",
+                success: app.currentPage.loadHeaderList,
+                error: app.errorAlert
+            });
+            $("#filter").hide();
+            if (document.getElementById("header-details")) {
+                $("#header-details").show();
+            } else {
+                $("#header-list").show();
+            }
+            location.href = "#Donefilter";
+        } else {
+            if (document.getElementById("header-details")) {
+                $("#header-details").hide();
+            } else {
+                $("#header-list").hide();
+            }
+            $("#filter").show();
+            location.href = "#selFilter";
+        }
     },
     slidePage: function(page, isBack) {
         var currentPageDest,
@@ -176,11 +231,11 @@ var app = {
 // Cleaning up: remove old pages that were moved out of the viewport
 
         if (page === app.homePage || isBack) {
-            // Always apply a Back transition (slide from left) when we go back to the search page
+// Always apply a Back transition (slide from left) when we go back to the search page
             $(page.el).attr('class', 'page stage-left');
             currentPageDest = "stage-right";
         } else {
-            // Forward transition (slide from right)
+// Forward transition (slide from right)
             $(page.el).attr('class', 'page stage-right');
             currentPageDest = "stage-left";
         }
@@ -189,7 +244,7 @@ var app = {
         // Slide out the current page: If new page slides from the right -> slide current page to the left, and vice versa
         $(self.currentPage.el).attr('class', 'page transition ' + currentPageDest);
         setTimeout(function() {
-            // Slide in the new page
+// Slide in the new page
             $(page.el).attr('class', 'page stage-center transition');
             self.currentPage = page;
             window.setTimeout(function() {
@@ -268,34 +323,8 @@ var app = {
 
 };
 
-//app.orgListTemplate = Handlebars.compile(document.getElementById("filter-orgs-list-tpl").innerHTML);
+app.orgListTemplate = Handlebars.compile(document.getElementById("filter-orgs-list-tpl").innerHTML);
 app.initialize();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //var app = {
 //    showAlert: function(message, title) {
 //        console.log('alerted: ' + message + ' : ' + title);

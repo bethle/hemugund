@@ -52,10 +52,10 @@ var NotificationFullView = function(detail) {
             }else{
                 $("#header-details").html(NotificationFullView.detailTemplate({}));
                 self.loadLineDetails({result:[]});
-                self.loadHeaderDetails({response:"SUCCESS",result:{head:null}});
+                self.loadHeaderDetails({response:"SUCCESS",result:{head:{}}});
             }
             if(data.filter){
-                $('#filter').html(NotificationFullView.filterTemplate(data.filter));
+                $('#filter').html(NotificationFullView.filterTemplate(data.filter)).hide();
             }
         } else {
             app.showAlert(data.response, "Notification Header Request Errored");

@@ -229,6 +229,15 @@ h3{
     background-size: 67px 37px;      
 }
 
+.header-button-right {
+    background-repeat: no-repeat;
+    background-size: 67px 37px;
+    right:0px;
+    top:0px;
+}
+.filter-button{
+    background-image: url('../img/filter.png');    
+}
 /*notification content css start*/
 #content-notify{
     width: 100%;
@@ -1350,13 +1359,9 @@ contact form end
 /*list details tab end*/
 /*filter css*/
 #filter{
-    width: 96%;
     height: auto;
-    padding: 0 2%;
     position: relative;
     top: 44px;
-    padding-bottom: 10px;
-    float: left;
 }
 #filter>p{
     width: 100%;

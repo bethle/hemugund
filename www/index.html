@@ -143,7 +143,7 @@
         </script>
 
         <script id="notification-header-view-tpl" type="text/x-handlebars-template">
-            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{type}}</h1><h3>{{name}}</h3></div>
+            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{type}}</h1><h3>{{name}}</h3><a class='button header-button header-button-right filter-button'></a></div>
             <div id="search">
             <div><input type="search" id="search-input" /></div>
             <div id="search-notify-header" class="search-button" >Search</div>
@@ -155,7 +155,7 @@
             </li>
             </ul>
             </div>
-            <div id="filter" style="display:none;">
+            <div id="filter">
             </div>
         </script>
 
@@ -164,6 +164,7 @@
         <p>{{this.type_head}}</p>
         <ul class="filter-type-list">
             {{#if this.prchrd}}
+            {{#with type}}
             <li>
                 <div>
                     {{#if blanket}}
@@ -208,8 +209,10 @@
                     {{/if}}
                 </div>
             </li>
+           {{/with}}
             {{/if}}
             {{#if this.rqstns}}
+            {{#with type}}
             <li>
                 <div>
                     {{#if pr}}
@@ -231,15 +234,16 @@
                     <label for="check2">IR</label>			
                     {{/if}}
                 </div>
-            </li>                        
+            </li> 
+            {{/with}}
             {{/if}}
+                    
         </ul>
         {{/if}}
         <p>Notification Status</p>
         <ul>
             <li>
                 <div>
-                    {{#with filter}}
                     {{#with status}}
                     {{#if ar}}
                     <input id="check5" type="checkbox" name="status" checked="checked" value="ACTION REQUIRED">
@@ -271,7 +275,6 @@
                     <label for="check7">Closed</label>
                     {{/if}}            
                     {{/with}}
-                    {{/with}}
                 </div>
             </li>                
         </ul>            
@@ -292,6 +295,12 @@
             <img src="img/arrow.png" />
             <select onchange="document.getElementById('select-org').innerHTML = this.options[this.selectedIndex].text" >            
                 <option value='0' >All</option>          
+                <option value='V1' >V1</option>          
+                <option value='S1' >S1</option>          
+                <option value='M1' >M1</option>          
+                <option value='M2' >M2</option>          
+                <option value='M3' >M3</option>          
+                <option value='W1' >W3</option>          
             </select>           
         </div>
         </script>
@@ -301,9 +310,9 @@
             <option value='{{this}}' >{{this}}</option>            
             {{/.}}
         </script>
-        
+
         <script id="notification-full-view-tpl" type="text/x-handlebars-template">
-            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{type}}</h1><h3>{{name}}</h3></div>
+            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{type}}</h1><h3>{{name}}</h3><a href="#Filter" class='button header-button header-button-right filter-button'></a></div>
             <div style="float:left; width:38%;">
             <div id="search">
             <div><input type="search" id="search-input" /></div>
@@ -319,7 +328,7 @@
             </div>            
             <div id="header-details" style="float:right; width:62%;">
             </div>  
-            <div id="filter" style="float:right; width:62%;display:none;">
+            <div id="filter" style="float:right; width:61%;">
             </div>            
         </script>        
 
