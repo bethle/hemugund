@@ -155,25 +155,172 @@
             </li>
             </ul>
             </div>
+            <div id="filter" style="display:none;">
+            </div>
         </script>
 
+        <script id="filter-view-tpl" type="text/x-handlebars-template">
+        {{#if this.type_head}}
+        <p>{{this.type_head}}</p>
+        <ul class="filter-type-list">
+            {{#if this.prchrd}}
+            <li>
+                <div>
+                    {{#if blanket}}
+                    <input id="check1" type="checkbox" name="type" checked="checked" value="BLANKET"/>
+                    <label for="check1">Blanket</label>			
+                    {{else}}
+                    <input id="check1" type="checkbox" name="type" value="BLANKET"/>
+                    <label for="check1">Blanket</label>			
+                    {{/if}}
+                </div>
+            </li>
+            <li>
+                <div>
+                    {{#if planned}}
+                    <input id="check2" type="checkbox" name="type" checked="checked" value="PLANNED"/>
+                    <label for="check2">Planned</label>			
+                    {{else}}
+                    <input id="check2" type="checkbox" name="type" value="PLANNED"/>
+                    <label for="check2">Planned</label>			
+                    {{/if}}
+                </div>
+            </li>            
+            <li>
+                <div>
+                    {{#if standard}}
+                    <input id="check3" type="checkbox" name="type" checked="checked" value="STANDARD"/>
+                    <label for="check3">Standard</label>			
+                    {{else}}
+                    <input id="check3" type="checkbox" name="type" value="STANDARD"/>
+                    <label for="check3">Standard</label>			
+                    {{/if}}
+                </div>
+            </li>            
+            <li>
+                <div>
+                    {{#if contract}}
+                    <input id="check4" type="checkbox" name="type" checked="checked" value="CONTRACT"/>
+                    <label for="check4">Contract</label>			
+                    {{else}}
+                    <input id="check4" type="checkbox" name="type" value="CONTRACT"/>
+                    <label for="check4">Contract</label>			
+                    {{/if}}
+                </div>
+            </li>
+            {{/if}}
+            {{#if this.rqstns}}
+            <li>
+                <div>
+                    {{#if pr}}
+                    <input id="check1" type="checkbox" name="type" checked="checked" value="Purchase Requisition">
+                    <label for="check1">PR</label>			
+                    {{else}}
+                    <input id="check1" type="checkbox" name="type" value="Purchase Requisition">
+                    <label for="check1">PR</label>			
+                    {{/if}}
+                </div>
+            </li>
+            <li>
+                <div>
+                    {{#if ir}}
+                    <input id="check2" type="checkbox" name="type" checked="checked" value="Internal Requisition">
+                    <label for="check2">IR</label>			
+                    {{else}}
+                    <input id="check2" type="checkbox" name="type" value="Internal Requisition">
+                    <label for="check2">IR</label>			
+                    {{/if}}
+                </div>
+            </li>                        
+            {{/if}}
+        </ul>
+        {{/if}}
+        <p>Notification Status</p>
+        <ul>
+            <li>
+                <div>
+                    {{#with filter}}
+                    {{#with status}}
+                    {{#if ar}}
+                    <input id="check5" type="checkbox" name="status" checked="checked" value="ACTION REQUIRED">
+                    <label for="check5">Action Required</label>			
+                    {{else}}
+                    <input id="check5" type="checkbox" name="status" value="ACTION REQUIRED">
+                    <label for="check5">Action Required</label>			
+                    {{/if}}
+                </div>
+            </li>
+            <li>
+                <div>
+                    {{#if fyi}}            
+                    <input id="check6" type="checkbox" name="status" checked="checked" value="FYI">
+                    <label for="check6">FYI</label>			
+                    {{else}}
+                    <input id="check6" type="checkbox" name="status" value="FYI">
+                    <label for="check6">FYI</label>			
+                    {{/if}}
+                </div>
+            </li>
+            <li>
+                <div>
+                    {{#if closed}}
+                    <input id="check7" type="checkbox" name="status" checked="checked" value="CLOSED">
+                    <label for="check7">Closed</label>
+                    {{else}}
+                    <input id="check7" type="checkbox" name="status" value="CLOSED">
+                    <label for="check7">Closed</label>
+                    {{/if}}            
+                    {{/with}}
+                    {{/with}}
+                </div>
+            </li>                
+        </ul>            
+        <p>Days old</p>
+        <div>
+            <div id='select-day' >All</div>
+            <img src="img/arrow.png" />
+            <select onchange="document.getElementById('select-day').innerHTML = this.options[this.selectedIndex].text" >
+                <option value='0' >All</option>                                        
+                <option value='3' >3 days past</option>            
+                <option value='7' >7 days past</option>            
+                <option value='1' >1 month</option>                                   
+            </select>
+        </div>            
+        <p>Organization codes</p>
+        <div>
+            <div id='select-org' >All</div>
+            <img src="img/arrow.png" />
+            <select onchange="document.getElementById('select-org').innerHTML = this.options[this.selectedIndex].text" >            
+                <option value='0' >All</option>          
+            </select>           
+        </div>
+        </script>
+
+        <script id="filter-orgs-list-tpl" type="text/x-handlebars-template">
+            {{#.}}
+            <option value='{{this}}' >{{this}}</option>            
+            {{/.}}
+        </script>
+        
         <script id="notification-full-view-tpl" type="text/x-handlebars-template">
-        <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{type}}</h1><h3>{{name}}</h3></div>
-        <div style="float:left; width:38%;">
+            <div class='header'><a href='#' class='button header-button header-button-left'>Back</a><h1>{{type}}</h1><h3>{{name}}</h3></div>
+            <div style="float:left; width:38%;">
             <div id="search">
-                <div><input type="search" id="search-input" /></div>
-                <div id="search-notify-header" class="search-button" >Search</div>
+            <div><input type="search" id="search-input" /></div>
+            <div id="search-notify-header" class="search-button" >Search</div>
             </div>
             <div id='header-list' class="scrollable" style="top:92px;bottom:0px;width:38%;">                
-                <ul id="{{mod}}-header-list">         
-                    <li style="text-align:center;">            
-                        <img src="img/mini-loading.gif" style="padding-top: 20px;" />
-                    </li>
-                </ul>
+            <ul id="{{mod}}-header-list">         
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 20px;" />
+            </li>
+            </ul>
             </div>
-        </div>            
-        <div id="header-details" style="float:right; width:62%;">
-        </div>            
+            </div>            
+            <div id="header-details" style="float:right; width:62%;">
+            </div>  
+            <div id="filter" style="float:right; width:62%;display:none;">
+            </div>            
         </script>        
 
         <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
@@ -541,134 +688,134 @@
 
         <script id="notification-detail-partial-tpl" type="text/x-handlebars-template" >
             <div>            
-                <p>{{this.name}}</p>
-                <p>{{this.amount}}<span>{{this.code}}</span></p>            
+            <p>{{this.name}}</p>
+            <p>{{this.amount}}<span>{{this.code}}</span></p>            
             </div>           
             <div><span>{{this.date}}</span></div>
             <div id="ui-tabs">
-                <ul>                    
-                    <li onclick="app.tab(this)" ></li>    
-                    <li onclick="app.tab(this)" ></li>            
-                    <li onclick="app.tab(this)" ></li>                    
-                </ul>         
-                <div><a onclick="app.popAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a>
-                </div>
+            <ul>                    
+            <li onclick="app.tab(this)" ></li>    
+            <li onclick="app.tab(this)" ></li>            
+            <li onclick="app.tab(this)" ></li>                    
+            </ul>         
+            <div><a onclick="app.popAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a>
+            </div>
             </div>
             <div id="ui-tab-content">
-                <div class="details show" id="list-items" >
-                    <table cellspacing="0" cellpadding="0" >
-                        <tr>
-                            <td><span>Line</span></td>
-                            <td><span>Quantity</span></td>
-                            <td><span>Price</span></td>
-                            <td><span>Amount({{this.code}})</span></td>
-                        </tr>
-                    </table>
-                    <ul id="notify-lines-list"  class="scrollable" style="top:47px;bottom:0px;">
-                        <li style="text-align:center;">            
-                            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
-                        </li>
-                    </ul>
-                </div>            
-                <div class="details" id="information" >
-                    <div>
-                        <ul id="header-details-list" class="scrollable">            
-                            <li style="text-align:center;">            
-                                <img src="img/mini-loading.gif" style="padding-top: 5px;" />
-                            </li>
-                        </ul>
-                    </div>
-                </div>                                  
-                <div class="details" id="history" >
-                    <div>
-                        <ul id="history-list" class="scrollable">
-                            <li style="text-align:center;">            
-                                <img src="img/mini-loading.gif" style="padding-top: 5px;" />
-                            </li>
-                        </ul>
-                    </div>
-                </div>             
+            <div class="details show" id="list-items" >
+            <table cellspacing="0" cellpadding="0" >
+            <tr>
+            <td><span>Line</span></td>
+            <td><span>Quantity</span></td>
+            <td><span>Price</span></td>
+            <td><span>Amount({{this.code}})</span></td>
+            </tr>
+            </table>
+            <ul id="notify-lines-list"  class="scrollable" style="top:47px;bottom:0px;">
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+            </li>
+            </ul>
+            </div>            
+            <div class="details" id="information" >
+            <div>
+            <ul id="header-details-list" class="scrollable">            
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+            </li>
+            </ul>
             </div>
-        </div>
-        <div id="popup-bckgrnd" class="popup-hide" >
+            </div>                                  
+            <div class="details" id="history" >
+            <div>
+            <ul id="history-list" class="scrollable">
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 5px;" />
+            </li>
+            </ul>
+            </div>
+            </div>             
+            </div>
+            </div>
+            <div id="popup-bckgrnd" class="popup-hide" >
             <div id="ApproveAlert" class="popup-hide" >
-                <img src="img/Close.png" onclick="app.closeAlert(this)" />
-                <p>Do you want to approve?</p>
-                <p>Comments:</p>  
-                <textarea id="approve-comment" ></textarea>
-                <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
+            <img src="img/Close.png" onclick="app.closeAlert(this)" />
+            <p>Do you want to approve?</p>
+            <p>Comments:</p>  
+            <textarea id="approve-comment" ></textarea>
+            <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
             </div>
             <div id="ForwardAlert" class="popup-hide" >
-                <img src="img/Close.png" onclick="app.closeAlert(this);" />
-                <table cellspacing='0' cellpadding='0'>
-                    <tr>
-                        <td>
-                            Person Name:
-                        </td>
-                        <td>
-                            <div>
-                                <div id='select-user' >Choose a person...</div>
-                                <img src="img/arrow.png" />
-                                <select id="user-list" onchange="document.getElementById('select-user').innerHTML = this.options[this.selectedIndex].text" >
-                                    <option value='' >Choose a person...</option>                                        
-                                    <option value='sysadmin' >sysadmin</option>            
-                                    <option value='bpalmer' >bpalmer</option>            
-                                    <option value='tgreen' >tgreen</option>            
-                                    <option value='cbrown' >cbrown</option>            
-                                </select>
-                            </div>    
-                        </td>
-                    </tr>
-                </table>
-                <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
+            <img src="img/Close.png" onclick="app.closeAlert(this);" />
+            <table cellspacing='0' cellpadding='0'>
+            <tr>
+            <td>
+            Person Name:
+            </td>
+            <td>
+            <div>
+            <div id='select-user' >Choose a person...</div>
+            <img src="img/arrow.png" />
+            <select id="user-list" onchange="document.getElementById('select-user').innerHTML = this.options[this.selectedIndex].text" >
+            <option value='' >Choose a person...</option>                                        
+            <option value='sysadmin' >sysadmin</option>            
+            <option value='bpalmer' >bpalmer</option>            
+            <option value='tgreen' >tgreen</option>            
+            <option value='cbrown' >cbrown</option>            
+            </select>
+            </div>    
+            </td>
+            </tr>
+            </table>
+            <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
             </div>
             <div id="RejectAlert" class="popup-hide" >
-                <img src="img/Close.png" onclick="app.closeAlert(this)" />
-                <p>Do you want to Reject?</p>
-                <p>Comments:</p>  
-                <textarea id="reject-comment" ></textarea>
-                <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
+            <img src="img/Close.png" onclick="app.closeAlert(this)" />
+            <p>Do you want to Reject?</p>
+            <p>Comments:</p>  
+            <textarea id="reject-comment" ></textarea>
+            <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
             </div>
             <div id="AttachmentAlert" class="popup-hide" >
-                <img src="img/Close.png" onclick="app.closeAlert(this)" />
-                <ul id="attachment-list">
-                </ul>
+            <img src="img/Close.png" onclick="app.closeAlert(this)" />
+            <ul id="attachment-list">
+            </ul>
             </div>   
         </script>
 
         <script  id="invoice-header-details-list-tpl" type="text/x-handlebars-template" >                   
-        <li>
-        <span>Operating Unit Name:</span>
-        <span>{{this.org}}</span>
-        </li> 
-        <li>
-        <span>Invoice Description:</span>
-        <span>{{this.desc}}</span>
-        </li>                                                                                                                                                                  
-        <li>
-        <span>Requestor:</span>
-        <span>{{this.name}}</span>
-        </li>              
-        <li>
-        <span>Vendor Name:</span>
-        <span>{{this.vname}}</span>
-        </li> 
-        <li>
-        <span>Vendor Site:</span>
-        <span>{{this.vsite}}</span>
-        </li>             
-        <li>
-        <span>Status:</span>
-        <span>{{this.status}}</span>
-        </li> 
-        <li>
-        <span>Creation Date:</span>
-        <span>{{this.crdate}}</span>
-        </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-        <li>
-        <span>Type:</span>
-        <span>{{this.type}}</span>
-        </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+            <li>
+            <span>Operating Unit Name:</span>
+            <span>{{this.org}}</span>
+            </li> 
+            <li>
+            <span>Invoice Description:</span>
+            <span>{{this.desc}}</span>
+            </li>                                                                                                                                                                  
+            <li>
+            <span>Requestor:</span>
+            <span>{{this.name}}</span>
+            </li>              
+            <li>
+            <span>Vendor Name:</span>
+            <span>{{this.vname}}</span>
+            </li> 
+            <li>
+            <span>Vendor Site:</span>
+            <span>{{this.vsite}}</span>
+            </li>             
+            <li>
+            <span>Status:</span>
+            <span>{{this.status}}</span>
+            </li> 
+            <li>
+            <span>Creation Date:</span>
+            <span>{{this.crdate}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+            <li>
+            <span>Type:</span>
+            <span>{{this.type}}</span>
+            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
         </script>
 
         <script type="text/javascript" src="js/LoginView.js"></script>
@@ -680,24 +827,3 @@
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>
-
-
-
-
-<!--        <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
-            {{#.}}
-            <li>{{file}}&nbsp;({{entity}})&nbsp;
-            <span>&nbsp;{{user}}</span>
-            <form action="http://192.168.10.50:8084/mbs/Download" method="POST" encrypt="multipart/form-data" id="form-{{id}}" >
-            <input type="hidden" name="name" value="{{file}}" />
-            <input type="hidden" name="format" value="{{type}}" />
-            <input type="hidden" name="id" value="{{id}}" />
-            <a class="download-file" onclick="document.getElementById('form-{{id}}').submit();" >Download</a>
-            </form>
-            </li>
-            {{/.}}
-        </script>-->
-
-<!-- 
-
--->

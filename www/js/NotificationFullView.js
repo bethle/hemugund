@@ -47,7 +47,16 @@ var NotificationFullView = function(detail) {
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
             $("#" + app.mod + "-header-list").html(NotificationFullView.liTemplate(data.result));
-            self.loadDetail(data.result[0].id, data.result[0].hid);
+            if (data.result.length > 0) {
+                self.loadDetail(data.result[0].id, data.result[0].hid);
+            }else{
+                $("#header-details").html(NotificationFullView.detailTemplate({}));
+                self.loadLineDetails({result:[]});
+                self.loadHeaderDetails({response:"SUCCESS",result:{head:null}});
+            }
+            if(data.filter){
+                $('#filter').html(NotificationFullView.filterTemplate(data.filter));
+            }
         } else {
             app.showAlert(data.response, "Notification Header Request Errored");
             location.href = "#Error";
@@ -118,6 +127,7 @@ var NotificationFullView = function(detail) {
 NotificationFullView.template = Handlebars.compile($("#notification-full-view-tpl").html());
 NotificationFullView.liTemplate = Handlebars.compile(document.getElementById("header-list-tpl").innerHTML);
 NotificationFullView.detailTemplate = Handlebars.compile(document.getElementById("notification-detail-partial-tpl").innerHTML);
+NotificationFullView.filterTemplate = Handlebars.compile(document.getElementById("filter-view-tpl").innerHTML);
 
 NotificationFullView.historyLiTemplate = Handlebars.compile($("#history-list-tpl").html());
 NotificationFullView.distLiTemplate = Handlebars.compile($("#distribution-list-tpl").html());
@@ -128,4 +138,3 @@ NotificationFullView.poTemplate = Handlebars.compile($("#purchase-header-details
 NotificationFullView.xpnTemplate = Handlebars.compile($("#expense-header-details-list-tpl").html());
 NotificationFullView.invTemplate = Handlebars.compile($("#invoice-header-details-list-tpl").html());
 NotificationFullView.attachmentLiTemplate = Handlebars.compile($("#attachment-alert-tpl").html());
-
