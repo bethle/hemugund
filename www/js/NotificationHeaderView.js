@@ -26,6 +26,10 @@ var NotificationHeaderView = function(headers) {
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
             $("#" + app.mod + "-header-list").html(NotificationHeaderView.liTemplate(data.result));
+            if(data.filter){
+                $('#filter').html(NotificationHeaderView.filterTemplate(data.filter)).hide();
+            }
+            
         } else {
             app.showAlert(data.response, "Notification Header Request Errored");
             location.href = "#Error";
@@ -46,6 +50,7 @@ var NotificationHeaderView = function(headers) {
 };
 
 NotificationHeaderView.template = Handlebars.compile(document.getElementById("notification-header-view-tpl").innerHTML);
+NotificationHeaderView.filterTemplate = Handlebars.compile(document.getElementById("filter-view-tpl").innerHTML);
 NotificationHeaderView.liTemplate = Handlebars.compile(document.getElementById("header-list-tpl").innerHTML);
 
 Handlebars.registerHelper('color', function() {
