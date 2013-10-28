@@ -1360,8 +1360,8 @@ contact form end
 /*filter css*/
 #filter{
     height: auto;
-    position: relative;
-    top: 44px;
+    width: 95%;
+    margin: 0 auto;
 }
 #filter>p{
     width: 100%;
