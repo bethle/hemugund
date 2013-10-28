@@ -6,11 +6,12 @@ var NotificationFullView = function(detail) {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = $('<div/>');
         this.el.html(NotificationFullView.template(detail));
+        this.index = 1;
         this.registerEvents();
     };
     this.render = function() {
         $.ajax({
-            url: app.URL + "Notifications/" + app.mod + "/1",
+            url: app.URL + "Notifications/" + app.mod + "/" + self.index++,
             dataType: "json",
             data: "notify={\"user\":\"" + app.user + "\"}",
             success: self.loadHeaderList,
@@ -22,8 +23,10 @@ var NotificationFullView = function(detail) {
     this.registerEvents = function() {
         if (document.documentElement.hasOwnProperty('ontouchstart')) {
             $(this.el).on('touchend', '#search-notify-header', this.search);
+            $(this.el).on('touchend', '#more-notify-header', this.render);
         } else {
             $(this.el).on('mouseup', '#search-notify-header', this.search);
+            $(this.el).on('mouseup', '#more-notify-header', this.render);
         }
     };
     this.loadDetail = function(id, hid) {
@@ -46,16 +49,24 @@ var NotificationFullView = function(detail) {
     };
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
-            $("#" + app.mod + "-header-list").html(NotificationFullView.liTemplate(data.result));
-            if (data.result.length > 0) {
-                self.loadDetail(data.result[0].id, data.result[0].hid);
-            }else{
-                $("#header-details").html(NotificationFullView.detailTemplate({}));
-                self.loadLineDetails({result:[]});
-                self.loadHeaderDetails({response:"SUCCESS",result:{head:{}}});
+            if (self.index <= 2) {
+                $("#" + app.mod + "-header-list").html(NotificationFullView.liTemplate(data.result));
+                if (data.result.length > 0) {
+                    location.href = "#Detail" + app.mod + "/" + data.result[0].hid + "-" + data.result[0].id;
+                } else {
+                    $("#header-details").html(NotificationFullView.detailTemplate({}));
+                    self.loadLineDetails({result: []});
+                    self.loadHeaderDetails({response: "SUCCESS", result: {head: {}}});
+                }
+                if (data.filter) {
+                    $('#filter').html(NotificationFullView.filterTemplate(data.filter)).hide();
+                }
+            } else {
+                $("#more-notify-header").remove();
+                $("#" + app.mod + "-header-list").append(NotificationFullView.liTemplate(data.result));
             }
-            if(data.filter){
-                $('#filter').html(NotificationFullView.filterTemplate(data.filter)).hide();
+            if (data.result.length < 5) {
+                $("#more-notify-header").remove();
             }
         } else {
             app.showAlert(data.response, "Notification Header Request Errored");

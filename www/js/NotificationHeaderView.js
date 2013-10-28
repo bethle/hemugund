@@ -4,11 +4,12 @@ var NotificationHeaderView = function(headers) {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = document.createElement('div');
         this.el.innerHTML = NotificationHeaderView.template(headers);
+        this.index = 1;
         this.registerEvents();
     };
     this.render = function() {
         $.ajax({
-            url: app.URL + "Notifications/" + app.mod + "/1",
+            url: app.URL + "Notifications/" + app.mod + "/" + this.index++,
             dataType: "json",
             data: "notify={\"user\":\"" + app.user + "\"}",
             success: self.loadHeaderList,
@@ -19,17 +20,26 @@ var NotificationHeaderView = function(headers) {
     this.registerEvents = function() {
         if (document.documentElement.hasOwnProperty('ontouchstart')) {
             $(this.el).on('touchend', '#search-notify-header', this.search);
+            $(this.el).on('touchend', '#more-notify-header', this.render);
         } else {
             $(this.el).on('mouseup', '#search-notify-header', this.search);
+            $(this.el).on('mouseup', '#more-notify-header', this.render);
         }
     };
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
-            $("#" + app.mod + "-header-list").html(NotificationHeaderView.liTemplate(data.result));
-            if(data.filter){
-                $('#filter').html(NotificationHeaderView.filterTemplate(data.filter)).hide();
+            if (self.index <= 2) {
+                $("#" + app.mod + "-header-list").html(NotificationHeaderView.liTemplate(data.result));
+                if (data.filter) {
+                    $('#filter').html(NotificationHeaderView.filterTemplate(data.filter)).hide();
+                }
+            } else {
+                $("#" + app.mod + "-header-list").append(NotificationHeaderView.liTemplate(data.result));
             }
-            
+            if (data.result.length < 10) {
+                $("#more-notify-header").remove();
+            }
+
         } else {
             app.showAlert(data.response, "Notification Header Request Errored");
             location.href = "#Error";

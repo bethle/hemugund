@@ -324,6 +324,7 @@ var app = {
 };
 
 //app.orgListTemplate = Handlebars.compile(document.getElementById("filter-orgs-list-tpl").innerHTML);
+app.index = 1;
 app.initialize();
 //var app = {
 //    showAlert: function(message, title) {
