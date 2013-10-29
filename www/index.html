@@ -1,6 +1,7 @@
 <html>
     <head>
-        <link href="css/style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href="css/style.css" rel="stylesheet">        
         <script type="text/javascript" src="phonegap.js"></script>        
         <script type="text/javascript" src="lib/jquery.js"></script>
         <script type="text/javascript" >
@@ -90,7 +91,7 @@
         <script id="notifications-view-tpl" type="text/x-handlebars-template">
             <div class='header'><a class='button header-button header-button-left' href="#Logout">Logout</a><h1 style="padding-top: 5px;">Notifications</h1></div>
             <div id='content-notify' class="wrap"> 
-            <ul class="scrollable">
+            <ul>
             <li>
             <a href="#Not/rqstns"><div>
             <div id="requistion-count"><img style="padding-top:4px;" src="img/mini-loading.gif"/></div>
@@ -160,149 +161,149 @@
         </script>
 
         <script id="filter-view-tpl" type="text/x-handlebars-template">
-        {{#if this.type_head}}
-        <p>{{this.type_head}}</p>
-        <ul class="filter-type-list">
+            {{#if this.type_head}}
+            <p>{{this.type_head}}</p>
+            <ul class="filter-type-list">
             {{#if this.prchrd}}
             {{#with type}}
             <li>
-                <div>
-                    {{#if blanket}}
-                    <input id="check1" type="checkbox" name="type" checked="checked" value="BLANKET"/>
-                    <label for="check1">Blanket</label>			
-                    {{else}}
-                    <input id="check1" type="checkbox" name="type" value="BLANKET"/>
-                    <label for="check1">Blanket</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if blanket}}
+            <input id="check1" type="checkbox" name="type" checked="checked" value="BLANKET"/>
+            <label for="check1">Blanket</label>			
+            {{else}}
+            <input id="check1" type="checkbox" name="type" value="BLANKET"/>
+            <label for="check1">Blanket</label>			
+            {{/if}}
+            </div>
             </li>
             <li>
-                <div>
-                    {{#if planned}}
-                    <input id="check2" type="checkbox" name="type" checked="checked" value="PLANNED"/>
-                    <label for="check2">Planned</label>			
-                    {{else}}
-                    <input id="check2" type="checkbox" name="type" value="PLANNED"/>
-                    <label for="check2">Planned</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if planned}}
+            <input id="check2" type="checkbox" name="type" checked="checked" value="PLANNED"/>
+            <label for="check2">Planned</label>			
+            {{else}}
+            <input id="check2" type="checkbox" name="type" value="PLANNED"/>
+            <label for="check2">Planned</label>			
+            {{/if}}
+            </div>
             </li>            
             <li>
-                <div>
-                    {{#if standard}}
-                    <input id="check3" type="checkbox" name="type" checked="checked" value="STANDARD"/>
-                    <label for="check3">Standard</label>			
-                    {{else}}
-                    <input id="check3" type="checkbox" name="type" value="STANDARD"/>
-                    <label for="check3">Standard</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if standard}}
+            <input id="check3" type="checkbox" name="type" checked="checked" value="STANDARD"/>
+            <label for="check3">Standard</label>			
+            {{else}}
+            <input id="check3" type="checkbox" name="type" value="STANDARD"/>
+            <label for="check3">Standard</label>			
+            {{/if}}
+            </div>
             </li>            
             <li>
-                <div>
-                    {{#if contract}}
-                    <input id="check4" type="checkbox" name="type" checked="checked" value="CONTRACT"/>
-                    <label for="check4">Contract</label>			
-                    {{else}}
-                    <input id="check4" type="checkbox" name="type" value="CONTRACT"/>
-                    <label for="check4">Contract</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if contract}}
+            <input id="check4" type="checkbox" name="type" checked="checked" value="CONTRACT"/>
+            <label for="check4">Contract</label>			
+            {{else}}
+            <input id="check4" type="checkbox" name="type" value="CONTRACT"/>
+            <label for="check4">Contract</label>			
+            {{/if}}
+            </div>
             </li>
-           {{/with}}
+            {{/with}}
             {{/if}}
             {{#if this.rqstns}}
             {{#with type}}
             <li>
-                <div>
-                    {{#if pr}}
-                    <input id="check1" type="checkbox" name="type" checked="checked" value="Purchase Requisition">
-                    <label for="check1">PR</label>			
-                    {{else}}
-                    <input id="check1" type="checkbox" name="type" value="Purchase Requisition">
-                    <label for="check1">PR</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if pr}}
+            <input id="check1" type="checkbox" name="type" checked="checked" value="Purchase Requisition">
+            <label for="check1">PR</label>			
+            {{else}}
+            <input id="check1" type="checkbox" name="type" value="Purchase Requisition">
+            <label for="check1">PR</label>			
+            {{/if}}
+            </div>
             </li>
             <li>
-                <div>
-                    {{#if ir}}
-                    <input id="check2" type="checkbox" name="type" checked="checked" value="Internal Requisition">
-                    <label for="check2">IR</label>			
-                    {{else}}
-                    <input id="check2" type="checkbox" name="type" value="Internal Requisition">
-                    <label for="check2">IR</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if ir}}
+            <input id="check2" type="checkbox" name="type" checked="checked" value="Internal Requisition">
+            <label for="check2">IR</label>			
+            {{else}}
+            <input id="check2" type="checkbox" name="type" value="Internal Requisition">
+            <label for="check2">IR</label>			
+            {{/if}}
+            </div>
             </li> 
             {{/with}}
             {{/if}}
-                    
-        </ul>
-        {{/if}}
-        <p>Notification Status</p>
-        <ul>
+
+            </ul>
+            {{/if}}
+            <p>Notification Status</p>
+            <ul>
             <li>
-                <div>
-                    {{#with status}}
-                    {{#if ar}}
-                    <input id="check5" type="checkbox" name="status" checked="checked" value="ACTION REQUIRED">
-                    <label for="check5">Action Required</label>			
-                    {{else}}
-                    <input id="check5" type="checkbox" name="status" value="ACTION REQUIRED">
-                    <label for="check5">Action Required</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#with status}}
+            {{#if ar}}
+            <input id="check5" type="checkbox" name="status" checked="checked" value="ACTION REQUIRED">
+            <label for="check5">Action Required</label>			
+            {{else}}
+            <input id="check5" type="checkbox" name="status" value="ACTION REQUIRED">
+            <label for="check5">Action Required</label>			
+            {{/if}}
+            </div>
             </li>
             <li>
-                <div>
-                    {{#if fyi}}            
-                    <input id="check6" type="checkbox" name="status" checked="checked" value="FYI">
-                    <label for="check6">FYI</label>			
-                    {{else}}
-                    <input id="check6" type="checkbox" name="status" value="FYI">
-                    <label for="check6">FYI</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if fyi}}            
+            <input id="check6" type="checkbox" name="status" checked="checked" value="FYI">
+            <label for="check6">FYI</label>			
+            {{else}}
+            <input id="check6" type="checkbox" name="status" value="FYI">
+            <label for="check6">FYI</label>			
+            {{/if}}
+            </div>
             </li>
             <li>
-                <div>
-                    {{#if closed}}
-                    <input id="check7" type="checkbox" name="status" checked="checked" value="CLOSED">
-                    <label for="check7">Closed</label>
-                    {{else}}
-                    <input id="check7" type="checkbox" name="status" value="CLOSED">
-                    <label for="check7">Closed</label>
-                    {{/if}}            
-                    {{/with}}
-                </div>
+            <div>
+            {{#if closed}}
+            <input id="check7" type="checkbox" name="status" checked="checked" value="CLOSED">
+            <label for="check7">Closed</label>
+            {{else}}
+            <input id="check7" type="checkbox" name="status" value="CLOSED">
+            <label for="check7">Closed</label>
+            {{/if}}            
+            {{/with}}
+            </div>
             </li>                
-        </ul>            
-        <p>Days old</p>
-        <div>
+            </ul>            
+            <p>Days old</p>
+            <div>
             <div id='select-day' >All</div>
             <img src="img/arrow.png" />
             <select onchange="document.getElementById('select-day').innerHTML = this.options[this.selectedIndex].text" >
-                <option value='0' >All</option>                                        
-                <option value='3' >3 days past</option>            
-                <option value='7' >7 days past</option>            
-                <option value='1' >1 month</option>                                   
+            <option value='0' >All</option>                                        
+            <option value='3' >3 days past</option>            
+            <option value='7' >7 days past</option>            
+            <option value='1' >1 month</option>                                   
             </select>
-        </div>            
-        <p>Organization codes</p>
-        <div>
+            </div>            
+            <p>Organization codes</p>
+            <div>
             <div id='select-org' >All</div>
             <img src="img/arrow.png" />
             <select onchange="document.getElementById('select-org').innerHTML = this.options[this.selectedIndex].text" >            
-                <option value='0' >All</option>          
-                <option value='V1' >V1</option>          
-                <option value='S1' >S1</option>          
-                <option value='M1' >M1</option>          
-                <option value='M2' >M2</option>          
-                <option value='M3' >M3</option>          
-                <option value='W1' >W3</option>          
+            <option value='0' >All</option>          
+            <option value='V1' >V1</option>          
+            <option value='S1' >S1</option>          
+            <option value='M1' >M1</option>          
+            <option value='M2' >M2</option>          
+            <option value='M3' >M3</option>          
+            <option value='W1' >W3</option>          
             </select>           
-        </div>
+            </div>
         </script>
 
         <script id="filter-orgs-list-tpl" type="text/x-handlebars-template">
@@ -462,10 +463,8 @@
             </table>                            
             </a>                    
             </li>
-            {{/.}}    
-            <li id="more-notify-header">
-            More result
-            </li>
+            {{/.}}                
+            <a id="more-notify-header" >Show more results</a>
         </script>
 
         <script id="notification-lines-tpl" type="text/x-handlebars-template" >
