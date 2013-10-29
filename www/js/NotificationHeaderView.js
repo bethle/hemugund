@@ -9,7 +9,7 @@ var NotificationHeaderView = function(headers) {
     };
     this.render = function() {
         $.ajax({
-            url: app.URL + "Notifications/" + app.mod + "/" + this.index++,
+            url: app.URL + "Notifications/" + app.mod + "/" + self.index++,
             dataType: "json",
             data: "notify={\"user\":\"" + app.user + "\"}",
             success: self.loadHeaderList,
@@ -34,6 +34,7 @@ var NotificationHeaderView = function(headers) {
                     $('#filter').html(NotificationHeaderView.filterTemplate(data.filter)).hide();
                 }
             } else {
+                $("#more-notify-header").remove();
                 $("#" + app.mod + "-header-list").append(NotificationHeaderView.liTemplate(data.result));
             }
             if (data.result.length < 5 || data.searchSet || data.filterSet) {
