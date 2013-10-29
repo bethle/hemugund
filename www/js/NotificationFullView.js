@@ -49,7 +49,7 @@ var NotificationFullView = function(detail) {
     };
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
-            if (self.index <= 2) {
+            if (self.index <= 2 || data.searchSet || data.filterSet) {
                 $("#" + app.mod + "-header-list").html(NotificationFullView.liTemplate(data.result));
                 if (data.result.length > 0) {
                     location.href = "#Detail" + app.mod + "/" + data.result[0].hid + "-" + data.result[0].id;
@@ -65,7 +65,7 @@ var NotificationFullView = function(detail) {
                 $("#more-notify-header").remove();
                 $("#" + app.mod + "-header-list").append(NotificationFullView.liTemplate(data.result));
             }
-            if (data.result.length < 5) {
+            if (data.result.length < 5 || data.searchSet || data.filterSet ) {
                 $("#more-notify-header").remove();
             }
         } else {

@@ -28,7 +28,7 @@ var NotificationHeaderView = function(headers) {
     };
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
-            if (self.index <= 2) {
+            if (self.index <= 2 || data.searchSet || data.filterSet) {
                 $("#" + app.mod + "-header-list").html(NotificationHeaderView.liTemplate(data.result));
                 if (data.filter) {
                     $('#filter').html(NotificationHeaderView.filterTemplate(data.filter)).hide();
@@ -36,7 +36,7 @@ var NotificationHeaderView = function(headers) {
             } else {
                 $("#" + app.mod + "-header-list").append(NotificationHeaderView.liTemplate(data.result));
             }
-            if (data.result.length < 10) {
+            if (data.result.length < 5 || data.searchSet || data.filterSet) {
                 $("#more-notify-header").remove();
             }
 
