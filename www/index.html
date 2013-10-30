@@ -161,149 +161,149 @@
         </script>
 
         <script id="filter-view-tpl" type="text/x-handlebars-template">
-        {{#if this.type_head}}
-        <p>{{this.type_head}}</p>
-        <ul class="filter-type-list">
+            {{#if this.type_head}}
+            <p>{{this.type_head}}</p>
+            <ul class="filter-type-list">
             {{#if this.prchrd}}
             {{#with type}}
             <li>
-                <div>
-                    {{#if blanket}}
-                    <input id="check1" type="checkbox" name="type" checked="checked" value="BLANKET"/>
-                    <label for="check1">Blanket</label>			
-                    {{else}}
-                    <input id="check1" type="checkbox" name="type" value="BLANKET"/>
-                    <label for="check1">Blanket</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if blanket}}
+            <input id="check1" type="checkbox" name="type" checked="checked" value="BLANKET"/>
+            <label for="check1">Blanket</label>			
+            {{else}}
+            <input id="check1" type="checkbox" name="type" value="BLANKET"/>
+            <label for="check1">Blanket</label>			
+            {{/if}}
+            </div>
             </li>
             <li>
-                <div>
-                    {{#if planned}}
-                    <input id="check2" type="checkbox" name="type" checked="checked" value="PLANNED"/>
-                    <label for="check2">Planned</label>			
-                    {{else}}
-                    <input id="check2" type="checkbox" name="type" value="PLANNED"/>
-                    <label for="check2">Planned</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if planned}}
+            <input id="check2" type="checkbox" name="type" checked="checked" value="PLANNED"/>
+            <label for="check2">Planned</label>			
+            {{else}}
+            <input id="check2" type="checkbox" name="type" value="PLANNED"/>
+            <label for="check2">Planned</label>			
+            {{/if}}
+            </div>
             </li>            
             <li>
-                <div>
-                    {{#if standard}}
-                    <input id="check3" type="checkbox" name="type" checked="checked" value="STANDARD"/>
-                    <label for="check3">Standard</label>			
-                    {{else}}
-                    <input id="check3" type="checkbox" name="type" value="STANDARD"/>
-                    <label for="check3">Standard</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if standard}}
+            <input id="check3" type="checkbox" name="type" checked="checked" value="STANDARD"/>
+            <label for="check3">Standard</label>			
+            {{else}}
+            <input id="check3" type="checkbox" name="type" value="STANDARD"/>
+            <label for="check3">Standard</label>			
+            {{/if}}
+            </div>
             </li>            
             <li>
-                <div>
-                    {{#if contract}}
-                    <input id="check4" type="checkbox" name="type" checked="checked" value="CONTRACT"/>
-                    <label for="check4">Contract</label>			
-                    {{else}}
-                    <input id="check4" type="checkbox" name="type" value="CONTRACT"/>
-                    <label for="check4">Contract</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if contract}}
+            <input id="check4" type="checkbox" name="type" checked="checked" value="CONTRACT"/>
+            <label for="check4">Contract</label>			
+            {{else}}
+            <input id="check4" type="checkbox" name="type" value="CONTRACT"/>
+            <label for="check4">Contract</label>			
+            {{/if}}
+            </div>
             </li>
-           {{/with}}
+            {{/with}}
             {{/if}}
             {{#if this.rqstns}}
             {{#with type}}
             <li>
-                <div>
-                    {{#if pr}}
-                    <input id="check1" type="checkbox" name="type" checked="checked" value="Purchase Requisition">
-                    <label for="check1">PR</label>			
-                    {{else}}
-                    <input id="check1" type="checkbox" name="type" value="Purchase Requisition">
-                    <label for="check1">PR</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if pr}}
+            <input id="check1" type="checkbox" name="type" checked="checked" value="Purchase Requisition">
+            <label for="check1">PR</label>			
+            {{else}}
+            <input id="check1" type="checkbox" name="type" value="Purchase Requisition">
+            <label for="check1">PR</label>			
+            {{/if}}
+            </div>
             </li>
             <li>
-                <div>
-                    {{#if ir}}
-                    <input id="check2" type="checkbox" name="type" checked="checked" value="Internal Requisition">
-                    <label for="check2">IR</label>			
-                    {{else}}
-                    <input id="check2" type="checkbox" name="type" value="Internal Requisition">
-                    <label for="check2">IR</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if ir}}
+            <input id="check2" type="checkbox" name="type" checked="checked" value="Internal Requisition">
+            <label for="check2">IR</label>			
+            {{else}}
+            <input id="check2" type="checkbox" name="type" value="Internal Requisition">
+            <label for="check2">IR</label>			
+            {{/if}}
+            </div>
             </li> 
             {{/with}}
             {{/if}}
-                    
-        </ul>
-        {{/if}}
-        <p>Notification Status</p>
-        <ul>
+
+            </ul>
+            {{/if}}
+            <p>Notification Status</p>
+            <ul>
             <li>
-                <div>
-                    {{#with status}}
-                    {{#if ar}}
-                    <input id="check5" type="checkbox" name="status" checked="checked" value="ACTION REQUIRED">
-                    <label for="check5">Action Required</label>			
-                    {{else}}
-                    <input id="check5" type="checkbox" name="status" value="ACTION REQUIRED">
-                    <label for="check5">Action Required</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#with status}}
+            {{#if ar}}
+            <input id="check5" type="checkbox" name="status" checked="checked" value="ACTION REQUIRED">
+            <label for="check5">Action Required</label>			
+            {{else}}
+            <input id="check5" type="checkbox" name="status" value="ACTION REQUIRED">
+            <label for="check5">Action Required</label>			
+            {{/if}}
+            </div>
             </li>
             <li>
-                <div>
-                    {{#if fyi}}            
-                    <input id="check6" type="checkbox" name="status" checked="checked" value="FYI">
-                    <label for="check6">FYI</label>			
-                    {{else}}
-                    <input id="check6" type="checkbox" name="status" value="FYI">
-                    <label for="check6">FYI</label>			
-                    {{/if}}
-                </div>
+            <div>
+            {{#if fyi}}            
+            <input id="check6" type="checkbox" name="status" checked="checked" value="FYI">
+            <label for="check6">FYI</label>			
+            {{else}}
+            <input id="check6" type="checkbox" name="status" value="FYI">
+            <label for="check6">FYI</label>			
+            {{/if}}
+            </div>
             </li>
             <li>
-                <div>
-                    {{#if closed}}
-                    <input id="check7" type="checkbox" name="status" checked="checked" value="CLOSED">
-                    <label for="check7">Closed</label>
-                    {{else}}
-                    <input id="check7" type="checkbox" name="status" value="CLOSED">
-                    <label for="check7">Closed</label>
-                    {{/if}}            
-                    {{/with}}
-                </div>
+            <div>
+            {{#if closed}}
+            <input id="check7" type="checkbox" name="status" checked="checked" value="CLOSED">
+            <label for="check7">Closed</label>
+            {{else}}
+            <input id="check7" type="checkbox" name="status" value="CLOSED">
+            <label for="check7">Closed</label>
+            {{/if}}            
+            {{/with}}
+            </div>
             </li>                
-        </ul>            
-        <p>Days old</p>
-        <div>
+            </ul>            
+            <p>Days old</p>
+            <div>
             <div id='select-day' >All</div>
             <img src="img/arrow.png" />
             <select onchange="document.getElementById('select-day').innerHTML = this.options[this.selectedIndex].text" >
-                <option value='0' >All</option>                                        
-                <option value='3' >3 days past</option>            
-                <option value='7' >7 days past</option>            
-                <option value='1' >1 month</option>                                   
+            <option value='0' >All</option>                                        
+            <option value='3' >3 days past</option>            
+            <option value='7' >7 days past</option>            
+            <option value='1' >1 month</option>                                   
             </select>
-        </div>            
-        <p>Organization codes</p>
-        <div>
+            </div>            
+            <p>Organization codes</p>
+            <div>
             <div id='select-org' >All</div>
             <img src="img/arrow.png" />
             <select onchange="document.getElementById('select-org').innerHTML = this.options[this.selectedIndex].text" >            
-                <option value='0' >All</option>          
-                <option value='V1' >V1</option>          
-                <option value='S1' >S1</option>          
-                <option value='M1' >M1</option>          
-                <option value='M2' >M2</option>          
-                <option value='M3' >M3</option>          
-                <option value='W1' >W3</option>          
+            <option value='0' >All</option>          
+            <option value='V1' >V1</option>          
+            <option value='S1' >S1</option>          
+            <option value='M1' >M1</option>          
+            <option value='M2' >M2</option>          
+            <option value='M3' >M3</option>          
+            <option value='W1' >W3</option>          
             </select>           
-        </div>
+            </div>
         </script>
 
         <script id="filter-orgs-list-tpl" type="text/x-handlebars-template">
@@ -313,11 +313,12 @@
         </script>
 
         <script id="notification-full-view-tpl" type="text/x-handlebars-template">
-            <div class='header'><a href='#' class='button header-button header-button-left'><span style="display:block;margin-left:5px" >Back</span></a><h1>{{type}}</h1><h3>{{name}}</h3><a href="#Filter" class='button header-button header-button-right filter-button'></a></div>
+            <div class='header'><a href='#' class='button header-button header-button-left'><span style="display:block;margin-left:5px" >Back</span></a><h1>{{type}}</h1><h3>{{name}}</h3><a class='button header-button header-button-right action-button' onclick="app.slideDown(document.getElementById('ActionFooter'))" ></a></div>
             <div style="float:left; width:38%;">
             <div id="search">
-            <div><input type="search" id="search-input" /></div>
+            <div><input type="search" id="search-input" /></div>            
             <div id="search-notify-header" class="search-button" >Search</div>
+            <a href="#Filter" class='button filter-button' ></a>
             </div>
             <div id='header-list' class="scrollable" style="top:92px;bottom:0px;width:38%;">                
             <ul id="{{mod}}-header-list">         
@@ -326,12 +327,32 @@
             </li>
             </ul>
             </div>
-            </div>            
+            <div id="filter" class="sliding-effect" >
+            </div>
+            </div>               
             <div id="header-details" style="float:right; width:62%;">
-            </div>  
-            <div id="filter" style="float:right; width:61%;">
+            </div>                 
+            <div class="sliding-effect" id="ActionFooter" style="float:right;width:62%;" >   
+            <div onclick="app.slideUp(document.getElementById('ActionFooter'));" ></div>
+            <table cellspacing='0' cellpadding='0' >
+            <tr>
+            <td>
+            <a><input type="button" value="Forward" onclick="app.showAlert('ForwardAlert');" /></a> 
+            </td>                 
+            </tr>
+            <tr>
+            <td>
+            <a><input type="button" value="Approve" onclick="app.showAlert('ApproveAlert');" /></a>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <a><input type="button" value="Reject" onclick="app.showAlert('RejectAlert');" /></a>
+            </td>                    
+            </tr>            
+            </table>
             </div>            
-        </script>        
+        </script>       
 
         <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
             <div class='header'><a class='button header-button header-button-left ' href="#Back"><span style="display:block;margin-left:5px" >Back</span></a><h1 style="line-height:44px;height:44px;font-size:22px;padding-top:0px;" >{{num}}</h1></div>
@@ -838,3 +859,27 @@
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>
+
+
+<script id="action-footer-tpl" type="text/x-handlebars-template">
+    <div class="sliding-effect" id="ActionFooter">   
+    <div onclick="slideUp(document.getElementById('ActionFooter'));" ></div>
+    <table cellspacing='0' cellpadding='0' >
+    <tr>
+    <td>
+    <a><input type="button" value="Forward" onclick="showAlert('ForwardAlert');" /></a> 
+    </td>                 
+    </tr>
+    <tr>
+    <td>
+    <a><input type="button" value="Approve" onclick="showAlert('ApproveAlert');" /></a>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <a><input type="button" value="Reject" onclick="showAlert('RejectAlert');" /></a>
+    </td>                    
+    </tr>            
+    </table>
+    </div>
+</script>
