@@ -154,8 +154,7 @@
             <li style="text-align:center;">            
             <img src="img/mini-loading.gif" style="padding-top: 20px;" />
             </li>
-            </ul>
-            <a id="more-notify-header" >Show More Results</a>
+            </ul>            
             </div>
             <div id="filter">
             </div>
@@ -464,7 +463,8 @@
             </table>                            
             </a>                    
             </li>
-            {{/.}}                
+            {{/.}}         
+            <li id="more-notify-header" ><a onclick="$(this).next().css({"display":"block"})">Show More Results</a><img src="img/mini-loading.gif" style="padding-top: 20px;display:none" /></li>
         </script>
 
         <script id="notification-lines-tpl" type="text/x-handlebars-template" >
