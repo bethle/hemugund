@@ -1,7 +1,6 @@
 
 
 var NotificationsView = function() {
-    var self = this;
     this.initialize = function() {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = document.createElement('div');
@@ -26,7 +25,7 @@ var NotificationsView = function() {
             $('#purch-ord-count').html(data.result.prchrd);
         } else {
             app.showAlert(data.response, "Notification Count Request Errored");
-            location.href = "#Error"
+            location.href = "#Error";
         }
     };
     this.initialize();

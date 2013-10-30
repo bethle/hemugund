@@ -59,7 +59,7 @@ var NotificationFullView = function(detail) {
                     self.loadHeaderDetails({response: "SUCCESS", result: {head: {}}});
                 }
                 if (data.filter) {
-                    $('#filter').html(NotificationFullView.filterTemplate(data.filter)).hide();
+                    $('#filter').html(NotificationFullView.filterTemplate(data.filter));
                 }
             } else {
                 $("#more-notify-header").remove();
