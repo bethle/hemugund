@@ -209,38 +209,42 @@ input[type="submit"]:active{
     box-flex: 1;
 }
 h1{
-    font-size: 22px;
+    font-size: 18px;
+    padding-top: 1px;
 }
 h3{
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: normal;
 }
 .header-button {
-    width: 67px;
-    height: 37px;
-    position: absolute;
-    font-size: 95%;
-    text-align: center;    
-    display: inline;    
-    color: #5f6065;
+    border: 0 none;
+    border-radius: 5px 5px 5px 5px;
+    color: #5F6065;
     cursor: pointer;
-    line-height: 37px;
-    margin: 4px 0px 0px 5px;
-    border-radius: 5px;
-    border: 0;
+    display: inline;
+    font-size: 95%;
     font-weight: bold;
+    height: 45px;
+    line-height: 44px;
+    margin: 0 0 0 5px;
+    position: absolute;
+    text-align: center;
+    width: 67px; 
 }
 
 .header-button-left {
-    background-image: url('../img/back_notext.png');
+    background-image: url("../img/back_notext.png");
+    background-position: right center;
     background-repeat: no-repeat;
-    background-size: 67px 37px;      
+    background-size: 67px 37px;  
 }
 
 .header-button-right {
+    background-position: right center;
     background-repeat: no-repeat;
-    background-size: 67px 37px;
-    right:0px;
-    top:0px;
+    background-size: 43px 43px;
+    right: 0;
+    top: 0;
 }
 .filter-button{
     background-image: url('../img/filter.png');    
@@ -1027,10 +1031,7 @@ contact form end
     background-size: 36px 36px;
 }
 #header-details>div:nth-child(3)>ul>li:nth-child(1):active,#header-details>div:nth-child(3)>ul>li:nth-child(1):hover{
-    background-image: url('../img/Talk-hi-64_glow.png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 36px 36px;
+    background-image: url('../img/Talk-hi-64_glow.png');    
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 #header-details>div:nth-child(3)>ul>li:nth-child(2){
@@ -1040,10 +1041,7 @@ contact form end
     background-size: 36px 36px;
 }
 #header-details>div:nth-child(3)>ul>li:nth-child(2):active,#header-details>div:nth-child(3)>ul>li:nth-child(2):hover{
-    background-image: url('../img/details_icon_glow.png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 36px 36px;
+    background-image: url('../img/details_icon_glow.png');    
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 #header-details>div:nth-child(3)>ul>li:nth-child(3){
@@ -1053,10 +1051,7 @@ contact form end
     background-size: 36px 36px;
 }
 #header-details>div:nth-child(3)>ul>li:nth-child(3):active,#header-details>div:nth-child(3)>ul>li:nth-child(3):hover{
-    background-image: url('../img/History_Icon_glow.png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 36px 36px;
+    background-image: url('../img/History_Icon_glow.png');    
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 #header-details>div:nth-child(3)>div:nth-child(2){
@@ -1667,6 +1662,251 @@ label {
     position: relative;
     text-align: center;
     text-decoration: none;
-    width: 49%;
+    width: 20%;
     z-index: 999;
+}
+@media only screen and
+(max-device-width: 1280px) and (min-device-width: 800px){
+    #content-notify > ul > li > a > div{        
+        background-size: 120px 120px;
+        height: 150px;        
+        width: 120px;        
+    }    
+    #loginScreen > div:nth-child(1) {        
+        background-size: 360px 144px;   
+        height: 120px;
+        width: 360px;
+    }
+    #content-notify > ul > li > a > div > div:nth-child(1) {        
+        right: -15px; 
+        top: -15px;    
+        height: 35px;
+        line-height: 35px;    
+        width: 35px;
+        font-size: 100%;
+        border: 3px solid #FFFFFF;
+    }
+    #content-notify > ul > li > a > div > div:nth-child(2) {
+        padding-top: 124px;
+    }
+
+    #content-notify {
+        padding-top: 25px;        
+    }
+    #content-notify > ul{
+        width: 100%;
+    }
+    #content-notify > ul > li > a > div{
+        margin: 0 auto;
+    }    
+    #header-details > div:nth-child(3) > ul > li:nth-child(1){
+        background-size: 46px 46px;
+    }
+    #header-details > div:nth-child(3) > ul > li:nth-child(2){
+        background-size: 46px 46px;
+    }
+
+    #header-details > div:nth-child(3) > ul > li:nth-child(3) {
+        background-size: 46px 46px;
+    }
+    #header-details > div:nth-child(3) > ul > li {
+        width: 46px;
+        height: 46px;
+    }
+    #header-details > div:nth-child(3){
+        padding: 5px 0 24px;
+    }
+    #list-items:after{
+        margin-left: 36px;
+    }
+    #header-details > div:nth-child(3) > ul > li{
+        margin: 0 10px;
+    }    
+    #information:after {
+        margin-left: 106px;
+    }
+    #history:after {
+        margin-left: 176px;
+    }
+}
+@media only screen and
+(min-device-width: 1280px) and (orientation: landscape) {
+    #content-notify > ul > li {  
+        width: 33.33333%;
+        margin: 10px 0 60px;
+    }
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)
+and (-webkit-min-device-pixel-ratio: 1) {
+    #content-notify > ul > li > a > div{        
+        background-size: 120px 120px;
+        height: 150px;        
+        width: 120px;        
+    }    
+    #loginScreen > div:nth-child(1) {        
+        background-size: 360px 144px;        
+        width: 310px;
+        height: 120px;
+    }
+    #content-notify > ul > li > a > div > div:nth-child(1) {        
+        right: -15px; 
+        top: -15px;
+        height: 35px;
+        line-height: 35px;    
+        width: 35px;
+        font-size: 100%;
+        border: 3px solid #FFFFFF;
+    }
+    #content-notify > ul > li > a > div > div:nth-child(2) {
+        padding-top: 124px;
+    }
+
+    #content-notify {
+        padding-top: 25px;        
+    }
+
+    #content-notify > ul{
+        width: 100%;
+    }
+    #content-notify > ul > li > a > div{
+        margin: 0 auto;
+    }
+    #header-details > div:nth-child(3) > ul > li:nth-child(1){
+        background-size: 46px 46px;
+    }
+    #header-details > div:nth-child(3) > ul > li:nth-child(2){
+        background-size: 46px 46px;
+    }
+
+    #header-details > div:nth-child(3) > ul > li:nth-child(3) {
+        background-size: 46px 46px;
+    }
+    #header-details > div:nth-child(3) > ul > li {
+        width: 46px;
+        height: 46px;
+    }
+    #header-details > div:nth-child(3){
+        padding: 5px 0 24px;
+    }
+    #list-items:after{
+        margin-left: 36px;
+    }
+    #header-details > div:nth-child(3) > ul > li{
+        margin: 0 10px;
+    }    
+    #information:after {
+        margin-left: 106px;
+    }
+    #history:after {
+        margin-left: 176px;
+    }
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape)
+and (-webkit-min-device-pixel-ratio: 1){
+    #content-notify > ul > li {  
+        width: 33.33333% !important;
+        margin: 10px 0 60px;
+    }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px),(min-height:791px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 1){
+    #content-notify > ul > li {  
+        width: 50%;
+        margin: 10px 0 80px !important;
+    }
+}
+@media only screen and (max-width:320px)  and (orientation: portrait)
+and (-webkit-min-device-pixel-ratio: 1.0)
+,only screen and (-o-min-device-pixel-ratio: 10/10),
+only screen  and (max-width:640px)  and (orientation: portrait)
+and (-webkit-min-device-pixel-ratio: 2.0)
+,only screen and (-o-min-device-pixel-ratio: 20/10),
+only screen and (min-width :321px) and (max-width:720px)and (orientation: portrait) 
+and (-webkit-min-device-pixel-ratio: 2.0),only screen and (-o-min-device-pixel-ratio: 20/10) 
+and (-webkit-min-device-pixel-ratio: 3.0),only screen and (-o-min-device-pixel-ratio: 30/10){    
+    #content-notify > ul {
+        width: 100%;
+    }
+    #content-notify > ul > li {
+        margin: 10px 0 40px;
+        width: 50%;
+    }
+    #content-notify > ul > li > a > div {
+        margin: 0 auto;
+    }
+}
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) 
+and (-webkit-device-pixel-ratio: 1.0),screen and (min-device-width: 320px) and (max-device-height: 568px)and (orientation : landscape) 
+and (-webkit-device-pixel-ratio: 2),all and (min-width :321px) and (max-width:720px)and (orientation: landscape),
+only screen and (min-width:560px) and (max-width:754px) and (orientation:landscape),screen and (orientation:landscape)  and (-webkit-device-pixel-ratio:3),only screen and (-o-min-device-pixel-ratio: 30/10){
+    #content-notify > ul > li > a > div{        
+        background-size: 80px 80px;
+        height: 110px;        
+        width: 120px;        
+    }    
+    #loginScreen > div:nth-child(1) {        
+        background-size: 260px 104px;        
+        width: 260px;
+        height: 76px;
+    }
+    #content-notify > ul > li > a > div > div:nth-child(1) {        
+        right: -10px; 
+        top: -10px;
+        height: 25px;
+        line-height: 25px;    
+        width: 25px;
+        font-size: 80%;
+        border: 2px solid #FFFFFF;
+    }
+    #content-notify > ul > li > a > div > div:nth-child(2) {
+        padding-top: 84px;
+    }
+
+    #content-notify {
+        padding-top: 5px;        
+    }
+
+    #header-details > div:nth-child(3){
+        padding: 5px 0 24px;
+    }
+    #list-items:after{
+        margin-left: 26px;
+    }
+    #header-details > div:nth-child(3) > ul > li{
+        margin: 0 5px;
+    }    
+    #information:after {
+        margin-left: 77px;
+    }
+    #history:after {
+        margin-left: 127px;
+    }
+    #content-notify > ul {
+        width: 100%;
+    }
+    #content-notify > ul > li {
+        margin: 10px 0 20px;
+        width: 33.3333%;
+    }
+    #header-details > div:nth-child(3) > ul > li:nth-child(1){
+        background-size: 36px 36px;
+    }
+    #header-details > div:nth-child(3) > ul > li:nth-child(2){
+        background-size: 36px 36px;
+    }
+
+    #header-details > div:nth-child(3) > ul > li:nth-child(3) {
+        background-size: 36px 36px;
+    }
+    #header-details > div:nth-child(3) > ul > li {
+        width: 36px;
+        height: 36px;
+    }
+    #content-notify > ul > li > a > div {
+        margin: 0 auto;
+    }
 }
