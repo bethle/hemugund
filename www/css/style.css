@@ -246,8 +246,7 @@ h3{
     right: 0;
     top: 0;
 }
-.filter-button{
-    background-color: #C7C8C9;
+.filter-button{    
     background-image: url("../img/filter.png");
     display: block;
     float: right;
@@ -968,6 +967,7 @@ contact form end
     width: 55%;
     margin-left: 5px;
 }
+
 #search>div:nth-child(1)>input[type="search"]{
     border: 0;    
     width: 100%;
@@ -975,7 +975,7 @@ contact form end
     font-size: 105%;
     font-family: 'Arail';
 }
-#search>div:nth-child(2){
+#search>div:nth-child(2),#search>div:nth-child(3){
     background-image: url('../img/searchbutton.png');
     background-size: 70px 35px;
     background-position: center center;
@@ -994,7 +994,7 @@ contact form end
     margin-right: 5px;
     position: relative;    
 }
-#search>div:nth-child(2):active,#search>div:nth-child(2):hover{
+#search>div:nth-child(2):active,#search>div:nth-child(2):hover,#search>div:nth-child(3):active,#search>div:nth-child(3):hover{
     color: #3399cc;
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
@@ -1444,6 +1444,7 @@ contact form end
     height: auto;
     width: 95%;
     margin: 0 auto;
+    border: 0 none !important;
 }
 #filter>p{
     width: 100%;
@@ -1797,6 +1798,9 @@ label {
     }
     #history:after {
         margin-left: 176px;
+    }    
+    .filter-button {
+        background-color: #cccccc;
     }
 }
 @media only screen and
@@ -1809,7 +1813,13 @@ label {
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px)
-and (-webkit-min-device-pixel-ratio: 1) {
+and (-webkit-min-device-pixel-ratio: 1) {    
+    #filter > div {
+        width: 95%;
+    }
+    #filter > ul{
+        width: 99%;
+    }
     #content-notify > ul > li > a > div{        
         background-size: 120px 120px;
         height: 150px;        
@@ -1872,6 +1882,18 @@ and (-webkit-min-device-pixel-ratio: 1) {
     #history:after {
         margin-left: 176px;
     }
+    .filter-button {
+        background-color: #cccccc;
+    }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px),(min-height:791px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 1){
+    #content-notify > ul > li {  
+        width: 50%;
+        margin: 10px 0 80px !important;
+    }
+    #search > div:nth-child(1){
+        width: 30%;
+    }
 }
 @media only screen 
 and (min-device-width : 768px) 
@@ -1881,12 +1903,6 @@ and (-webkit-min-device-pixel-ratio: 1){
     #content-notify > ul > li {  
         width: 33.33333% !important;
         margin: 10px 0 60px;
-    }
-}
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px),(min-height:791px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 1){
-    #content-notify > ul > li {  
-        width: 50%;
-        margin: 10px 0 80px !important;
     }
     #search > div:nth-child(1){
         width: 40%;

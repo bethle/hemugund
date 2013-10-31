@@ -31,7 +31,7 @@ var NotificationHeaderView = function(headers) {
             if (self.index <= 2 || data.searchSet || data.filterSet) {
                 $("#" + app.mod + "-header-list").html(NotificationHeaderView.liTemplate(data.result));
                 if (data.filter) {
-                    $('#filter').html(NotificationHeaderView.filterTemplate(data.filter)).hide();
+                    $('#filter').html(NotificationHeaderView.filterTemplate(data.filter));
                 }
             } else {
                 $("#more-notify-header").remove();

@@ -167,7 +167,7 @@ var app = {
         this.route();
     },
     filter: function() {
-        if ($("#filter").css("max-height") == "0") {
+        if ($("#filter").css("max-height") !== "0px") {
             var i = 0;
             var checked = new Array();
             $("#filter").find("input").each(function() {
@@ -200,14 +200,18 @@ var app = {
                 success: app.currentPage.loadHeaderList,
                 error: app.errorAlert
             });
-//            $("#filter").hide();
             this.slideUp(document.getElementById("filter"));
-            $("#header-list").show();
+//            $("#header-list").show();
+            setTimeout(function() {
+                app.slideDown(document.getElementById("header-list"));
+            }, 500);
             location.href = "#Donefilter";
         } else {
-            $("#header-list").hide();
-//            $("#filter").show($("#filter"));
-            this.slideDown(document.getElementById("filter"));
+//            $("#header-list").hide();
+            this.slideUp(document.getElementById("header-list"));
+            setTimeout(function() {
+                app.slideDown(document.getElementById("filter"));
+            }, 500);
             location.href = "#selFilter";
         }
     },
