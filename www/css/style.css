@@ -32,7 +32,7 @@ a{
     height: 100%;
     -webkit-transform: translate3d(0,0,0);    
     display: table; /*new*/
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 .error{
@@ -782,7 +782,7 @@ contact form end
     height: 100%;
 }
 #header-list>ul{
-    width: 100%;
+    width: 100%;    
 }
 #header-list>ul>li{
     width: 100%;
