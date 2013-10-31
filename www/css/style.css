@@ -1740,6 +1740,8 @@ label {
     text-decoration: none;
     width: 60% !important;
     z-index: 999;
+    font-size: 17px;    
+    font-weight: bold;
     margin: 0 auto;
 }
 @media only screen and
