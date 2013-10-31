@@ -264,7 +264,7 @@ var app = {
     },
     toggle: function(e) {
         var elem = this.next(e);
-        if (elem.style.maxHeight === '1000px') {
+        if (elem.style.maxHeight === '100000px') {
             this.slideUp(elem);
         }
         else {
@@ -275,7 +275,7 @@ var app = {
     {
         if (elem !== null) {
             if (elem.className !== 'ui-list-arrow') {
-                elem.style.maxHeight = '1000px';
+                elem.style.maxHeight = '100000px';
                 elem.style.borderBottom = '1px solid #c2c2c2';
             }
         }
