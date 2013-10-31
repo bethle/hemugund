@@ -168,7 +168,7 @@
                 <a href="#Filter" class='button filter-button'  style="background-image:url('img/filter_tablet.png')" ></a>
                 <div id="search-notify-header" class="search-button" >Search</div>                
             </div>
-            <div id='header-list' class="sliding-effect scrollable" style="top:92px;bottom:0px;width:38%;max-height:1000px;height: calc(100% - 92px);">                
+            <div id='header-list' class="sliding-effect scrollable" style="top:92px;bottom:0px;width:38%;max-height:1000px;height: calc(100% - 92px);">
                 <ul id="{{mod}}-header-list">         
                     <li style="text-align:center;">            
                         <img src="img/mini-loading.gif" style="padding-top: 20px;" />
@@ -178,7 +178,7 @@
             <div id="filter" class="sliding-effect" >
             </div>
         </div>               
-        <div id="header-details" style="float:right; width:62%;height: calc(100% - 64px);">
+        <div id="header-details" style="float:right; width:62%;height: calc(100% - 50px);overflow:hidden;">
         </div>                 
         <div class="sliding-effect" id="ActionFooter" style="float:right;width:62%;" >   
             <div onclick="app.slideUp(document.getElementById('ActionFooter'));" ></div>
@@ -601,7 +601,7 @@
             <div><a onclick="app.popAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a>
             </div>
             </div>
-            <div id="ui-tab-content">
+            <div id="ui-tab-content" style="height: calc(100% - 106px);" >
             <div class="details show" id="list-items" >
             <table cellspacing="0" cellpadding="0" >
             <tr>
