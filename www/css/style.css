@@ -1447,6 +1447,9 @@ contact form end
     border: 0 none !important;
     padding-bottom: 10px;
 }
+#filter>p:nth-child(1){
+    padding-top: 5px;
+}
 #filter>p{
     width: 100%;
     margin: 6px 0;
@@ -1800,9 +1803,6 @@ label {
     #history:after {
         margin-left: 176px;
     }    
-    .filter-button {
-        background-color: #cccccc;
-    }
 }
 @media only screen and
 (min-device-width: 1280px) and (orientation: landscape) {
@@ -1882,9 +1882,6 @@ and (-webkit-min-device-pixel-ratio: 1) {
     }
     #history:after {
         margin-left: 176px;
-    }
-    .filter-button {
-        background-color: #cccccc;
     }
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px),(min-height:791px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio: 1){
