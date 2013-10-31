@@ -1445,6 +1445,7 @@ contact form end
     width: 95%;
     margin: 0 auto;
     border: 0 none !important;
+    padding-bottom: 10px;
 }
 #filter>p{
     width: 100%;
@@ -1492,7 +1493,7 @@ label {
     color: #000000;
 }
 #filter>ul{
-    width: 95%;
+    width: 99%;
     float: left;
     border: 1px solid #000000;
     border-radius: 5px;
@@ -1514,7 +1515,7 @@ label {
     padding-left: 10px;
 }
 #filter>div{
-    width: 96%;
+    width: 95%;
     height: 20px;
     position: relative;
     font-family: 'Arial';

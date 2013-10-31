@@ -90,7 +90,6 @@ var app = {
             this.slidePage(self.prevPage);
             return;
         }
-
         match = hash.match(app.detailsURL);
         if (match) {
             if (this.isMobile()) {

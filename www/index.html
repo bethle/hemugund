@@ -149,7 +149,7 @@
             <div><input type="search" id="search-input" /></div>
             <div id="search-notify-header" class="search-button" >Search</div>
             </div>
-            <div id='header-list' class="scrollable sliding-effect" style="top:92px;bottom:0px;left0px;right:0px;">                
+            <div id='header-list' class="scrollable" style="top:92px;bottom:0px;left0px;right:0px;">                
             <ul id="{{mod}}-header-list" >         
             <li style="text-align:center;">            
             <img src="img/mini-loading.gif" style="padding-top: 20px;" />
@@ -157,7 +157,7 @@
             </ul>            
             </div>
             <div id="filter" class="sliding-effect" >
-            </div>
+            </div>            
         </script>
 
         <script id="filter-view-tpl" type="text/x-handlebars-template">
@@ -355,7 +355,7 @@
         </script>       
 
         <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
-            <div class='header'><a class='button header-button header-button-left ' href="#Back"><span style="display:block;margin-left:5px" >Back</span></a><h1 style="line-height:44px;height:44px;font-size:22px;padding-top:0px;" >{{num}}</h1></div>
+            <div class='header'><a class='button header-button header-button-left ' href="#Back"><span style="display:block;margin-left:5px" >Back</span></a><h1 style="line-height:44px;height:44px;font-size:22px;padding-top:0px;" >{{num}}</h1><a class='button header-button header-button-right action-button' onclick="app.slideDown(document.getElementById('ActionFooter'))" ></a></div>
             <div id="header-details" >
             <div>            
             <p>{{this.name}}</p>
@@ -451,7 +451,27 @@
             <ul id="attachment-list">
             </ul>
             </div>   
-            </div>            
+            </div>    
+            <div class="sliding-effect" id="ActionFooter" >   
+            <div onclick="app.slideUp(document.getElementById('ActionFooter'));" ></div>
+            <table cellspacing='0' cellpadding='0' >
+                <tr>
+                    <td>
+                        <a><input type="button" value="Forward" onclick="app.showAlert('ForwardAlert');" /></a> 
+                    </td>                 
+                </tr>
+                <tr>
+                    <td>
+                        <a><input type="button" value="Approve" onclick="app.showAlert('ApproveAlert');" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a><input type="button" value="Reject" onclick="app.showAlert('RejectAlert');" /></a>
+                    </td>                    
+                </tr>            
+            </table>
+        </div>
         </script>
 
         <script id="header-list-tpl" type="text/x-handlebars-template" >                   
