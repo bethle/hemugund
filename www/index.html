@@ -21,9 +21,7 @@
             function backButtonTap()
             {
 
-                var hash = window.location.hash, match;
-                match = hash.match(/^#Login/);
-                if (match || hash.match(/#/)) {
+                if (window.location.indexOf("#") === (window.location.length - 1) || window.location.split("#", 2)[1] === "Login") {
                     navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
                         if (buttonIndex === 1) {
                             location.href = "#Logout";
@@ -31,6 +29,8 @@
                     }, 'Warning!', ['YES', 'NO']);
                     return;
                 }
+
+                var hash = window.location.hash, match;
                 match = hash.match(/^#Back/);
                 if (match) {
                     location.href = "#";
