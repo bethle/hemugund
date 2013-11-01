@@ -233,7 +233,6 @@ var app = {
         });
     },
     isMobile: function() {
-        alert(navigator.userAgent);
 
         if (navigator.userAgent.match(/iPad|iPhone|iPod/i) != null && screen.width <= 568) {
             return true;
