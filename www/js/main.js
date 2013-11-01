@@ -82,7 +82,7 @@ var app = {
         match = hash.match(app.notifyURL);
         if (match) {
             this.mod = match[1];
-            if (!this.isMobile()) {
+            if (this.isMobile()) {
                 this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
             } else {
                 this.prevPage = new NotificationFullView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
@@ -93,7 +93,7 @@ var app = {
         }
         match = hash.match(app.detailsURL);
         if (match) {
-            if (!this.isMobile()) {
+            if (this.isMobile()) {
                 this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text()}).render();
                 this.slidePage(this.prevPage);
                 $("body").append(self.popTemplate());
