@@ -397,7 +397,7 @@ list content css start
 #popup-bckgrnd{
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     background-color:rgba(0,0,0,0.4);
     z-index: 1000;    
     transition: opacity 1s ease-out;
@@ -407,7 +407,12 @@ list content css start
     display: table;
     vertical-align: middle;
 }
-#popup-bckgrnd>div{
+#popup-bckgrnd>div{ 
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+    width: 100%;}
+#popup-bckgrnd>div>div{
     width: 80%;
     height: auto;
     position: relative;    
@@ -427,34 +432,40 @@ list content css start
     border-radius: 10px;
     padding: 5px 0;
 }
-#popup-bckgrnd>div>img{
+#popup-bckgrnd>div>div>img{
     height: 24px;
     position: absolute;
     top: -12px;
     right: -12px;
     cursor: pointer;
 }
-#popup-bckgrnd>div>table{
+#popup-bckgrnd>div>div>table{
     width: 90%;
     padding: 20px 0px;
 }
-#popup-bckgrnd>div>table tr>td{    
+#popup-bckgrnd>div>div>table tr>td{    
     font-family: 'Arial';
     font-size: 100%;
     text-align: right;
     color: #000000;
 }
-#popup-bckgrnd>div>table tr>td:nth-child(1){
+#popup-bckgrnd>div>div>table tr>td:nth-child(1){
     width: 50%;
 }
-#popup-bckgrnd>div>table tr>td:nth-child(2){
+#popup-bckgrnd>div>div>table tr>td:nth-child(1){
     width: 50%;
 }
-#popup-bckgrnd>div>div,#popup-bckgrnd>div:nth-child(1)>div,#popup-bckgrnd>div>:nth-child(3)>div,#popup-bckgrnd>div:nth-child(4)>div{
+#popup-bckgrnd>div>div>table tr>td:nth-child(2){
+    width: 50%;
+}
+#popup-bckgrnd>div>div>table tr>td:nth-child(2)>div{
+    position: relative;
+}
+#popup-bckgrnd>div>div>div>div,#popup-bckgrnd>div>div:nth-child(1)>div,#popup-bckgrnd>div>div>div>:nth-child(3)>div,#popup-bckgrnd>div>div:nth-child(4)>div{
     width: 100%;    
     text-align: center;
 }
-#popup-bckgrnd>div>div>input,#popup-bckgrnd>div:nth-child(1)>div>input,#popup-bckgrnd>div:nth-child(3)>div>input,#popup-bckgrnd>div:nth-child(4)>div>input{
+#popup-bckgrnd>div>div>div>input,#popup-bckgrnd>div:nth-child(1)>div>input,#popup-bckgrnd>div:nth-child(3)>div>input,#popup-bckgrnd>div:nth-child(4)>div>input{
     height: 30px;  
     font-family: 'Arial';
     font-size: 95%;
@@ -474,20 +485,20 @@ list content css start
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4f5fc', endColorstr='#2ab0ed',GradientType=0 );  
     border-radius: 5px;
 }
-#popup-bckgrnd>div>p:nth-child(2){   
+#popup-bckgrnd>div>div>p:nth-child(2){   
     border-bottom: 1px solid #000000;
     padding: 10px 0px;
     text-align: center;
     float: left;
     width: 100%;
 }
-#popup-bckgrnd>div>p:nth-child(3){
+#popup-bckgrnd>div>div>p:nth-child(3){
     width: 95%;
     float: left;
     padding:10px;
     text-align: left;
 }
-#popup-bckgrnd>div>textarea:nth-child(4){
+#popup-bckgrnd>div>div>textarea:nth-child(4){
     width: 80%;
     height: 150px;
     margin: 0 auto;
@@ -1574,18 +1585,19 @@ label {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-#popup-bckgrnd>div>div>form>table tr>td:nth-child(2)>div>select{
+#popup-bckgrnd>div>div>table tr>td:nth-child(2)>div>select{
     width: 98%;
-    height: 32px;
+    height: 22px;
     position: absolute;
     opacity: 0;   
     top: 0;
+    left: 0;
 }
-#popup-bckgrnd>div>div>form>table tr>td:nth-child(2)>div>img{
+#popup-bckgrnd>div>div>table tr>td:nth-child(2)>div>img{
     height: 12px;
     position: absolute;
-    right: 6px;
-    top: 10px;    
+    right: -10px;
+    top: 5px;
 }
 
 

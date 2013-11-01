@@ -297,8 +297,10 @@ var app = {
     popAlert: function(id) {
         var elem = document.getElementById(id);
         elem.parentNode.className = "popup-hide";
+        elem.parentNode.parentNode.className = "popup-hide";
         elem.className = "popup-hide";
         elem.parentNode.className = "ui-popup-show";
+        elem.parentNode.parentNode.className = "ui-popup-show";
         elem.className = "ui-popup-show";
     },
     closeAlert: function(elem) {
@@ -306,10 +308,6 @@ var app = {
         document.getElementById('reject-comment').value = "";
         elem.parentNode.parentNode.className = "popup-hide";
         elem.parentNode.className = "popup-hide";
-        if (document.getElementById('header-list') !== null) {
-            document.getElementById('header-list').removeAttribute('style');
-            document.getElementById('header-list').style.height = 'auto';
-        }
     },
 // Used to simulate async calls. This is done to provide a consistent
 // that use async data access APIs
