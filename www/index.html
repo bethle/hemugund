@@ -210,7 +210,7 @@
             <p>Do you want to approve?</p>
             <p>Comments:</p>  
             <textarea id="approve-comment" ></textarea>
-            <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
+            <div><input type="button" value="OK" onclick="app.approve()" /></div>                     
             </div>
             <div id="ForwardAlert" class="popup-hide" >
             <img src="img/Close.png" onclick="app.closeAlert(this);" />
@@ -234,14 +234,14 @@
             </td>
             </tr>
             </table>
-            <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
+            <div><input type="button" value="Send" onclick="app.forward()" /></div>
             </div>
             <div id="RejectAlert" class="popup-hide" >
             <img src="img/Close.png" onclick="app.closeAlert(this)" />
             <p>Do you want to Reject?</p>
             <p>Comments:</p>  
             <textarea id="reject-comment" ></textarea>
-            <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
+            <div ><input type="button" value="OK" onclick="app.reject()" /></div>                     
             </div>
             <div id="AttachmentAlert" class="popup-hide" >
             <img src="img/Close.png" onclick="app.closeAlert(this)" />
@@ -837,7 +837,7 @@
 
 
         <script type="text/javascript" src="js/LoginView.js"></script>
-        <script type="text/javascript" src="js/FileView.js"></script>
+        <!--<script type="text/javascript" src="js/FileView.js"></script>-->
         <script type="text/javascript" src="js/NotificationsView.js"></script>
         <script type="text/javascript" src="js/NotificationHeaderView.js"></script>        
         <script type="text/javascript" src="js/NotificationFullView.js"></script>        

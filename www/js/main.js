@@ -104,24 +104,6 @@ var app = {
             return;
         }
 
-        match = hash.match(app.forwardURL);
-        if (match) {
-            this.notify.forward(self.URL + "Forward");
-            return;
-        }
-
-        match = hash.match(app.approveURL);
-        if (match) {
-            this.notify.approve(self.URL + "Approve");
-            return;
-        }
-
-        match = hash.match(app.rejectURL);
-        if (match) {
-            this.notify.reject(self.URL + "Reject");
-            return;
-        }
-
         match = hash.match(/^#Filter/);
         if (match) {
             this.filter();
@@ -134,11 +116,11 @@ var app = {
             return;
         }
 
-        match = hash.match(/^#Down(.{1,})-(\d{1,})~(.{1,})/);
-        if (match) {
-            this.slidePage(new FileView({file: match[1], type: match[3], id: match[2]}).render());
-            return;
-        }
+//        match = hash.match(/^#Down(.{1,})-(\d{1,})~(.{1,})/);
+//        if (match) {
+//            this.slidePage(new FileView({file: match[1], type: match[3], id: match[2]}).render());
+//            return;
+//        }
 
         match = hash.match(/^#Logout/);
         if (match) {
@@ -161,9 +143,6 @@ var app = {
         this.URL = "http://182.18.157.157:7001/mbs/"; //182.18.157.157:7001 192.168.10.50:8084/mbs/
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
-        this.forwardURL = /^#Forward/;
-        this.approveURL = /^#Approve/;
-        this.rejectURL = /^#Reject/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
         this.attachURL = /^#attach\/(.{6})\/.*/;
         this.route();
@@ -272,6 +251,90 @@ var app = {
         }
         else {
             this.slideDown(elem);
+        }
+    },
+    approve: function() {
+        var match = window.location.hash;
+        match = match.match(app.detailsURL);
+        if (match) {
+            $.ajax({
+                url: app.URL + "Approve/" + app.mod,
+                dataType: "json",
+                data: "notify={\"id\": \"" + match[3] + "\" , \"user\": \"" + app.user + "\" , \"msg\": \"" + $("#approve-comment").val() + "\"}",
+                success: function(data) {
+                    $("#popup-bckgrnd").attr("class", "popup-hide");
+                    $("#popup-bckgrnd>div>div:nth-child(1)").attr("class", "popup-hide");
+                    if (app.isMobile()) {
+                        app.slidePage(new NotificationHeaderView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render(), true);
+                    } else {
+                        app.slidePage(new NotificationFullView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render());
+                    }
+                    return "success";
+                },
+                error: function(data) {
+                    app.showAlert("Ajax Error");
+                    return "error";
+                }
+            });
+        } else {
+            app.showAlert("Plaese Select A Notification!");
+        }
+    },
+    forward: function() {
+        var match = window.location.hash;
+        match = match.match(app.detailsURL);
+        if (match) {
+            if ($("#user-list").find(":selected").val() === "") {
+                app.showAlert("Please Select A user to whome to be Forwarded", "Warning!");
+                return;
+            }
+            $.ajax({
+                url: app.URL + "Forward/" + app.mod,
+                dataType: "json",
+                data: "notify={\"id\": \"" + match[3] + "\" , \"user\": \"" + app.user + "\", \"to_user\": \"" + $("#user-list").find(":selected").val() + "\"}",
+                success: function(data) {
+                    $("#popup-bckgrnd").attr("class", "popup-hide");
+                    $("#popup-bckgrnd>div>div:nth-child(2)").attr("class", "popup-hide");
+                    $("#user-list").prop('selectedIndex', 0);
+                    if (app.isMobile()) {
+                        app.slidePage(new NotificationHeaderView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render(), true);
+                    } else {
+                        app.slidePage(new NotificationFullView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render());
+                    }
+                },
+                error: function(data) {
+                    app.showAlert("Notification Forward Errored", "ERROR");
+                }
+            });
+        } else {
+            app.showAlert("Plaese Select A Notification!");
+        }
+    },
+    reject: function() {
+        var match = window.location.hash;
+        match = match.match(app.detailsURL);
+        if (match) {
+            $.ajax({
+                url: app.URL + "Reject/" + app.mod,
+                dataType: "json",
+                data: "notify={\"id\": \"" + match[3] + "\" , \"user\": \"" + app.user + "\", \"msg\": \"" + $("#reject-comment").val() + "\"}",
+                success: function(data) {
+                    $("#popup-bckgrnd").attr("class", "popup-hide");
+                    $("#popup-bckgrnd>div>div:nth-child(3)").attr("class", "popup-hide");
+                    if (app.isMobile()) {
+                        app.slidePage(new NotificationHeaderView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render(), true);
+                    } else {
+                        app.slidePage(new NotificationFullView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render());
+                    }
+                    return "success";
+                },
+                error: function(data) {
+                    app.showAlert("Ajax Error");
+                    return "error";
+                }
+            });
+        } else {
+            app.showAlert("Plaese Select A Notification!");
         }
     },
     slideDown: function(elem)
