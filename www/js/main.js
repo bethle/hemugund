@@ -233,9 +233,11 @@ var app = {
         });
     },
     isMobile: function() {
-        if (navigator.userAgent.match(/iPad|iPhone|iPod|android/i) != null && screen.width <= 568) {
+        if (navigator.userAgent.match(/iPad|iPhone|iPod/i) != null && screen.width <= 568) {
             return true;
-        } else {
+        }else if(screen.width <= 568){
+            return true;
+        }else {
             return false;
         }
     },
