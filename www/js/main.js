@@ -158,7 +158,7 @@ var app = {
     },
     initialize: function() {
         this.registerEvents();
-        this.URL = "http://192.168.10.50:8084/mbs/"; //182.18.157.157:7001 192.168.10.50:8084/mbs/
+        this.URL = "http://182.18.157.157:7001/mbs/"; //182.18.157.157:7001 192.168.10.50:8084/mbs/
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.forwardURL = /^#Forward/;
