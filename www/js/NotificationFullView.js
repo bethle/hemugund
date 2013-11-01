@@ -10,6 +10,16 @@ var NotificationFullView = function(detail) {
         this.registerEvents();
     };
     this.render = function() {
+        if (app.mod === "others") {
+            $.ajax({
+                url: app.URL + "Detail/" + app.mod ,
+                dataType: "json",
+                data: "notify={\"user\":\"" + app.user + "\"}",
+                success: self.loadHeaderList,
+                error: app.errorAlert
+            });
+            return this;
+        }
         $.ajax({
             url: app.URL + "Notifications/" + app.mod + "/" + self.index++,
             dataType: "json",
@@ -65,7 +75,7 @@ var NotificationFullView = function(detail) {
                 $("#more-notify-header").remove();
                 $("#" + app.mod + "-header-list").append(NotificationFullView.liTemplate(data.result));
             }
-            if (data.result.length < 5 || data.searchSet || data.filterSet ) {
+            if (data.result.length < 20 || data.searchSet || data.filterSet || app.mod === "others") {
                 $("#more-notify-header").remove();
             }
         } else {
