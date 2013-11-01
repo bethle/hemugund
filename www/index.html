@@ -161,49 +161,97 @@
         </script>
 
         <script id="notification-full-view-tpl" type="text/x-handlebars-template">
-        <div class='header'><a href='#' class='button header-button header-button-left'><span style="display:block;margin-left:5px" >Back</span></a><h1>{{type}}</h1><h3>{{name}}</h3><a class='button header-button header-button-right action-button' onclick="app.slideDown(document.getElementById('ActionFooter'))" ></a></div>
-        <div style="float:left; width:38%;">
+            <div class='header'><a href='#' class='button header-button header-button-left'><span style="display:block;margin-left:5px" >Back</span></a><h1>{{type}}</h1><h3>{{name}}</h3><a class='button header-button header-button-right action-button' onclick="app.slideDown(document.getElementById('ActionFooter'))" ></a></div>                
+            <div style="float:left; width:38%;">
             <div id="search">
-                <div><input type="search" id="search-input" /></div>            
-                <a href="#Filter" class='button filter-button'  style="background-image:url('img/filter_tablet.png')" ></a>
-                <div id="search-notify-header" class="search-button" >Search</div>                
+            <div><input type="search" id="search-input" /></div>            
+            <a href="#Filter" class='button filter-button'  style="background-image:url('img/filter_tablet.png')" ></a>
+            <div id="search-notify-header" class="search-button" >Search</div>                
             </div>
             <div id='header-list' class="sliding-effect scrollable" style="top:92px;bottom:0px;width:38%;max-height:100000px;height: calc(100% - 92px);">
-                <ul id="{{mod}}-header-list" style="padding-bottom: 92px;">         
-                    <li style="text-align:center;">            
-                        <img src="img/mini-loading.gif" style="padding-top: 20px;" />
-                    </li>
-                </ul>
+            <ul id="{{mod}}-header-list" style="padding-bottom: 92px;">         
+            <li style="text-align:center;">            
+            <img src="img/mini-loading.gif" style="padding-top: 20px;" />
+            </li>
+            </ul>
             </div>
             <div id="filter" class="sliding-effect" >
             </div>
-        </div>               
-        <div id="header-details" style="float:right; width:62%;height: calc(100% - 50px);overflow:hidden;">
-        </div>                 
-        <div class="sliding-effect" id="ActionFooter" style="float:right;width:62%;" >   
+            </div>               
+            <div id="header-details" style="float:right; width:62%;height: calc(100% - 50px);overflow:hidden;">
+            </div>                 
+            <div class="sliding-effect" id="ActionFooter" style="float:right;width:62%;" >   
             <div onclick="app.slideUp(document.getElementById('ActionFooter'));" ></div>
             <table cellspacing='0' cellpadding='0' >
-                <tr>
-                    <td>
-                        <a><input type="button" value="Forward" onclick="app.showAlert('ForwardAlert');" /></a> 
-                    </td>                 
-                </tr>
-                <tr>
-                    <td>
-                        <a><input type="button" value="Approve" onclick="app.showAlert('ApproveAlert');" /></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a><input type="button" value="Reject" onclick="app.showAlert('RejectAlert');" /></a>
-                    </td>                    
-                </tr>            
+            <tr>
+            <td>
+            <a><input type="button" value="Forward" onclick="app.popAlert('ForwardAlert');" /></a> 
+            </td>                 
+            </tr>
+            <tr>
+            <td>
+            <a><input type="button" value="Approve" onclick="app.popAlert('ApproveAlert');" /></a>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <a><input type="button" value="Reject" onclick="app.popAlert('RejectAlert');" /></a>
+            </td>                    
+            </tr>            
             </table>
-        </div>            
+            </div>            
         </script>       
 
+        <script id="notification-popup-view-tpl" type="text/x-handlebars-template" >
+            <div id="popup-bckgrnd" class="popup-hide" >
+            <div id="ApproveAlert" class="popup-hide" >
+            <img src="img/Close.png" onclick="app.closeAlert(this)" />
+            <p>Do you want to approve?</p>
+            <p>Comments:</p>  
+            <textarea id="approve-comment" ></textarea>
+            <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
+            </div>
+            <div id="ForwardAlert" class="popup-hide" >
+            <img src="img/Close.png" onclick="app.closeAlert(this);" />
+            <table cellspacing='0' cellpadding='0'>
+            <tr>
+            <td>
+            Person Name:
+            </td>
+            <td>
+            <div>
+            <div id='select-user' >Choose a person...</div>
+            <img src="img/arrow.png" />
+            <select id="user-list" onchange="document.getElementById('select-user').innerHTML = this.options[this.selectedIndex].text" >
+            <option value='' >Choose a person...</option>                                        
+            <option value='sysadmin' >sysadmin</option>            
+            <option value='bpalmer' >bpalmer</option>            
+            <option value='tgreen' >tgreen</option>            
+            <option value='cbrown' >cbrown</option>            
+            </select>
+            </div>    
+            </td>
+            </tr>
+            </table>
+            <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
+            </div>
+            <div id="RejectAlert" class="popup-hide" >
+            <img src="img/Close.png" onclick="app.closeAlert(this)" />
+            <p>Do you want to Reject?</p>
+            <p>Comments:</p>  
+            <textarea id="reject-comment" ></textarea>
+            <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
+            </div>
+            <div id="AttachmentAlert" class="popup-hide" >
+            <img src="img/Close.png" onclick="app.closeAlert(this)" />
+            <ul id="attachment-list">
+            </ul>
+            </div>   
+            </div>
+        </script>
+
         <script id="notification-detail-view-tpl" type="text/x-handlebars-template" >
-            <div class='header'><a class='button header-button header-button-left ' href="#Back"><span style="display:block;margin-left:5px" >Back</span></a><h1 style="line-height:44px;height:44px;font-size:22px;padding-top:0px;" >{{num}}</h1><a class='button header-button header-button-right action-button' onclick="app.slideDown(document.getElementById('ActionFooter'))" ></a></div>
+            <div class='header'><a class='button header-button header-button-left ' href="#Back"><span style="display:block;margin-left:5px" >Back</span></a><h1 style="line-height:44px;height:44px;font-size:22px;padding-top:0px;" >{{num}}</h1><a class='button header-button header-button-right action-button' onclick="app.slideDown(document.getElementById('ActionFooter'))" ></a></div>            
             <div id="header-details" >
             <div>            
             <p>{{this.name}}</p>
@@ -254,72 +302,27 @@
             </div>
             </div>             
             </div>
-            </div>
-            <div id="popup-bckgrnd" class="popup-hide" >
-            <div id="ApproveAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="app.closeAlert(this)" />
-            <p>Do you want to approve?</p>
-            <p>Comments:</p>  
-            <textarea id="approve-comment" ></textarea>
-            <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
-            </div>
-            <div id="ForwardAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="app.closeAlert(this);" />
-            <table cellspacing='0' cellpadding='0'>
-            <tr>
-            <td>
-            Person Name:
-            </td>
-            <td>
-            <div>
-            <div id='select-user' >Choose a person...</div>
-            <img src="img/arrow.png" />
-            <select id="user-list" onchange="document.getElementById('select-user').innerHTML = this.options[this.selectedIndex].text" >
-            <option value='' >Choose a person...</option>                                        
-            <option value='sysadmin' >sysadmin</option>            
-            <option value='bpalmer' >bpalmer</option>            
-            <option value='tgreen' >tgreen</option>            
-            <option value='cbrown' >cbrown</option>            
-            </select>
-            </div>    
-            </td>
-            </tr>
-            </table>
-            <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
-            </div>
-            <div id="RejectAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="app.closeAlert(this)" />
-            <p>Do you want to Reject?</p>
-            <p>Comments:</p>  
-            <textarea id="reject-comment" ></textarea>
-            <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
-            </div>
-            <div id="AttachmentAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="app.closeAlert(this)" />
-            <ul id="attachment-list">
-            </ul>
-            </div>   
-            </div>    
+            </div>                
             <div class="sliding-effect" id="ActionFooter" >   
             <div onclick="app.slideUp(document.getElementById('ActionFooter'));" ></div>
             <table cellspacing='0' cellpadding='0' >
-                <tr>
-                    <td>
-                        <a><input type="button" value="Forward" onclick="app.showAlert('ForwardAlert');" /></a> 
-                    </td>                 
-                </tr>
-                <tr>
-                    <td>
-                        <a><input type="button" value="Approve" onclick="app.showAlert('ApproveAlert');" /></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a><input type="button" value="Reject" onclick="app.showAlert('RejectAlert');" /></a>
-                    </td>                    
-                </tr>            
+            <tr>
+            <td>
+            <a><input type="button" value="Forward" onclick="app.showAlert('ForwardAlert');" /></a> 
+            </td>                 
+            </tr>
+            <tr>
+            <td>
+            <a><input type="button" value="Approve" onclick="app.showAlert('ApproveAlert');" /></a>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <a><input type="button" value="Reject" onclick="app.showAlert('RejectAlert');" /></a>
+            </td>                    
+            </tr>            
             </table>
-        </div>
+            </div>
         </script>
 
         <script id="header-list-tpl" type="text/x-handlebars-template" >                   
@@ -636,51 +639,6 @@
             </div>
             </div>             
             </div>
-            </div>
-            <div id="popup-bckgrnd" class="popup-hide" >
-            <div id="ApproveAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="app.closeAlert(this)" />
-            <p>Do you want to approve?</p>
-            <p>Comments:</p>  
-            <textarea id="approve-comment" ></textarea>
-            <div><input type="button" value="OK" onclick="location.href = '#Approve'" /></div>                     
-            </div>
-            <div id="ForwardAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="app.closeAlert(this);" />
-            <table cellspacing='0' cellpadding='0'>
-            <tr>
-            <td>
-            Person Name:
-            </td>
-            <td>
-            <div>
-            <div id='select-user' >Choose a person...</div>
-            <img src="img/arrow.png" />
-            <select id="user-list" onchange="document.getElementById('select-user').innerHTML = this.options[this.selectedIndex].text" >
-            <option value='' >Choose a person...</option>                                        
-            <option value='sysadmin' >sysadmin</option>            
-            <option value='bpalmer' >bpalmer</option>            
-            <option value='tgreen' >tgreen</option>            
-            <option value='cbrown' >cbrown</option>            
-            </select>
-            </div>    
-            </td>
-            </tr>
-            </table>
-            <div><input type="button" value="Send" onclick="location.href = '#Forward'" /></div>
-            </div>
-            <div id="RejectAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="app.closeAlert(this)" />
-            <p>Do you want to Reject?</p>
-            <p>Comments:</p>  
-            <textarea id="reject-comment" ></textarea>
-            <div ><input type="button" value="OK" onclick="location.href = '#Reject'" /></div>                     
-            </div>
-            <div id="AttachmentAlert" class="popup-hide" >
-            <img src="img/Close.png" onclick="app.closeAlert(this)" />
-            <ul id="attachment-list">
-            </ul>
-            </div>   
         </script>
 
         <script  id="invoice-header-details-list-tpl" type="text/x-handlebars-template" >                   
