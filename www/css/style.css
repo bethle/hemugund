@@ -1175,10 +1175,14 @@ contact form end
     padding: 10px 0;
     height: 100%;
 }
-/*#list-items>div{
+#list-items>div{
+    width: 100%;
+    height: 100%;
+}
+/*#list-items>div>div{
     width: 100%;
 }*/
-/*#list-items>div>table{
+/*#list-items>div>div>table{
     width: 90%;
     background: #3399cc;
     margin: 0 auto;
@@ -1188,19 +1192,19 @@ contact form end
     font-family: 'Arial';
     font-size: 95%;
 }
-#list-items>div>table tr>td:nth-child(1),#list-items>ul>li>table tr>td:nth-child(1) {
+#list-items>div>div>table tr>td:nth-child(1),#list-items>div>ul>li>table tr>td:nth-child(1) {
     width: 15%;
 }
-#list-items>div>table tr>td:nth-child(2),#list-items>ul>li>table tr>td:nth-child(2){
+#list-items>div>div>table tr>td:nth-child(2),#list-items>div>ul>li>table tr>td:nth-child(2){
     width: 25%;
 }
-#list-items>div>table tr>td:nth-child(3),#list-items>ul>li>table tr>td:nth-child(3){
+#list-items>div>div>table tr>td:nth-child(3),#list-items>div>ul>li>table tr>td:nth-child(3){
     width: 25%;
 }
-#list-items>div>table tr>td:nth-child(4),#list-items>ul>li>table tr>td:nth-child(4){
+#list-items>div>div>table tr>td:nth-child(4),#list-items>div>ul>li>table tr>td:nth-child(4){
     width: 35%;
 }*/
-#list-items>table{
+#list-items>div>table{
     width: 90%;
     background: #3399cc;
     margin: 0 auto;
@@ -1210,23 +1214,23 @@ contact form end
     font-family: 'Arial';
     font-size: 95%;
 }
-#list-items>table tr>td:nth-child(1),#list-items>ul>li>table tr>td:nth-child(1) {
+#list-items>div>table tr>td:nth-child(1),#list-items>div>ul>li>table tr>td:nth-child(1) {
     width: 15%;
 }
-#list-items>table tr>td:nth-child(2),#list-items>ul>li>table tr>td:nth-child(2){
+#list-items>div>table tr>td:nth-child(2),#list-items>div>ul>li>table tr>td:nth-child(2){
     width: 25%;
 }
-#list-items>table tr>td:nth-child(3),#list-items>ul>li>table tr>td:nth-child(3){
+#list-items>div>table tr>td:nth-child(3),#list-items>div>ul>li>table tr>td:nth-child(3){
     width: 25%;
 }
-#list-items>table tr>td:nth-child(4),#list-items>ul>li>table tr>td:nth-child(4){
+#list-items>div>table tr>td:nth-child(4),#list-items>div>ul>li>table tr>td:nth-child(4){
     width: 35%;
 }
 
-#list-items>ul{
+#list-items>div>ul{
     width: 100%;
 }
-#list-items>ul>li{
+#list-items>div>ul>li{
     list-style: none;
     width: 90%;    
     margin: 0 auto;   
@@ -1239,10 +1243,10 @@ contact form end
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
-#list-items>ul>li:nth-child(1){
+#list-items>div>ul>li:nth-child(1){
     border-top: 0;
 }
-#list-items>ul>li>table{
+#list-items>div>ul>li>table{
     width: 100%;
     height: 20px;    
     border-bottom: 1px solid #c2c2c2;
@@ -1256,7 +1260,7 @@ contact form end
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
-#list-items>ul>li>table tr:nth-child(2)>td{
+#list-items>div>ul>li>table tr:nth-child(2)>td{
     overflow: hidden;
     padding-left: 5px;
     padding-right: 5px;
@@ -1266,23 +1270,23 @@ contact form end
     font-size: 70%;
     color: #5F6065; 
 }
-#list-items>ul>li>table tr>td{    
+#list-items>div>ul>li>table tr>td{    
     height: 50%;    
     font-family: 'Arial';
     font-size: 90%;
     color: #000000;
     text-align: center;
 }
-#list-items>ul>li>div{
+#list-items>div>ul>li>div{
     width: 100%;
     height: auto;               
     margin: 0 auto;
     /*display: none;*/
 }
-#list-items>ul>li>div>ul:nth-child(1){
+#list-items>div>ul>li>div>ul:nth-child(1){
     width: 94%;    
 }
-#list-items>ul>li>div>table:nth-child(2){
+#list-items>div>ul>li>div>table:nth-child(2){
     background-color: #3399CC;
     color: #FFFFFF;
     font-family: 'Arial';
@@ -1292,33 +1296,33 @@ contact form end
     text-align: center;
     width: 96%;    
 }
-#list-items>ul>li>div>table:nth-child(2) tr>td{
+#list-items>div>ul>li>div>table:nth-child(2) tr>td{
     width: 25%;
 }
-#list-items>ul>li>div>ul:nth-child(3){
+#list-items>div>ul>li>div>ul:nth-child(3){
     width: 96%;  
     margin: 0 auto 5px auto;
     border: 1px solid #c2c2c2;
 }
-#list-items>ul>li>div>ul:nth-child(3)>li{
+#list-items>div>ul>li>div>ul:nth-child(3)>li{
     border-bottom: 1px solid #c2c2c2;
 }
-#list-items>ul>li>div>ul:nth-child(3)>li:last-child{
+#list-items>div>ul>li>div>ul:nth-child(3)>li:last-child{
     border: 0;
 }
-#list-items>ul>li>div>ul:nth-child(3)>li>table{
+#list-items>div>ul>li>div>ul:nth-child(3)>li>table{
     width: 100%;
     font-family: 'Arial';
     font-size: 90%;
     text-align: center;
 }
-#list-items>ul>li>div>ul:nth-child(3)>li>table tr>td{
+#list-items>div>ul>li>div>ul:nth-child(3)>li>table tr>td{
     width: 25%;
 }
-#list-items>ul>li>div>ul:nth-child(1){
+#list-items>div>ul>li>div>ul:nth-child(1){
     padding:0 1% 0 5%;
 }
-#list-items>ul>li>div>ul>li{
+#list-items>div>ul>li>div>ul>li{
     padding: 5px 0;
     font-family: 'Arial';
     font-size: 90%;
@@ -1326,13 +1330,13 @@ contact form end
     text-align: left;
     list-style: none;
 }
-#list-items>ul>li>div>ul>li>span{
+#list-items>div>ul>li>div>ul>li>span{
     display: inline;
 }
-#list-items>ul>li>div>ul>li>span:nth-child(2){
+#list-items>div>ul>li>div>ul>li>span:nth-child(2){
     font-weight: bold;
 }
-#list-items>ul>li>div>ul:nth-child(2)>li>table{
+#list-items>div>ul>li>div>ul:nth-child(2)>li>table{
     width: 100%;
     text-align: center;
     font-size: 100%;
@@ -1807,7 +1811,7 @@ label {
     #header-details > div:nth-child(3){
         padding: 5px 0 24px;
     }
-    #list-items:after{
+    #list-items>div:after{
         margin-left: 36px;
     }
     #header-details > div:nth-child(3) > ul > li{
@@ -1887,7 +1891,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     #header-details > div:nth-child(3){
         padding: 5px 0 24px;
     }
-    #list-items:after{
+    #list-items>div:after{
         margin-left: 36px;
     }
     #header-details > div:nth-child(3) > ul > li{
@@ -1977,7 +1981,7 @@ only screen and (min-width:560px) and (max-width:754px) and (orientation:landsca
     #header-details > div:nth-child(3){
         padding: 5px 0 24px;
     }
-    #list-items:after{
+    #list-items>div:after{
         margin-left: 26px;
     }
     #header-details > div:nth-child(3) > ul > li{

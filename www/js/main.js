@@ -307,6 +307,7 @@ var app = {
         document.getElementById('approve-comment').value = "";
         document.getElementById('reject-comment').value = "";
         elem.parentNode.parentNode.className = "popup-hide";
+        elem.parentNode.parentNode.parentNode.className = "popup-hide";
         elem.parentNode.className = "popup-hide";
     },
 // Used to simulate async calls. This is done to provide a consistent
