@@ -150,7 +150,7 @@
             <div id="search-notify-header" class="search-button" >Search</div>
             </div>
             <div id='header-list' class="scrollable" style="top:92px;bottom:0px;left0px;right:0px;">                
-            <ul id="{{mod}}-header-list" >         
+            <ul id="{{mod}}-header-list" style="padding-bottom: 92px;" >         
             <li style="text-align:center;">            
             <img src="img/mini-loading.gif" style="padding-top: 20px;" />
             </li>
@@ -312,17 +312,17 @@
             <table cellspacing='0' cellpadding='0' >
             <tr>
             <td>
-            <a><input type="button" value="Forward" onclick="app.showAlert('ForwardAlert');" /></a> 
+            <a><input type="button" value="Forward" onclick="app.popAlert('ForwardAlert');" /></a> 
             </td>                 
             </tr>
             <tr>
             <td>
-            <a><input type="button" value="Approve" onclick="app.showAlert('ApproveAlert');" /></a>
+            <a><input type="button" value="Approve" onclick="app.popAlert('ApproveAlert');" /></a>
             </td>
             </tr>
             <tr>
             <td>
-            <a><input type="button" value="Reject" onclick="app.showAlert('RejectAlert');" /></a>
+            <a><input type="button" value="Reject" onclick="app.popAlert('RejectAlert');" /></a>
             </td>                    
             </tr>            
             </table>
