@@ -21,7 +21,7 @@
             function backButtonTap()
             {
 
-                if (window.location.indexOf("#") === (window.location.length - 1) || window.location.split("#", 2)[1] === "Login") {
+                if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
                     navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
                         if (buttonIndex === 1) {
                             location.href = "#Logout";
