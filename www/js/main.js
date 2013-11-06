@@ -233,10 +233,9 @@ var app = {
         });
     },
     isMobile: function() {
-app.showAlert(navigator.userAgent, "User Agent");
         if (navigator.userAgent.match(/iPad|iPhone|iPod/i) != null && screen.width <= 568) {
             return true;
-        } else if (navigator.userAgent.match(/mobile/i)) {
+        } else if (navigator.userAgent.match(/mobile/i)&& (!navigator.userAgent.match(/Apple/i))) {
             return true;
         } else {
             return false;
