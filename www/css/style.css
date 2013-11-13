@@ -61,6 +61,7 @@ a{
     position: relative;
     vertical-align: middle;
     width: 100%; 
+    text-align: center;
 }
 #loginScreen>div:nth-child(1){
     width: 260px;
@@ -78,7 +79,7 @@ a{
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 310px 4px;         
-    margin: 0 auto 28px auto;
+    margin: 0 auto 14px auto;
 }
 /*form css*/
 input[type="text"],input[type="password"]{
@@ -99,16 +100,17 @@ input[type="text"],input[type="password"]{
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color:    #555;
 }
-#loginScreen>div:nth-child(3){
+#loginScreen>div:nth-child(4){
     width: 100%;
     float: left;    
+    margin: 14px auto 0;
 }
-#loginScreen>div:nth-child(3)>table{
+#loginScreen>div:nth-child(4)>table{
     width: auto;
     border-collapse: separate;
     margin: 0 auto;
 }
-#loginScreen>div:nth-child(3)>table tr:nth-child(1)>td,#loginScreen>div:nth-child(3)>table tr:nth-child(3)>td{    
+#loginScreen>div:nth-child(4)>table tr:nth-child(1)>td,#loginScreen>div:nth-child(4)>table tr:nth-child(3)>td{    
     width: 306px;
     height: 36px;
     border: 1px solid #cbcbcb;
@@ -116,7 +118,7 @@ input[type="text"],input[type="password"]{
     box-shadow: 0 0 7px 0 #C2C2C2 inset;   
     background-color: #ffffff;
 }
-#loginScreen>div:nth-child(3)>table tr>td>div{
+#loginScreen>div:nth-child(4)>table tr>td>div{
     width: 45px;
     height: 36px;
     border-right: 1px solid #e2e2e2;
@@ -124,27 +126,27 @@ input[type="text"],input[type="password"]{
     background-position: center center;    
     float: left;
 }
-#loginScreen>div:nth-child(3)>table tr:nth-child(2)>td{
+#loginScreen>div:nth-child(4)>table tr:nth-child(2)>td{
     height: 10px;
 }
-#loginScreen>div:nth-child(3)>table tr:nth-child(1)>td>div{
+#loginScreen>div:nth-child(4)>table tr:nth-child(1)>td>div{
     background-image: url('../img/User-Icon.png');
 }
-#loginScreen>div:nth-child(3)>table tr:nth-child(3)>td>div{
+#loginScreen>div:nth-child(4)>table tr:nth-child(3)>td>div{
     background-image: url('../img/Vector-Smart-Object.png');
 }
 /*login button css*/
-#loginScreen>div:nth-child(4){
+#loginScreen>div:nth-child(5){
     width: 100%;
     float: left;
 }
-#loginScreen>div:nth-child(4)>div{
+#loginScreen>div:nth-child(5)>div{
     display: table;
     margin: 0 auto;
     table-layout: fixed;
     width: 310px;
 }
-#loginScreen>div:nth-child(4)>div>a{
+#loginScreen>div:nth-child(5)>div>a{
     width: 305px;
     font-family: 'Arial';
     font-size: 13px;
@@ -179,7 +181,10 @@ input[type="submit"]:active{
     opacity: 0.5;
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
-
+#login-loading{
+    display: none;
+    margin: 0 auto;
+}
 /*header css*/
 .header {
     font-family: 'Arial';
@@ -409,9 +414,10 @@ list content css start
 }
 #popup-bckgrnd>div{ 
     display: table-cell;
+    width: 100%;
     height: 100%;
     vertical-align: middle;
-    width: 100%;}
+}
 #popup-bckgrnd>div>div{
     width: 80%;
     height: auto;
@@ -503,7 +509,7 @@ list content css start
     height: 150px;
     margin: 0 auto;
 }
-#popup-bckgrnd>div:nth-child(4)>ul{
+#popup-bckgrnd>div>div:nth-child(4)>ul{
     width: 90%;
     margin: 10px auto;
     background: #ffffff;
@@ -512,7 +518,7 @@ list content css start
     display: table;
     table-layout: fixed;
 }
-#popup-bckgrnd>div:nth-child(4)>ul>li{
+#popup-bckgrnd>div>div:nth-child(4)>ul>li{
     height:  auto;
     padding: 5px 10px;
     border-bottom: 1px solid #c2c2c2;
@@ -521,7 +527,7 @@ list content css start
     color: #000000;
     list-style: none;
     text-align: left;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word;
@@ -534,13 +540,13 @@ list content css start
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);  
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
-#popup-bckgrnd>div:nth-child(4)>ul>li>span{
+#popup-bckgrnd>div>div:nth-child(4)>ul>li>span{
     color: #F53F3F;
 }
-#popup-bckgrnd>div:nth-child(4)>ul>li:last-child{
+#popup-bckgrnd>div>div:nth-child(4)>ul>li:last-child{
     border-bottom: 0;
 }
-#popup-bckgrnd>div:nth-child(4)>ul>li>form>a{
+#popup-bckgrnd>div>div:nth-child(4)>ul>li>a{
     padding-left: 5px;
     text-decoration: underline;
     color: #3399cc;
@@ -1567,7 +1573,7 @@ label {
     top: 9px;    
 }
 /*filter css end*/
-#popup-bckgrnd>div>div>form>table tr>td:nth-child(2)>div{
+#popup-bckgrnd>div>div>table tr>td:nth-child(2)>div{
     width: 96%;
     height: 20px;
     position: relative;
@@ -1582,7 +1588,7 @@ label {
     border-radius: 5px;
     margin-left: 10px;    
 }
-#popup-bckgrnd>div>div>form>table tr>td:nth-child(2)>div>div{
+#popup-bckgrnd>div>div>table tr>td:nth-child(2)>div>div{
     width: 96%;
     height: 20px;
     position: absolute;
@@ -1592,7 +1598,7 @@ label {
 }
 #popup-bckgrnd>div>div>table tr>td:nth-child(2)>div>select{
     width: 98%;
-    height: 22px;
+    height: 32px;
     position: absolute;
     opacity: 0;   
     top: 0;
@@ -1601,8 +1607,8 @@ label {
 #popup-bckgrnd>div>div>table tr>td:nth-child(2)>div>img{
     height: 12px;
     position: absolute;
-    right: -10px;
-    top: 5px;
+    right: 5px;
+    top: 10px;
 }
 
 

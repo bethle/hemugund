@@ -4,6 +4,7 @@ var app = {
         location.href = "#Error";
     },
     showAlert: function(message, title) {
+        $("#login-loading").removeAttr("style");
         console.log('alerted: ' + message + ' : ' + title);
         if (navigator.notification) {
             navigator.notification.alert(message, null, title, 'OK');
@@ -67,6 +68,7 @@ var app = {
         }
         match = hash.match(app.loginURL);
         if (match) {
+            $("#login-loading").css("display","block");
             this.user = $('#user-name').val();
             this.pass = $('#password').val();
             $.ajax({
@@ -122,6 +124,31 @@ var app = {
 //            return;
 //        }
 
+/********SANDEEP***********/
+        match = hash.match(/^#Down(.{1,})-(\d{1,})~(.{1,})/);
+        if (match) {
+            //match[2] = id
+            //match[3] = type
+/*            var downloadURL = app.URL + "Download?id="+match[2]+"&type="+match[3];
+            if(this.isiOS()){
+                window.location = "@@@@openAtachments;;;"+downloadURL;
+            }else if(this.isAndroid()){
+                Android.downloadAttachment(downloadURL,match[3]);
+            }else{
+                document.location = downloadURL;
+            }
+            //window.location = "@@@@openAtachments;;;"+match[2]+";;;"+match[3];
+ /*           $.ajax({
+                url: app.URL + "Download?id="+match[2]+"&type="+match[3],
+                complete: function(data) {
+                    alert(data);
+                   writeToFile(data,match[1]);
+                }
+            });*/
+            return;
+        }
+/********SANDEEP*****END******/
+
         match = hash.match(/^#Logout/);
         if (match) {
             $.ajax({
@@ -140,7 +167,7 @@ var app = {
     },
     initialize: function() {
         this.registerEvents();
-        this.URL = "http://182.18.157.157:7001/mbs/"; //182.18.157.157:7001 192.168.10.50:8084/mbs/
+        this.URL = "http://182.18.157.157:7001/mob/"; //182.18.157.157:7001 192.168.10.50:8084/mbs/
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
@@ -235,11 +262,30 @@ var app = {
     isMobile: function() {
         if (navigator.userAgent.match(/iPad|iPhone|iPod/i) != null && screen.width <= 568) {
             return true;
-        } else if (navigator.userAgent.match(/mobile/i)&& (!navigator.userAgent.match(/Apple/i))) {
+        } else if (navigator.userAgent.match(/Android/i) && navigator.userAgent.match(/mobile/i))//(navigator.userAgent.match(/mobile/i)&& (!navigator.userAgent.match(/Apple/i)))
+        {
             return true;
         } else {
             return false;
         }
+    },
+    isAndroid: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    isBlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    isiOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    isOpera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    isWindows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    isany: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
     },
     tab: function(elem) {
         var index = $(elem).index();
@@ -384,10 +430,55 @@ var app = {
                 callback(data);
             });
         }
-    }
+    },
+    downloadAttachment: function(file,id,type){/********SANDEEP***********/
+        var downloadURL = app.URL + "Download?id="+id+"&type="+type;
+        if(this.isiOS()){
+            window.location = "@@@@openAtachments;;;"+downloadURL;
+        }else if(this.isAndroid()){
+            Android.downloadAttachment(downloadURL,type);
+        }else{
+            document.location = downloadURL;
+        }
 
+    }/********SANDEEP*****END******/
 };
 
 //app.orgListTemplate = Handlebars.compile(document.getElementById("filter-orgs-list-tpl").innerHTML);
 app.popTemplate = Handlebars.compile(document.getElementById("notification-popup-view-tpl").innerHTML);
 app.initialize();
+
+var fileData,fileName;
+function onDeviceReady() {
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+}
+function writeToFile(data,fileNm){
+    fileData = data;
+    fileName = fileNm;alert("about to write: "+fileNm);
+    fileSystem.root.getFile(fileNm, {create: true, exclusive: false}, gotFileEntry, fail);
+}
+
+function gotFileEntry(fileEntry) {
+    
+    fileEntry.createWriter(gotFileWriter, fail);
+}
+
+function gotFileWriter(writer) {
+    writer.onwriteend = function(evt) {
+        console.log("contents of file now 'some sample text'");
+//        writer.truncate(11);
+        writer.onwriteend = function(evt) {
+            console.log("contents of file now 'some sample'");
+            writer.seek(4);
+            writer.write(" different text");
+            writer.onwriteend = function(evt){
+                alert("contents of file now 'some different text'");
+            }
+        };
+    };
+    writer.write(fileData);
+}
+
+function fail(error) {
+    alert("Failed to write: -----"+error.code);
+}

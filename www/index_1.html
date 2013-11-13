@@ -63,7 +63,6 @@
             <div id="loginScreen" >
             <div></div>
             <div></div>
-            <img src="img/mini-loading.gif" id="login-loading" />
             <div>
             <table cellspacing="0" cellpadding="0">
             <tr>
@@ -132,12 +131,9 @@
 
         <script id="attachment-alert-tpl" type="text/x-handlebars-template">                        
             {{#.}}
-    <!--        <li><a href="#Down{{file}}-{{id}}~{{type}}">{{file}}&nbsp;({{entity}})&nbsp;-->
-            <li><a onclick="app.downloadAttachment('{{file}}','{{id}}','{{type}}')">{{file}}&nbsp;({{entity}})&nbsp;
+            <li><a href="#Down{{file}}-{{id}}~{{type}}">{{file}}&nbsp;({{entity}})&nbsp;
             </a><span style="color:red;float:right" >&nbsp;{{user}}</span>
             </li>
-            {{else}}
-            <li>No Attachments</li>
             {{/.}}
         </script>
 
