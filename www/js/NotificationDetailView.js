@@ -66,7 +66,18 @@ var NotificationDetailView = function(detail) {
                     break;
             }
             $("#history-list").html(NotificationDetailView.historyLiTemplate(data.result.hist));
-            $("#attachment-list").html(NotificationDetailView.attachmentLiTemplate(data.result.atch));
+            if (data.result.atch) {
+                if (data.result.atch.length) {
+                    $("#attachment-list").html(NotificationDetailView.attachmentLiTemplate(data.result.atch));
+                    $(".attach-icon:visible").html('<a onclick="app.popAlert(\'AttachmentAlert\');" ><img src="img/attachment-icon.png" ></a>');
+                }
+                else {
+                    $(".attach-icon:visible a").remove();
+                }
+            }
+            else {
+                $(".attach-icon:visible a").remove();
+            }
         } else {
             app.showAlert(data.message, "Details: ");
         }

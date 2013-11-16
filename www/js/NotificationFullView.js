@@ -12,7 +12,7 @@ var NotificationFullView = function(detail) {
     this.render = function() {
         if (app.mod === "others") {
             $.ajax({
-                url: app.URL + "Detail/" + app.mod ,
+                url: app.URL + "Detail/" + app.mod,
                 dataType: "json",
                 data: "notify={\"user\":\"" + app.user + "\"}",
                 success: self.loadHeaderList,
@@ -40,7 +40,7 @@ var NotificationFullView = function(detail) {
         }
     };
     this.loadDetail = function(id, hid) {
-        $("#header-details").html(NotificationFullView.detailTemplate({name: $('#' + hid + '-name').text(), amount: $('#' + hid + '-amount').text(), code: $('#' + hid + '-code').text(), date: $('#' + hid + '-date').text(), hid: hid, id: id, num: $('#' + hid + '-num').text()}));
+        $("#header-details").html(NotificationFullView.detailTemplate({name: $('#' + hid + '-name').text(), amount: $('#' + hid + '-amount').text(), code: $('#' + hid + '-code').text(), date: $('#' + hid + '-date').text(), hid: hid, id: id, num: $('#' + hid + '-num').text(), desc: $('#' + hid + '-subject').text()}));
         $.ajax({
             url: app.URL + "LineDetail/" + app.mod,
             dataType: "json",
@@ -101,7 +101,18 @@ var NotificationFullView = function(detail) {
                     break;
             }
             $("#history-list").html(NotificationFullView.historyLiTemplate(data.result.hist));
-            $("#attachment-list").html(NotificationFullView.attachmentLiTemplate(data.result.atch));
+            if (data.result.atch) {
+                if (data.result.atch.length) {
+                    $("#attachment-list").html(NotificationFullView.attachmentLiTemplate(data.result.atch));
+                    $(".attach-icon:visible").html('<a onclick="app.popAlert(\'AttachmentAlert\');" ><img src="img/attachment-icon.png" ></a>');
+                }
+                else {
+                    $(".attach-icon:visible a").remove();
+                }
+            }
+            else {
+                $(".attach-icon:visible a").remove();
+            }
         } else {
             app.showAlert(data.message, "Details: ");
         }

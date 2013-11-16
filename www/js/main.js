@@ -4,7 +4,7 @@ var app = {
         location.href = "#Error";
     },
     showAlert: function(message, title) {
-        $("#login-loading").removeAttr("style");
+        $(".loading").removeAttr("style");
         console.log('alerted: ' + message + ' : ' + title);
         if (navigator.notification) {
             navigator.notification.alert(message, null, title, 'OK');
@@ -68,7 +68,7 @@ var app = {
         }
         match = hash.match(app.loginURL);
         if (match) {
-            $("#login-loading").css("display","block");
+            $(".loading").css("display", "block");
             this.user = $('#user-name').val();
             this.pass = $('#password').val();
             $.ajax({
@@ -83,6 +83,7 @@ var app = {
 
         match = hash.match(app.notifyURL);
         if (match) {
+            this.data = null;
             this.mod = match[1];
             if (this.isMobile()) {
                 this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
@@ -96,7 +97,7 @@ var app = {
         match = hash.match(app.detailsURL);
         if (match) {
             if (this.isMobile()) {
-                this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text()}).render();
+                this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text(), desc: $('#' + match[2] + '-subject').text()}).render();
                 this.slidePage(this.prevPage);
                 $("body").append(self.popTemplate());
             } else {
@@ -114,7 +115,15 @@ var app = {
 
         match = hash.match(/^#Back/);
         if (match) {
-            this.slidePage(new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render(), true);
+            if (self.data) {
+                this.slidePage(new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}), true);
+                setTimeout(function() {
+                    self.filterResult();
+                }, 100);
+            }
+            else {
+                this.slidePage(new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render(), true);
+            }
             return;
         }
 
@@ -124,30 +133,30 @@ var app = {
 //            return;
 //        }
 
-/********SANDEEP***********/
+        /********SANDEEP***********/
         match = hash.match(/^#Down(.{1,})-(\d{1,})~(.{1,})/);
         if (match) {
             //match[2] = id
             //match[3] = type
-/*            var downloadURL = app.URL + "Download?id="+match[2]+"&type="+match[3];
-            if(this.isiOS()){
-                window.location = "@@@@openAtachments;;;"+downloadURL;
-            }else if(this.isAndroid()){
-                Android.downloadAttachment(downloadURL,match[3]);
-            }else{
-                document.location = downloadURL;
-            }
-            //window.location = "@@@@openAtachments;;;"+match[2]+";;;"+match[3];
- /*           $.ajax({
-                url: app.URL + "Download?id="+match[2]+"&type="+match[3],
-                complete: function(data) {
-                    alert(data);
-                   writeToFile(data,match[1]);
-                }
-            });*/
+            /*            var downloadURL = app.URL + "Download?id="+match[2]+"&type="+match[3];
+             if(this.isiOS()){
+             window.location = "@@@@openAtachments;;;"+downloadURL;
+             }else if(this.isAndroid()){
+             Android.downloadAttachment(downloadURL,match[3]);
+             }else{
+             document.location = downloadURL;
+             }
+             //window.location = "@@@@openAtachments;;;"+match[2]+";;;"+match[3];
+             /*           $.ajax({
+             url: app.URL + "Download?id="+match[2]+"&type="+match[3],
+             complete: function(data) {
+             alert(data);
+             writeToFile(data,match[1]);
+             }
+             });*/
             return;
         }
-/********SANDEEP*****END******/
+        /********SANDEEP*****END******/
 
         match = hash.match(/^#Logout/);
         if (match) {
@@ -167,7 +176,7 @@ var app = {
     },
     initialize: function() {
         this.registerEvents();
-        this.URL = "http://182.18.157.157:7001/mob/"; //182.18.157.157:7001 192.168.10.50:8084/mbs/
+        this.URL = "http://192.168.0.114:8084/mob/"; //182.18.157.157:7001 192.168.10.50:8084 192.168.0.121:8084 
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
@@ -175,7 +184,17 @@ var app = {
         this.route();
     },
     filter: function() {
+        var self = this;
         if ($("#filter").css("max-height") !== "0px") {
+            if (this.isMobile()) {
+                $("#search").css({"display": "block"});
+                $("#filter-done:visible").before('<a href="#Filter" class="button header-button header-button-right filter-button" id="filter-show" >');
+                $("#filter-done:visible").remove();
+            }
+            else {
+                $("#filter-done:visible").before('<a href="#Filter" class="button filter-button" id="filter-show"  style="background-image: url(img/filter.png); margin-top: 5px;background-size:43px 40px;" ></a>');
+                $("#filter-done:visible").remove();
+            }
             var i = 0;
             var checked = new Array();
             $("#filter").find("input").each(function() {
@@ -192,36 +211,49 @@ var app = {
                 i = i + 1;
             });
 
-            var data;
             if (app.mod === "rqstns") {
-                data = "{\"type\":{\"pr\":" + ((checked[0] !== "") ? true : false) + ",\"ir\":" + ((checked[1] !== "") ? true : false) + "},\"status\":{\"ar\":" + ((checked[2] !== "") ? true : false) + ",\"fyi\":" + ((checked[3] !== "") ? true : false) + ",\"closed\":" + ((checked[4] !== "") ? true : false) + "},\"day\":\"" + checked[5] + "\",\"org\":\"" + checked[6] + "\",\"user\":\"" + app.user + "\"}";
+                this.data = "{\"type\":{\"pr\":" + ((checked[0] !== "") ? true : false) + ",\"ir\":" + ((checked[1] !== "") ? true : false) + "},\"status\":{\"ar\":" + ((checked[2] !== "") ? true : false) + ",\"fyi\":" + ((checked[3] !== "") ? true : false) + ",\"closed\":" + ((checked[4] !== "") ? true : false) + "},\"day\":\"" + checked[5] + "\",\"org\":\"" + checked[6] + "\",\"user\":\"" + app.user + "\"}";
             } else if (app.mod === "prchrd") {
-                data = "{\"type\":{\"blanket\":" + ((checked[0] !== "") ? true : false) + ",\"planned\":" + ((checked[1] !== "") ? true : false) + ",\"standard\":" + ((checked[2] !== "") ? true : false) + ",\"contract\":" + ((checked[3] !== "") ? true : false) + "},\"status\":{\"ar\":" + ((checked[4] !== "") ? true : false) + ",\"fyi\":" + ((checked[5] !== "") ? true : false) + ",\"closed\":" + ((checked[6] !== "") ? true : false) + "},\"day\":\"" + checked[7] + "\",\"org\":\"" + checked[8] + "\",\"user\":\"" + app.user + "\"}";
+                this.data = "{\"type\":{\"blanket\":" + ((checked[0] !== "") ? true : false) + ",\"planned\":" + ((checked[1] !== "") ? true : false) + ",\"standard\":" + ((checked[2] !== "") ? true : false) + ",\"contract\":" + ((checked[3] !== "") ? true : false) + "},\"status\":{\"ar\":" + ((checked[4] !== "") ? true : false) + ",\"fyi\":" + ((checked[5] !== "") ? true : false) + ",\"closed\":" + ((checked[6] !== "") ? true : false) + "},\"day\":\"" + checked[7] + "\",\"org\":\"" + checked[8] + "\",\"user\":\"" + app.user + "\"}";
             } else {
-                data = "{\"status\":{\"ar\":" + ((checked[0] !== "") ? true : false) + ",\"fyi\":" + ((checked[1] !== "") ? true : false) + ",\"closed\":" + ((checked[2] !== "") ? true : false) + "},\"day\":\"" + checked[3] + "\",\"org\":\"" + checked[4] + "\",\"user\":\"" + app.user + "\"}";
+                this.data = "{\"status\":{\"ar\":" + ((checked[0] !== "") ? true : false) + ",\"fyi\":" + ((checked[1] !== "") ? true : false) + ",\"closed\":" + ((checked[2] !== "") ? true : false) + "},\"day\":\"" + checked[3] + "\",\"org\":\"" + checked[4] + "\",\"user\":\"" + app.user + "\"}";
             }
             $("#" + app.mod + "-header-list").prepend($("<li style='text-align:center;'><img src='img/mini-loading.gif' style='padding-top: 20px;' /> </li>"));
-            $.ajax({
-                url: app.URL + "Filter/" + app.mod,
-                data: "notify=" + data,
-                dataType: "json",
-                success: app.currentPage.loadHeaderList,
-                error: app.errorAlert
-            });
-            this.slideUp(document.getElementById("filter"));
-//            $("#header-list").show();
-            setTimeout(function() {
-                app.slideDown(document.getElementById("header-list"));
-            }, 500);
-            location.href = "#Donefilter";
+            self.filterResult();
+
         } else {
 //            $("#header-list").hide();
+            if (this.isMobile()) {
+                $("#search").css({"display": "none"});
+                $("#filter-show:visible").before('<a href="#Filter" class="button filter-button-done" id="filter-done" style="position:absolute;right:0;top:0;" >Done</a>')
+                $("#filter-show:visible").remove();
+            }
+            else {
+                $("#filter-show:visible").before('<a href="#Filter" class="button filter-button-done" id="filter-done"  >Done</a>')
+                $("#filter-show:visible").remove();
+            }
             this.slideUp(document.getElementById("header-list"));
             setTimeout(function() {
                 app.slideDown(document.getElementById("filter"));
             }, 500);
             location.href = "#selFilter";
         }
+    },
+    filterResult: function() {
+        var self = this;
+        $.ajax({
+            url: app.URL + "Filter/" + app.mod,
+            data: "notify=" + self.data,
+            dataType: "json",
+            success: app.currentPage.loadHeaderList,
+            error: app.errorAlert
+        });
+        this.slideUp(document.getElementById("filter"));
+//            $("#header-list").show();
+        setTimeout(function() {
+            app.slideDown(document.getElementById("header-list"));
+        }, 500);
+        location.href = "#Donefilter";
     },
     slidePage: function(page, isBack) {
         var currentPageDest,
@@ -303,6 +335,8 @@ var app = {
         }
     },
     approve: function() {
+        $(".loading").css({"display": "block"});
+        $("#approve-confirm-button").attr("disabled", true);
         var match = window.location.hash;
         match = match.match(app.detailsURL);
         if (match) {
@@ -311,6 +345,7 @@ var app = {
                 dataType: "json",
                 data: "notify={\"id\": \"" + match[3] + "\" , \"user\": \"" + app.user + "\" , \"msg\": \"" + $("#approve-comment").val() + "\"}",
                 success: function(data) {
+                    $(".loading").css({"display": "none"});
                     $("#popup-bckgrnd").attr("class", "popup-hide");
                     $("#popup-bckgrnd>div>div:nth-child(1)").attr("class", "popup-hide");
                     if (app.isMobile()) {
@@ -322,6 +357,7 @@ var app = {
                 },
                 error: function(data) {
                     app.showAlert("Ajax Error");
+                    $(".loading").css({"display": "none"});
                     return "error";
                 }
             });
@@ -330,6 +366,8 @@ var app = {
         }
     },
     forward: function() {
+        $(".loading").css({"display": "block"});
+//        $("#forward-send-button").attr("disabled", true);
         var match = window.location.hash;
         match = match.match(app.detailsURL);
         if (match) {
@@ -342,6 +380,7 @@ var app = {
                 dataType: "json",
                 data: "notify={\"id\": \"" + match[3] + "\" , \"user\": \"" + app.user + "\", \"to_user\": \"" + $("#user-list").find(":selected").val() + "\"}",
                 success: function(data) {
+                    $(".loading").css({"display": "none"});
                     $("#popup-bckgrnd").attr("class", "popup-hide");
                     $("#popup-bckgrnd>div>div:nth-child(2)").attr("class", "popup-hide");
                     $("#user-list").prop('selectedIndex', 0);
@@ -352,14 +391,17 @@ var app = {
                     }
                 },
                 error: function(data) {
+//                    $(".loading").css({"display": "none"});
                     app.showAlert("Notification Forward Errored", "ERROR");
                 }
             });
         } else {
-            app.showAlert("Plaese Select A Notification!");
+            app.showAlert("Please Select A Notification!");
         }
     },
     reject: function() {
+        $(".loading").css({"display": "block"});
+        $("#reject-confirm-button").attr("disabled", true);
         var match = window.location.hash;
         match = match.match(app.detailsURL);
         if (match) {
@@ -368,6 +410,7 @@ var app = {
                 dataType: "json",
                 data: "notify={\"id\": \"" + match[3] + "\" , \"user\": \"" + app.user + "\", \"msg\": \"" + $("#reject-comment").val() + "\"}",
                 success: function(data) {
+                    $(".loading").css({"display": "none"});
                     $("#popup-bckgrnd").attr("class", "popup-hide");
                     $("#popup-bckgrnd>div>div:nth-child(3)").attr("class", "popup-hide");
                     if (app.isMobile()) {
@@ -378,6 +421,7 @@ var app = {
                     return "success";
                 },
                 error: function(data) {
+                    $(".loading").css({"display": "none"});
                     app.showAlert("Ajax Error");
                     return "error";
                 }
@@ -416,6 +460,9 @@ var app = {
         elem.className = "ui-popup-show";
     },
     closeAlert: function(elem) {
+        $("#approve-confirm-button").attr("disabled", false);
+        $("#reject-confirm-button").attr("disabled", false);
+        $("#forward-send-button").attr("disabled", false);
         document.getElementById('approve-comment').value = "";
         document.getElementById('reject-comment').value = "";
         elem.parentNode.parentNode.className = "popup-hide";
@@ -431,13 +478,13 @@ var app = {
             });
         }
     },
-    downloadAttachment: function(file,id,type){/********SANDEEP***********/
-        var downloadURL = app.URL + "Download?id="+id+"&type="+type;
-        if(this.isiOS()){
-            window.location = "@@@@openAtachments;;;"+downloadURL;
-        }else if(this.isAndroid()){
-            Android.downloadAttachment(downloadURL,type);
-        }else{
+    downloadAttachment: function(file, id, type) {/********SANDEEP***********/
+        var downloadURL = app.URL + "Download?id=" + id + "&type=" + type;
+        if (this.isiOS()) {
+            window.location = "@@@@openAtachments;;;" + downloadURL;
+        } else if (this.isAndroid()) {
+            Android.downloadAttachment(downloadURL, type);
+        } else {
             document.location = downloadURL;
         }
 
@@ -448,18 +495,19 @@ var app = {
 app.popTemplate = Handlebars.compile(document.getElementById("notification-popup-view-tpl").innerHTML);
 app.initialize();
 
-var fileData,fileName;
+var fileData, fileName;
 function onDeviceReady() {
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 }
-function writeToFile(data,fileNm){
+function writeToFile(data, fileNm) {
     fileData = data;
-    fileName = fileNm;alert("about to write: "+fileNm);
+    fileName = fileNm;
+    alert("about to write: " + fileNm);
     fileSystem.root.getFile(fileNm, {create: true, exclusive: false}, gotFileEntry, fail);
 }
 
 function gotFileEntry(fileEntry) {
-    
+
     fileEntry.createWriter(gotFileWriter, fail);
 }
 
@@ -471,7 +519,7 @@ function gotFileWriter(writer) {
             console.log("contents of file now 'some sample'");
             writer.seek(4);
             writer.write(" different text");
-            writer.onwriteend = function(evt){
+            writer.onwriteend = function(evt) {
                 alert("contents of file now 'some different text'");
             }
         };
@@ -480,5 +528,5 @@ function gotFileWriter(writer) {
 }
 
 function fail(error) {
-    alert("Failed to write: -----"+error.code);
+    alert("Failed to write: -----" + error.code);
 }

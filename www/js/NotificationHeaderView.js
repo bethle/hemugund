@@ -10,7 +10,7 @@ var NotificationHeaderView = function(headers) {
     this.render = function() {
         if (app.mod === "others") {
             $.ajax({
-                url: app.URL + "Detail/" + app.mod ,
+                url: app.URL + "Detail/" + app.mod,
                 dataType: "json",
                 data: "notify={\"user\":\"" + app.user + "\"}",
                 success: self.loadHeaderList,
@@ -58,6 +58,8 @@ var NotificationHeaderView = function(headers) {
     };
 
     this.search = function() {
+        app.data = null;
+        $(".no-result").parent().remove();
         $("#" + app.mod + "-header-list").prepend($("<li style='text-align:center;'><img src='img/mini-loading.gif' style='padding-top: 20px;' /> </li>"));
         $.ajax({
             url: app.URL + "Search/" + app.mod,
@@ -79,10 +81,12 @@ Handlebars.registerHelper('color', function() {
         return "open-status";
     else if (this.status === "CLOSED")
         return "close-status";
-    else if (this.status === "INPROGRESS")
-        return "inprogress-status";
+    else if (this.status === "PROCESS")
+        return "inprocess-status";
     else if (this.status === "CANCELED")
         return "canceled-status";
+    else if (this.status === "INPROGRESS")
+        return "inprogress-status";
 });
 Handlebars.registerHelper('icon', function() {
     if (this.action === "R")

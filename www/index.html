@@ -63,20 +63,20 @@
             <div id="loginScreen" >
             <div></div>
             <div></div>
-            <img src="img/mini-loading.gif" id="login-loading" />
+            <img src="img/mini-loading.gif" id="login-loading" class="loading" />
             <div>
             <table cellspacing="0" cellpadding="0">
             <tr>
             <td>    
             <div></div>
-            <input type="text" placeholder="Username" id="user-name" value="" >
+            <input type="text" placeholder="Username" id="user-name" value="sysadmin" >
             </td>                                   
             </tr>
             <tr><td></td></tr>
             <tr>
             <td>
             <div></div>
-            <input type="password" placeholder="Password" id="password" value="" >
+            <input type="password" placeholder="Password" id="password" value="kadiyala123" >
             </td>
             </tr>
             </table>
@@ -136,8 +136,6 @@
             <li><a onclick="app.downloadAttachment('{{file}}','{{id}}','{{type}}')">{{file}}&nbsp;({{entity}})&nbsp;
             </a><span style="color:red;float:right" >&nbsp;{{user}}</span>
             </li>
-            {{else}}
-            <li>No Attachments</li>
             {{/.}}
         </script>
 
@@ -148,7 +146,7 @@
         </script>
 
         <script id="notification-header-view-tpl" type="text/x-handlebars-template">
-            <div class='header'><a href='#' class='button header-button header-button-left'><span style="display:block;margin-left:5px" >Back</span></a><h1>{{type}}</h1><h3>{{name}}</h3><a href="#Filter" class='button header-button header-button-right filter-button'></a></div>
+            <div class='header'><a href='#' class='button header-button header-button-left'><span style="display:block;margin-left:5px" >Back</span></a><h1>{{type}}</h1><h3>{{name}}</h3><a href="#Filter" class='button header-button header-button-right filter-button' id="filter-show" ></a></div>
             <div id="search">
             <div><input type="search" id="search-input" /></div>
             <div id="search-notify-header" class="search-button" >Search</div>
@@ -168,8 +166,8 @@
             <div class='header'><a href='#' class='button header-button header-button-left'><span style="display:block;margin-left:5px" >Back</span></a><h1>{{type}}</h1><h3>{{name}}</h3><a class='button header-button header-button-right action-button' onclick="app.slideDown(document.getElementById('ActionFooter'))" ></a></div>                
             <div style="float:left; width:38%;">
             <div id="search">
-            <div><input type="search" id="search-input" /></div>            
-            <a href="#Filter" class='button filter-button'  style="background-image: url('img/filter.png'); margin-top: 5px;background-size:43px 40px;" ></a>
+            <div style="width:50%;" ><input type="search" id="search-input" /></div>            
+            <a href="#Filter" class='button filter-button' id="filter-show"  style="background-image: url('img/filter.png'); margin-top: 5px;background-size:43px 40px;" ></a>
             <div id="search-notify-header" class="search-button" >Search</div>                
             </div>
             <div id='header-list' class="sliding-effect scrollable" style="top:92px;bottom:0px;width:38%;max-height:100000px;height: calc(100% - 92px);">
@@ -210,13 +208,15 @@
             <div id="popup-bckgrnd" class="popup-hide" >
             <div>
             <div id="ApproveAlert" class="popup-hide" >
+            <img src="img/mini-loading.gif" id="login-loading" class="loading" >
             <img src="img/Close.png" onclick="app.closeAlert(this)" />
             <p>Do you want to approve?</p>
             <p>Comments:</p>  
             <textarea id="approve-comment" ></textarea>
-            <div><input type="button" value="OK" onclick="app.approve()" /></div>                     
+            <div><input type="button" value="OK" onclick="app.approve()" id="approve-confirm-button" /></div>                     
             </div>
             <div id="ForwardAlert" class="popup-hide" >
+            <img src="img/mini-loading.gif" id="login-loading" class="loading" >
             <img src="img/Close.png" onclick="app.closeAlert(this);" />
             <table cellspacing='0' cellpadding='0'>
             <tr>
@@ -238,14 +238,15 @@
             </td>
             </tr>
             </table>
-            <div><input type="button" value="Send" onclick="app.forward()" /></div>
+            <div><input type="button" value="Send" onclick="app.forward()" id="forward-send-button" /></div>
             </div>
             <div id="RejectAlert" class="popup-hide" >
+            <img src="img/mini-loading.gif" id="login-loading" class="loading">
             <img src="img/Close.png" onclick="app.closeAlert(this)" />
             <p>Do you want to Reject?</p>
             <p>Comments:</p>  
             <textarea id="reject-comment" ></textarea>
-            <div ><input type="button" value="OK" onclick="app.reject()" /></div>                     
+            <div ><input type="button" value="OK" onclick="app.reject()" id="reject-confirm-button" /></div>                     
             </div>
             <div id="AttachmentAlert" class="popup-hide" >
             <img src="img/Close.png" onclick="app.closeAlert(this)" />
@@ -264,13 +265,14 @@
             <p>{{this.amount}}<span>{{this.code}}</span></p>            
             </div>           
             <div><span>{{this.date}}</span></div>
+            <p>{{this.desc}}</p>
             <div id="ui-tabs">
             <ul>                    
             <li onclick="app.tab(this)" ></li>    
             <li onclick="app.tab(this)" ></li>            
             <li onclick="app.tab(this)" ></li>                    
             </ul>         
-            <div><a onclick="app.popAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a>
+            <div class="attach-icon" >
             </div>
             </div>
             <div id="ui-tab-content">
@@ -346,7 +348,7 @@
             </tr>
             <tr>
             <td>
-            <span>{{this.subject}}</span>
+            <span id="{{this.hid}}-subject" >{{this.subject}}</span>
             </td>                                                                                                            
             </tr>
             </table>
@@ -363,6 +365,8 @@
             </table>                            
             </a>                    
             </li>
+            {{else}}
+            <li><a class="no-result" >No results Found</a></li>
             {{/.}}         
             <li id="more-notify-header" ><a>Show More Results</a></li>
         </script>
@@ -603,16 +607,17 @@
             <p>{{this.amount}}<span>{{this.code}}</span></p>            
             </div>           
             <div><span>{{this.date}}</span></div>
+            <p>{{this.desc}}</p>
             <div id="ui-tabs">
             <ul>                    
             <li onclick="app.tab(this)" ></li>    
             <li onclick="app.tab(this)" ></li>            
             <li onclick="app.tab(this)" ></li>                    
             </ul>         
-            <div><a onclick="app.popAlert('AttachmentAlert');" ><img src="img/attachment-icon.png" ></a>
+            <div class="attach-icon" >
             </div>
             </div>
-            <div id="ui-tab-content" style="height: 100%" >
+            <div id="ui-tab-content">
             <div class="details show" id="list-items" >
             <div class="scrollable" >
             <table cellspacing="0" cellpadding="0" >
