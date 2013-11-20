@@ -155,18 +155,18 @@ var NotificationFullView = function(detail) {
 
     this.initialize();
 };
+//
+NotificationFullView.template = Handlebars.templates['notification-full-view-tpl'];
+NotificationFullView.liTemplate = Handlebars.templates['header-list-tpl'];
+NotificationFullView.detailTemplate = Handlebars.templates['notification-detail-partial-tpl'];
+NotificationFullView.filterTemplate = Handlebars.templates['filter-view-tpl'];
 
-NotificationFullView.template = Handlebars.compile($("#notification-full-view-tpl").html());
-NotificationFullView.liTemplate = Handlebars.compile(document.getElementById("header-list-tpl").innerHTML);
-NotificationFullView.detailTemplate = Handlebars.compile(document.getElementById("notification-detail-partial-tpl").innerHTML);
-NotificationFullView.filterTemplate = Handlebars.compile(document.getElementById("filter-view-tpl").innerHTML);
-
-NotificationFullView.historyLiTemplate = Handlebars.compile($("#history-list-tpl").html());
-NotificationFullView.distLiTemplate = Handlebars.compile($("#distribution-list-tpl").html());
-NotificationFullView.itemsLiTemplate = Handlebars.compile($("#notification-lines-tpl").html());
-NotificationFullView.xpnItemsLiTemplate = Handlebars.compile($("#expense-lines-tpl").html());
-NotificationFullView.reqTemplate = Handlebars.compile($("#requistion-header-details-list-tpl").html());
-NotificationFullView.poTemplate = Handlebars.compile($("#purchase-header-details-list-tpl").html());
-NotificationFullView.xpnTemplate = Handlebars.compile($("#expense-header-details-list-tpl").html());
-NotificationFullView.invTemplate = Handlebars.compile($("#invoice-header-details-list-tpl").html());
-NotificationFullView.attachmentLiTemplate = Handlebars.compile($("#attachment-alert-tpl").html());
+NotificationFullView.historyLiTemplate = Handlebars.templates['history-list-tpl'];
+NotificationFullView.distLiTemplate = Handlebars.templates['distribution-list-tpl'];
+NotificationFullView.itemsLiTemplate = Handlebars.templates['notification-lines-tpl'];
+NotificationFullView.xpnItemsLiTemplate = Handlebars.templates['expense-lines-tpl'];
+NotificationFullView.reqTemplate = Handlebars.templates['requistion-header-details-list-tpl'];
+NotificationFullView.poTemplate = Handlebars.templates['purchase-header-details-list-tpl'];
+NotificationFullView.xpnTemplate = Handlebars.templates['expense-header-details-list-tpl'];
+NotificationFullView.invTemplate = Handlebars.templates['invoice-header-details-list-tpl'];
+NotificationFullView.attachmentLiTemplate = Handlebars.templates['attachment-alert-tpl'];

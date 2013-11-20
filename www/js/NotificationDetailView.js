@@ -84,16 +84,16 @@ var NotificationDetailView = function(detail) {
     };
     this.initialize();
 };
+//
+NotificationDetailView.template = Handlebars.templates['notification-detail-view-tpl'];
 
-NotificationDetailView.template = Handlebars.compile($("#notification-detail-view-tpl").html());
-
-NotificationDetailView.historyLiTemplate = Handlebars.compile($("#history-list-tpl").html());
-NotificationDetailView.distLiTemplate = Handlebars.compile($("#distribution-list-tpl").html());
-NotificationDetailView.itemsLiTemplate = Handlebars.compile($("#notification-lines-tpl").html());
-NotificationDetailView.xpnItemsLiTemplate = Handlebars.compile($("#expense-lines-tpl").html());
-NotificationDetailView.reqTemplate = Handlebars.compile($("#requistion-header-details-list-tpl").html());
-NotificationDetailView.poTemplate = Handlebars.compile($("#purchase-header-details-list-tpl").html());
-NotificationDetailView.xpnTemplate = Handlebars.compile($("#expense-header-details-list-tpl").html());
-NotificationDetailView.invTemplate = Handlebars.compile($("#invoice-header-details-list-tpl").html());
-NotificationDetailView.attachmentLiTemplate = Handlebars.compile($("#attachment-alert-tpl").html());
+NotificationDetailView.historyLiTemplate = Handlebars.templates['history-list-tpl'];
+NotificationDetailView.distLiTemplate = Handlebars.templates['distribution-list-tpl'];
+NotificationDetailView.itemsLiTemplate = Handlebars.templates['notification-lines-tpl'];
+NotificationDetailView.xpnItemsLiTemplate = Handlebars.templates['expense-lines-tpl'];
+NotificationDetailView.reqTemplate = Handlebars.templates['requistion-header-details-list-tpl'];
+NotificationDetailView.poTemplate = Handlebars.templates['purchase-header-details-list-tpl'];
+NotificationDetailView.xpnTemplate = Handlebars.templates['expense-header-details-list-tpl'];
+NotificationDetailView.invTemplate = Handlebars.templates['invoice-header-details-list-tpl'];
+NotificationDetailView.attachmentLiTemplate = Handlebars.templates['attachment-alert-tpl'];
 

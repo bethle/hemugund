@@ -72,9 +72,9 @@ var NotificationHeaderView = function(headers) {
     this.initialize();
 };
 
-NotificationHeaderView.template = Handlebars.compile(document.getElementById("notification-header-view-tpl").innerHTML);
-NotificationHeaderView.filterTemplate = Handlebars.compile(document.getElementById("filter-view-tpl").innerHTML);
-NotificationHeaderView.liTemplate = Handlebars.compile(document.getElementById("header-list-tpl").innerHTML);
+NotificationHeaderView.template = Handlebars.templates['notification-header-view-tpl'];
+NotificationHeaderView.filterTemplate = Handlebars.templates['filter-view-tpl'];
+NotificationHeaderView.liTemplate = Handlebars.templates['header-list-tpl'];
 
 Handlebars.registerHelper('color', function() {
     if (this.status === "OPEN")

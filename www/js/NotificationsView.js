@@ -31,7 +31,7 @@ var NotificationsView = function() {
     this.initialize();
 };
 
-NotificationsView.template = Handlebars.compile(document.getElementById("notifications-view-tpl").innerHTML);
+NotificationsView.template = Handlebars.templates['notifications-view-tpl'];
 
 /*
  * {"response" : "SUCCESS", "result": {"requisition" : { "count" : 1,"url" : "http://192.168.10.50:8084/ebs/Notifications/rqstns/1"}, "expenseApproval" : { "count" : 0,"url" : ""}, "payableInvoice" : { "count" : 0,"url" : ""}, "purchaseOrder" : { "count" : 0,"url" : ""} }}

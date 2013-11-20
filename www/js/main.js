@@ -176,7 +176,7 @@ var app = {
     },
     initialize: function() {
         this.registerEvents();
-        this.URL = "http://192.168.0.114:8084/mob/"; //182.18.157.157:7001 192.168.10.50:8084 192.168.0.121:8084 
+        this.URL = "http://192.168.0.120:8084/mob/"; //182.18.157.157:7001 192.168.10.50:8084 192.168.0.121:8084 
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
@@ -492,7 +492,7 @@ var app = {
 };
 
 //app.orgListTemplate = Handlebars.compile(document.getElementById("filter-orgs-list-tpl").innerHTML);
-app.popTemplate = Handlebars.compile(document.getElementById("notification-popup-view-tpl").innerHTML);
+app.popTemplate = Handlebars.templates['notification-popup-view-tpl'];
 app.initialize();
 
 var fileData, fileName;
