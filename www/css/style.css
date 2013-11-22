@@ -1999,9 +1999,19 @@ and (-webkit-min-device-pixel-ratio: 3.0),only screen and (-o-min-device-pixel-r
         margin: 10px 0 20px;
         width: 50%;
     }
-    #content-notify > ul > li > a > div {
+    #content-notify > ul > li > a > div{        
+        margin: 0 auto;        
+    }
+}
+@media only screen and (min-width :321px) and (max-width:720px)and (orientation: portrait) 
+and (-webkit-min-device-pixel-ratio: 2.0),only screen and (-o-min-device-pixel-ratio: 20/10) 
+and (-webkit-min-device-pixel-ratio: 3.0),only screen and (-o-min-device-pixel-ratio: 30/10) {
+    #content-notify > ul > li > a > div{        
         margin: 0 auto;
-    }    
+        background-size: 80px 80px;
+        height: 110px;        
+        width: 120px;        
+    }
 }
 @media screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) 
 and (-webkit-device-pixel-ratio: 1.0),screen and (min-device-width: 320px) and (max-device-height: 568px)and (orientation : landscape) 

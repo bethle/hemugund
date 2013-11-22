@@ -532,7 +532,9 @@ function fail(error) {
     alert("Failed to write: -----" + error.code);
 }
 $(window).on('orientationchange', function() {
-    if ($("#list-items").is(":visible")) {
-        $("#list-items>div").css({height: $(window).height() - 175 + "px"});
-    }
+    setTimout(function() {
+        if ($("#list-items").is(":visible")) {
+            $("#list-items>div").css({height: $(window).height() - 175 + "px"});
+        }
+    }, 300);
 });
