@@ -90,6 +90,7 @@ var app = {
             } else {
                 this.prevPage = new NotificationFullView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
                 $("body").append(self.popTemplate());
+                $("#list-items>div").css({height: $(window).height() - 175 + "px"});
             }
             this.slidePage(self.prevPage);
             return;
@@ -103,7 +104,7 @@ var app = {
             } else {
                 this.prevPage.loadDetail(match[3], match[2]);
             }
-
+            $("#list-items>div").css({height: $(window).height() - 175 + "px"});
             return;
         }
 
@@ -176,7 +177,7 @@ var app = {
     },
     initialize: function() {
         this.registerEvents();
-        this.URL = "http://192.168.0.113:8084/mob/"; //182.18.157.157:7001 192.168.10.50:8084 192.168.0.121:8084 
+        this.URL = "http://182.18.157.157:7001/mob/"; //182.18.157.157:7001 192.168.10.50:8084 192.168.0.121:8084 
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
@@ -530,3 +531,8 @@ function gotFileWriter(writer) {
 function fail(error) {
     alert("Failed to write: -----" + error.code);
 }
+$(window).on('orientationchange', function() {
+    if ($("#list-items").is(":visible")) {
+        $("#list-items>div").css({height: $(window).height() - 175 + "px"});
+    }
+});
