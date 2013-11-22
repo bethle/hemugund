@@ -91,6 +91,8 @@ var app = {
                 this.prevPage = new NotificationFullView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
                 $("body").append(self.popTemplate());
                 $("#list-items>div").css({height: $(window).height() - 175 + "px"});
+                $("#header-details-list").css({height: $(window).height() - 175 + "px"});
+                $("#history-list").css({height: $(window).height() - 175 + "px"});
             }
             this.slidePage(self.prevPage);
             return;
@@ -105,6 +107,8 @@ var app = {
                 this.prevPage.loadDetail(match[3], match[2]);
             }
             $("#list-items>div").css({height: $(window).height() - 175 + "px"});
+            $("#header-details-list").css({height: $(window).height() - 175 + "px"});
+            $("#history-list").css({height: $(window).height() - 175 + "px"});
             return;
         }
 
@@ -535,6 +539,10 @@ $(window).on('orientationchange', function() {
     setTimout(function() {
         if ($("#list-items").is(":visible")) {
             $("#list-items>div").css({height: $(window).height() - 175 + "px"});
+        } else if ($("#header-details-list").is(":visible")) {
+            $("#header-details-list").css({height: $(window).height() - 175 + "px"});
+        } else if ($("#history-list").is(":visible")) {
+            $("#history-list").css({height: $(window).height() - 175 + "px"});
         }
     }, 300);
 });

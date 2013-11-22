@@ -471,7 +471,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "           \r\n            <div id=\"loginScreen\" >\r\n            <div></div>\r\n            <div></div>\r\n            <img src=\"img/mini-loading.gif\" id=\"login-loading\" class=\"loading\" />\r\n            <div>\r\n            <table cellspacing=\"0\" cellpadding=\"0\">\r\n            <tr>\r\n            <td>    \r\n            <div></div>\r\n            <input type=\"text\" placeholder=\"Username\" id=\"user-name\" value=\"\" >\r\n            </td>                                   \r\n            </tr>\r\n            <tr><td></td></tr>\r\n            <tr>\r\n            <td>\r\n            <div></div>\r\n            <input type=\"password\" placeholder=\"Password\" id=\"password\" value=\"\" >\r\n            </td>\r\n            </tr>\r\n            </table>\r\n            </div>                \r\n            <div>\r\n            <div><input type=\"submit\" value=\"Sign In\" onclick=\"location.href='#Login'\"/><a>Forgot Username or Password ?</a></div>                        \r\n            </div>\r\n            <p>Anblicks &#169; 2013. All rights reserved.</p>\r\n            </div>            \r\n            </div>            \r\n            <div  id=\"loading-screen\" class=\"loading-hide\" ><div><div></div>\r\n";
+  return " \r\n            <div id=\"loginScreen\" >\r\n            <div></div>\r\n            <div></div>\r\n            <img src=\"img/mini-loading.gif\" id=\"login-loading\" class=\"loading\" />\r\n            <div>\r\n            <table cellspacing=\"0\" cellpadding=\"0\">\r\n            <tr>\r\n            <td>    \r\n            <div></div>\r\n            <input type=\"text\" placeholder=\"Username\" id=\"user-name\" value=\"\" >\r\n            </td>                                   \r\n            </tr>\r\n            <tr><td></td></tr>\r\n            <tr>\r\n            <td>\r\n            <div></div>\r\n            <input type=\"password\" placeholder=\"Password\" id=\"password\" value=\"\" >\r\n            </td>\r\n            </tr>\r\n            </table>\r\n            </div>                \r\n            <div>\r\n            <div><input type=\"submit\" value=\"Sign In\" onclick=\"location.href='#Login'\"/><a>Forgot Username or Password ?</a></div>                        \r\n            </div>\r\n            <p>Anblicks &#169; 2013. All rights reserved.</p>\r\n            </div>            \r\n            </div>            \r\n            <div  id=\"loading-screen\" class=\"loading-hide\" ><div><div></div>\r\n";
   });
 templates['notification-detail-partial-tpl'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -568,7 +568,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1;
+  var buffer = "", stack1, stack2;
   buffer += "\r\n            <li>                            \r\n            <table cellspacing=\"0\" cellpadding=\"0\" onclick=\"app.toggle(this)\" >\r\n            <tr>\r\n            <td><span>"
     + escapeExpression(((stack1 = (depth0 && depth0.num)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</span></td>\r\n            <td><span>"
@@ -585,10 +585,18 @@ function program1(depth0,data) {
     + escapeExpression(((stack1 = (depth0 && depth0.categ)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</span>\r\n            </li> \r\n            <li>\r\n            <span>UOM:</span>\r\n            <span>"
     + escapeExpression(((stack1 = (depth0 && depth0.uom)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>\r\n            </li>                                                                                                                         </ul> \r\n            <table cellspacing=\"0\" cellpadding=\"0\" >\r\n            <tr>\r\n            <td>Distribution No.</td>\r\n            <td>Charge Account</td>\r\n            <td>Project Name</td>\r\n            <td>Task Name</td>\r\n            </tr>\r\n            </table>\r\n            <ul id=\""
+    + "</span>\r\n            </li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        \r\n            </ul>\r\n			";
+  stack2 = helpers['if'].call(depth0, depth0, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\r\n            <ul id=\""
     + escapeExpression(((stack1 = (depth0 && depth0.id)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "-dist-list\">\r\n            <li style=\"text-align:center;\">            \r\n            <img src=\"img/mini-loading.gif\" style=\"padding-top: 5px;\" />\r\n            </li>\r\n            </ul>            \r\n            </div>\r\n            </li>   \r\n            ";
   return buffer;
+  }
+function program2(depth0,data) {
+  
+  
+  return "\r\n            <table cellspacing=\"0\" cellpadding=\"0\" >\r\n            <tr>\r\n            <td>Distribution No.</td>\r\n            <td>Charge Account</td>\r\n            <td>Project Name</td>\r\n            <td>Task Name</td>\r\n            </tr>\r\n            </table>\r\n			";
   }
 
   stack2 = ((stack1 = (typeof depth0 === functionType ? depth0.apply(depth0) : depth0)),blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}));

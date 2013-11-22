@@ -147,6 +147,12 @@ var NotificationFullView = function(detail) {
                 data: "notify={\"id\":\"" + data[i].id + "\"}",
                 success: function(dist) {
                     $("#" + dist.id + "-dist-list").html(NotificationFullView.distLiTemplate(dist.result));
+                    $("#" + dist.id + "-dist-list").removeAttr("style");
+                    $("#" + dist.id + "-dist-list").prev().removeAttr("style");
+                    if (!dist.result.length) {
+                        $("#" + dist.id + "-dist-list").css({display:"none"});
+                        $("#" + dist.id + "-dist-list").prev().css({display: "none"});
+                    }
                 },
                 error: app.errorAlert
             });
