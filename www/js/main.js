@@ -176,7 +176,7 @@ var app = {
     },
     initialize: function() {
         this.registerEvents();
-        this.URL = "http://182.18.157.157:7001/mob/"; //182.18.157.157:7001 192.168.10.50:8084 192.168.0.121:8084 
+        this.URL = "http://192.168.0.113:8084/mob/"; //182.18.157.157:7001 192.168.10.50:8084 192.168.0.121:8084 
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
