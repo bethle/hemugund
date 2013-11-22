@@ -276,7 +276,7 @@ h3{
 /*notification content css start*/
 #content-notify{
     width: 100%;
-    padding-top: 5px;
+    padding-top: 10px;
 }
 /*grid css start*/
 #content-notify>ul{
@@ -2045,8 +2045,46 @@ and (-webkit-min-device-pixel-ratio: 3.0),only screen and (-o-min-device-pixel-r
         width: 25px !important;
     }
     #content-notify {
-        padding-top: 5px !important;
+        padding-top: 10px !important;
         width: 100% !important;
+    }
+    #header-details > div:nth-child(4) > ul > li {
+        display: inline-block;
+        height: 36px;
+        margin: 0 5px;
+        width: 36px;
+    }
+    #header-details > div:nth-child(4) > ul > li:nth-child(3) {
+        background-image: url("../img/History_Icon.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 36px 36px;
+    }
+    #header-details > div:nth-child(4) > ul > li:nth-child(2) {
+        background-image: url("../img/details_icon.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 36px 36px;
+    }
+    #header-details > div:nth-child(4) > ul > li:nth-child(1) {
+        background-image: url("../img/Talk-hi-64.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 36px 36px;
+    }
+    #list-items:after{
+        margin-left: 26px;
+    }
+    #information:after{
+        margin-left: 77px;
+    }
+    #history:after{
+        margin-left: 127px;
+    }
+    #header-details > div:nth-child(4) {
+        height: 32px;
+        padding: 5px 0 14px;
+        width: 99%;
     }
 }
 @media screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) 
