@@ -2007,46 +2007,46 @@ and (-webkit-min-device-pixel-ratio: 3.0),only screen and (-o-min-device-pixel-r
 and (-webkit-min-device-pixel-ratio: 2.0),only screen and (-o-min-device-pixel-ratio: 20/10) 
 and (-webkit-min-device-pixel-ratio: 3.0),only screen and (-o-min-device-pixel-ratio: 30/10) {
     #content-notify > ul > li > a > div {
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-size: 80px 80px;
-        height: 110px;
-        position: relative;
-        width: 120px;
+        background-position: center top !important;
+        background-repeat: no-repeat !important;
+        background-size: 80px 80px !important;
+        height: 110px !important;
+        position: relative !important;
+        width: 120px !important;
         z-index: 0;
     }    #content-notify > ul > li > a > div > div:nth-child(2) {
-        color: #000000;
-        display: table-cell;
-        float: left;
-        font-family: 'Arial';
-        font-size: 100%;
-        line-height: 123%;
-        padding-top: 84px;
-        text-align: center;
-        vertical-align: middle;
-        width: 120px;
+        color: #000000 !important;
+        display: table-cell !important;
+        float: left !important;
+        font-family: 'Arial' !important;
+        font-size: 100% !important;
+        line-height: 123% !important;
+        padding-top: 84px !important;
+        text-align: center !important;
+        vertical-align: middle !important;
+        width: 120px !important;
     }
 
     #content-notify > ul > li > a > div > div:nth-child(1) {
-        background: none repeat scroll 0 0 #FF0000;
-        border: 2px solid #FFFFFF;
-        border-radius: 90px;
-        box-shadow: 0 0 20px rgba(50, 50, 50, 0.81);
-        color: #FFFFFF;
-        font-family: 'Arial';
-        font-size: 80%;
-        font-weight: bold;
-        height: 25px;
-        line-height: 25px;
-        position: absolute;
-        right: 10px;
-        text-align: center;
-        top: -10px;
-        width: 25px;
+        background: none repeat scroll 0 0 #FF0000 !important;
+        border: 2px solid #FFFFFF !important;
+        border-radius: 90px !important;
+        box-shadow: 0 0 20px rgba(50, 50, 50, 0.81) !important;
+        color: #FFFFFF !important;
+        font-family: 'Arial' !important;
+        font-size: 80% !important;
+        font-weight: bold !important;
+        height: 25px !important;
+        line-height: 25px !important;
+        position: absolute !important;
+        right: 10px !important;
+        text-align: center !important;
+        top: -10px !important;
+        width: 25px !important;
     }
     #content-notify {
-        padding-top: 5px;
-        width: 100%;
+        padding-top: 5px !important;
+        width: 100% !important;
     }
 }
 @media screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) 
