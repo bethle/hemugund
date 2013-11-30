@@ -59,6 +59,7 @@ var NotificationFullView = function(detail) {
     };
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
+            window.localStorage.setItem("notificationFullViewHeaders", JSON.stringify(data));//JSON.parse(window.localStorage.getItem("notificationFullViewHeaders"))
             if (self.index <= 2 || data.searchSet || data.filterSet) {
                 $("#" + app.mod + "-header-list").html(NotificationFullView.liTemplate(data.result));
                 if (data.result.length > 0) {
@@ -150,7 +151,7 @@ var NotificationFullView = function(detail) {
                     $("#" + dist.id + "-dist-list").removeAttr("style");
                     $("#" + dist.id + "-dist-list").prev().removeAttr("style");
                     if (!dist.result.length) {
-                        $("#" + dist.id + "-dist-list").css({display:"none"});
+                        $("#" + dist.id + "-dist-list").css({display: "none"});
                         $("#" + dist.id + "-dist-list").prev().css({display: "none"});
                     }
                 },

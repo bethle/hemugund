@@ -8,21 +8,31 @@ var NotificationsView = function() {
     };
 
     this.render = function() {
-        $.ajax({
-            url: app.URL + "Home",
-            data: "notify={\"user\":\"" + app.user + "\"}",
-            success: this.loadNotifCount,
-            error: app.errorAlert
-        });
+        if (app.isOnline()) {
+            $.ajax({
+                url: app.URL + "Home",
+                data: "notify={\"user\":\"" + app.user + "\"}",
+                success: this.loadNotifCount,
+                error: app.errorAlert
+            });
+        } else {
+            this.loadNotifCount(JSON.parse(window.localStorage.getItem("notifications")));
+        }
         return this;
     };
 
     this.loadNotifCount = function(data) {
         if (data.response === "SUCCESS") {
-            $('#requistion-count').html(data.result.rqstns);
-            $('#expense-app-count').html(data.result.xpnsap);
-            $('#pay-inv-count').html(data.result.pblnvc);
-            $('#purch-ord-count').html(data.result.prchrd);
+            if (app.isOnline()) {
+                window.localStorage.setItem("notifications", JSON.stringify(data));
+                $('#requistion-count').html(data.result.rqstns);
+                $('#expense-app-count').html(data.result.xpnsap);
+                $('#pay-inv-count').html(data.result.pblnvc);
+                $('#purch-ord-count').html(data.result.prchrd);
+            } else {
+                NotificationsView.count = data;
+            }
+
         } else {
             app.showAlert(data.response, "Notification Count Request Errored");
             location.href = "#Error";
