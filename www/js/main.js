@@ -108,13 +108,13 @@ var app = {
         if (match) {
             this.data = null;
             this.mod = match[1];
-            if (!this.isMobile()) {
+            if (this.isMobile()) {
                 this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)});
             } else {
                 this.prevPage = new NotificationFullView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)});
             }
             this.slidePage(self.prevPage);
-            if (!this.isMobile()) {
+            if (this.isMobile()) {
                 this.prevPage = this.prevPage.render();
             } else {
                 this.prevPage = this.prevPage.render();
@@ -131,7 +131,7 @@ var app = {
         }
         match = hash.match(app.detailsURL);
         if (match) {
-            if (!this.isMobile()) {
+            if (this.isMobile()) {
                 this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text(), desc: $('#' + match[2] + '-subject').text()}).render();
                 this.slidePage(this.prevPage);
                 $("body").append(self.popTemplate());
@@ -223,7 +223,7 @@ var app = {
     filter: function() {
         var self = this;
         if ($("#filter").css("max-height") !== "0px") {
-            if (!this.isMobile()) {
+            if (this.isMobile()) {
                 $("#search").css({"display": "block"});
                 $("#filter-done:visible").before('<a href="#Filter" class="button header-button header-button-right filter-button" id="filter-show" >');
                 $("#filter-done:visible").remove();
@@ -260,7 +260,7 @@ var app = {
 
         } else {
 //            $("#header-list").hide();
-            if (!this.isMobile()) {
+            if (this.isMobile()) {
                 $("#search").css({"display": "none"});
                 $("#filter-show:visible").before('<a href="#Filter" class="button filter-button-done" id="filter-done" style="position:absolute;right:0;top:0;" >Done</a>')
                 $("#filter-show:visible").remove();
