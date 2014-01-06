@@ -44,8 +44,7 @@ a {
   height: 100%;
   -webkit-transform: translate3d(0, 0, 0);
   display: table;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .error {
   color: #FF0000;
@@ -54,8 +53,7 @@ a {
   margin: 0 auto;
   text-align: center;
   width: 100%;
-  margin: 5px 0;
-}
+  margin: 5px 0; }
 
 #loginScreen > p:last-child {
   width: 100%;

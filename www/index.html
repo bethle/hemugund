@@ -1,70 +1,71 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="mobiBundle/css/mg_styles.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">        
         <script type="text/javascript" src="phonegap.js"></script>        
         <script type="text/javascript" src="lib/jquery.js"></script>
         <script type="text/javascript" >
             $(document).ready(function()
             {
-                document.addEventListener("deviceready", setOverrideBackbutton, false);
+            document.addEventListener("deviceready", setOverrideBackbutton, false);
             });
 
             function setOverrideBackbutton()
             {
-                if ((typeof device != "undefined") && (device.platform == "Android"))
-                {
-                    navigator.app.overrideBackbutton(true);
-                }
-                document.addEventListener("backbutton", backButtonTap, true);
+            if ((typeof device != "undefined") && (device.platform == "Android"))
+            {
+            navigator.app.overrideBackbutton(true);
+            }
+            document.addEventListener("backbutton", backButtonTap, true);
             }
             function backButtonTap()
             {
 
-                if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
-                    navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
-                        if (buttonIndex === 1) {
-                            location.href = "#Logout";
-                        }
-                    }, 'Warning!', ['YES', 'NO']);
-                    return;
-                }
-
-                var hash = window.location.hash, match;
-                match = hash.match(/^#Back/);
-                if (match) {
-                    location.href = "#";
-                    return;
-                }
-                match = hash.match(/^#Not\/.{6}/);
-                if (match) {
-                    location.href = "#";
-                    return;
-                }
-                match = hash.match(/^#Detail.{1,}/);
-                if (match) {
-                    location.href = "#Back";
-                    return;
-                }
-                if (!match) {
-                    navigator.notification.confirm("Are you sure you want to exit from Application?", function(buttonIndex) {
-                        if (buttonIndex === 1) {
-                            navigator.app.exitApp();
-                        }
-                    }, 'Warning!', ['YES', 'NO']);
-                }
+            if (location.href.indexOf("#") === (location.href.length - 1) || location.href.split("#", 2)[1] === "Login") {
+            navigator.notification.confirm("Are you sure you want to logout?", function(buttonIndex) {
+            if (buttonIndex === 1) {
+            location.href = "#Logout";
+            }
+            }, 'Warning!', ['YES', 'NO']);
+            return;
             }
 
+            var hash = window.location.hash, match;
+            match = hash.match(/^#Back/);
+            if (match) {
+            location.href = "#";
+            return;
+            }
+            match = hash.match(/^#Not\/.{6}/);
+            if (match) {
+            location.href = "#";
+            return;
+            }
+            match = hash.match(/^#Detail.{1,}/);
+            if (match) {
+            location.href = "#Back";
+            return;
+            }
+            if (!match) {
+            navigator.notification.confirm("Are you sure you want to exit from Application?", function(buttonIndex) {
+            if (buttonIndex === 1) {
+            navigator.app.exitApp();
+            }
+            }, 'Warning!', ['YES', 'NO']);
+            }
+            }
         </script>
-        <script type="text/javascript" src="lib/handlebars.js"></script>
+        <script type="text/javascript" src="lib/handlebars.runtime-v1.3.0.js"></script>
+        <script type="text/javascript" src="mobiBundle/js/mobi.js"></script>
         <script type="text/javascript" src="templates/templates.js"></script>
     </head>
     <body>
-        <script type="text/javascript" src="js/NotificationDetailView.js"></script>
-        <script type="text/javascript" src="js/NotificationHeaderView.js"></script>
-        <script type="text/javascript" src="js/NotificationFullView.js"></script>
+        <script type="text/javascript" src="js/LoginView.js"></script>        
         <script type="text/javascript" src="js/NotificationsView.js"></script>
-        <script type="text/javascript" src="js/LoginView.js"></script>                                                                
+        <script type="text/javascript" src="js/NotificationHeaderView.js"></script>        
+        <script type="text/javascript" src="js/NotificationFullView.js"></script>        
+        <script type="text/javascript" src="js/NotificationDetailView.js"></script>        
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

@@ -30,15 +30,11 @@ var app = {
         }
     },
     loadHome: function(data) {
+
         if (data.response === "SUCCESS") {
-            if (app.isOnline()) {
-                window.localStorage.setItem("authVars", JSON.stringify({user_name: app.user, password: app.pass}));
-            }
-            var auth = JSON.parse(window.localStorage.getItem("authVars"));
             app.homePage = new NotificationsView().render();
             app.currentPage = null;
             app.slidePage(app.homePage);
-            new NotificationHeaderView().headerListLocal();
         } else {
             if (data.message) {
                 app.showAlert(data.message, "ERROR");
@@ -75,32 +71,13 @@ var app = {
             $(".loading").css("display", "block");
             this.user = $('#user-name').val();
             this.pass = $('#password').val();
-            if (self.isOnline()) {
-                $.ajax({
-                    url: self.URL + "Login",
-                    data: "login={\"user_name\": \"" + self.user + "\" , \"password\": \"" + self.pass + "\"}",
-                    dataType: 'json',
-                    success: self.loadHome,
-                    error: self.errorAlert
-                });
-            }
-            else {
-                var auth = JSON.parse(window.localStorage.getItem("authVars"));
-                if (auth.user_name == self.user && auth.password == self.pass) {
-                    app.homePage = new NotificationsView().render();
-                    app.currentPage = null;
-                    app.slidePage(app.homePage);
-                    if (!this.isOnline()) {
-                        $('#requistion-count').html(NotificationsView.count.result.rqstns);
-                        $('#expense-app-count').html(NotificationsView.count.result.xpnsap);
-                        $('#pay-inv-count').html(NotificationsView.count.result.pblnvc);
-                        $('#purch-ord-count').html(NotificationsView.count.result.prchrd);
-                    }
-                } else {
-                    app.showAlert("Invalid Login Credentials", "ERROR");
-                    location.href = "#Error";
-                }
-            }
+            $.ajax({
+                url: self.URL + "Login",
+                data: "login={\"user_name\": \"" + self.user + "\" , \"password\": \"" + self.pass + "\"}",
+                dataType: 'json',
+                success: self.loadHome,
+                error: self.errorAlert
+            });
             return;
         }
 
@@ -108,30 +85,21 @@ var app = {
         if (match) {
             this.data = null;
             this.mod = match[1];
-            if (this.isMobile()) {
-                this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)});
+            if (!this.isMobile()) {
+                this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
             } else {
-                this.prevPage = new NotificationFullView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)});
-            }
-            this.slidePage(self.prevPage);
-            if (this.isMobile()) {
-                this.prevPage = this.prevPage.render();
-            } else {
-                this.prevPage = this.prevPage.render();
+                this.prevPage = new NotificationFullView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
                 $("body").append(self.popTemplate());
                 $("#list-items>div").css({height: $(window).height() - 175 + "px"});
                 $("#header-details-list").css({height: $(window).height() - 175 + "px"});
                 $("#history-list").css({height: $(window).height() - 175 + "px"});
             }
-            if (!this.isOnline()) {
-                $("#" + app.mod + "-header-list").html(NotificationHeaderView.liTemplate(NotificationHeaderView.list.result));
-                $("#more-notify-header").remove();
-            }
+            this.slidePage(self.prevPage);
             return;
         }
         match = hash.match(app.detailsURL);
         if (match) {
-            if (this.isMobile()) {
+            if (!this.isMobile()) {
                 this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text(), desc: $('#' + match[2] + '-subject').text()}).render();
                 this.slidePage(this.prevPage);
                 $("body").append(self.popTemplate());
@@ -213,7 +181,7 @@ var app = {
     },
     initialize: function() {
         this.registerEvents();
-        this.URL = "http://182.18.157.157:7001/mob/"; //182.18.157.157:7001 192.168.10.50:8084 192.168.0.121:8084 
+        this.URL = "http://localhost:8084/mob/"; //182.18.157.157:7001 192.168.0.108:8084
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
@@ -223,7 +191,7 @@ var app = {
     filter: function() {
         var self = this;
         if ($("#filter").css("max-height") !== "0px") {
-            if (this.isMobile()) {
+            if (!this.isMobile()) {
                 $("#search").css({"display": "block"});
                 $("#filter-done:visible").before('<a href="#Filter" class="button header-button header-button-right filter-button" id="filter-show" >');
                 $("#filter-done:visible").remove();
@@ -260,7 +228,7 @@ var app = {
 
         } else {
 //            $("#header-list").hide();
-            if (this.isMobile()) {
+            if (!this.isMobile()) {
                 $("#search").css({"display": "none"});
                 $("#filter-show:visible").before('<a href="#Filter" class="button filter-button-done" id="filter-done" style="position:absolute;right:0;top:0;" >Done</a>')
                 $("#filter-show:visible").remove();
@@ -325,7 +293,7 @@ var app = {
             self.currentPage = page;
             window.setTimeout(function() {
                 $('.stage-right, .stage-left').remove();
-            }, 300);
+            }, 500);
         });
     },
     isMobile: function() {
@@ -480,15 +448,6 @@ var app = {
     {
         elem.style.maxHeight = '0';
         elem.style.borderBottom = '0';
-    },
-    isOnline: function() {
-        var self = this;
-        if (navigator.onLine) {
-            return true;
-        } else {
-//            self.showAlert("Offline", "Network Error");
-            return false;
-        }
     },
     next: function(elem) {
         do {
