@@ -6,7 +6,7 @@ var LoginView = function() {
         this.el.innerHTML = LoginView.template();
         return this;
     };
-
     this.initialize();
 };
 LoginView.template = Handlebars.templates['login-view-tpl'];
+

@@ -30,18 +30,26 @@ var app = {
         }
     },
     loadHome: function(data) {
-
         if (data.response === "SUCCESS") {
             app.homePage = new NotificationsView().render();
             app.currentPage = null;
+            var headerData = {
+                "leftButtonText": {
+                    "backgroundImage": {
+                        "basicType": "logout",
+                        "link": "#Logout"
+                    }
+                },
+                "Header3Text": "Notifications"
+            };
             app.slidePage(app.homePage);
+            app.attachHeader(headerData);
         } else {
             if (data.message) {
                 app.showAlert(data.message, "ERROR");
             }
             location.href = "#Error";
         }
-
     },
     route: function() {
         /*
@@ -85,30 +93,76 @@ var app = {
         if (match) {
             this.data = null;
             this.mod = match[1];
-            if (!this.isMobile()) {
-                this.prevPage = new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
+            var headerData;
+            if (this.isMobile()) {
+                headerData = {
+                    "leftButtonText": {
+                        "backgroundImage": {
+                            "basicType": "back",
+                            "link": "#"
+                        }
+                    },
+                    "rightButton1Image": {
+                        "basicType": "filter",
+                        "link": "#Filter"
+                    },
+                    "Header1Text": self.findMatch(self.mod),
+                    "Header2Text": self.user
+                };
+                this.prevPage = new NotificationHeaderView({mod: self.mod}).render();
             } else {
+                headerData = {
+                    "leftButtonText": {
+                        "backgroundImage": {
+                            "basicType": "back",
+                            "link": "#"
+                        }
+                    },
+                    "rightButton1Image": {
+                        "basicType": "action"
+                    },
+                    "Header1Text": self.findMatch(self.mod),
+                    "Header2Text": self.user
+                }
                 this.prevPage = new NotificationFullView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render();
                 $("body").append(self.popTemplate());
-                $("#list-items>div").css({height: $(window).height() - 175 + "px"});
-                $("#header-details-list").css({height: $(window).height() - 175 + "px"});
-                $("#history-list").css({height: $(window).height() - 175 + "px"});
             }
             this.slidePage(self.prevPage);
+            app.attachHeader(headerData);
             return;
         }
         match = hash.match(app.detailsURL);
         if (match) {
-            if (!this.isMobile()) {
-                this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], num: $('#' + match[2] + '-num').text(), desc: $('#' + match[2] + '-subject').text()}).render();
+            var headerData;
+            if (this.isMobile()) {
+                headerData = {
+                    "leftButtonText": {
+                        "backgroundImage": {
+                            "basicType": "back",
+                            "link": "#Back"
+                        }
+                    },
+                    "rightButton1Image": {
+                        "basicType": "action"
+                    },
+                    "Header3Text": $('#' + match[2] + '-num').text()
+                };
+                this.prevPage = new NotificationDetailView({name: $('#' + match[2] + '-name').text(), amount: $('#' + match[2] + '-amount').text(), code: $('#' + match[2] + '-code').text(), date: $('#' + match[2] + '-date').text(), hid: match[2], id: match[3], desc: $('#' + match[2] + '-subject').text()}).render();
                 this.slidePage(this.prevPage);
+                var tabWrappers = [NotificationDetailView.linesListWrapper({code: $('#' + match[2] + '-code').text()}), NotificationDetailView.headerDetailsListWrapper, NotificationDetailView.historyDetailsListWrapper];
+                var tabData = {
+                    "tabList": 3,
+                    "activeTab": 1
+                };
+                $("#header-description").after(Templates.tabsTemplate(tabData));
+                for (var i = 1; i <= $("#mg_ui-tab-content>div").length; i++) {
+                    $("#mg_ui-tab-content>div:nth-child(" + i + ")>div").html(tabWrappers[i - 1]);
+                }
+                app.attachHeader(headerData);
                 $("body").append(self.popTemplate());
             } else {
                 this.prevPage.loadDetail(match[3], match[2]);
             }
-            $("#list-items>div").css({height: $(window).height() - 175 + "px"});
-            $("#header-details-list").css({height: $(window).height() - 175 + "px"});
-            $("#history-list").css({height: $(window).height() - 175 + "px"});
             return;
         }
 
@@ -127,7 +181,22 @@ var app = {
                 }, 100);
             }
             else {
+                headerData = {
+                    "leftButtonText": {
+                        "backgroundImage": {
+                            "basicType": "back",
+                            "link": "#"
+                        }
+                    },
+                    "rightButton1Image": {
+                        "basicType": "filter",
+                        "link": "#Filter"
+                    },
+                    "Header1Text": self.findMatch(self.mod),
+                    "Header2Text": self.user
+                };
                 this.slidePage(new NotificationHeaderView({name: self.user, mod: self.mod, type: self.findMatch(self.mod)}).render(), true);
+                app.attachHeader(headerData);
             }
             return;
         }
@@ -177,11 +246,16 @@ var app = {
     registerEvents: function() {
         var self = this;
         // Add an Event Listener to Listen to URL hash tag Changes
+        $(document).on("click", "#mg_right_button1_id", function() {
+            if (document.getElementById('ActionFooter')) {
+                app.slideDown(document.getElementById('ActionFooter'));
+            }
+        });
         $(window).on('hashchange', $.proxy(this.route, this));
     },
     initialize: function() {
         this.registerEvents();
-        this.URL = "http://localhost:8084/mob/"; //182.18.157.157:7001 192.168.0.108:8084
+        this.URL = "http://192.168.10.7:8084/mob/"; //182.18.157.157:7001 192.168.0.108:8084
         this.notifyURL = /^#Not\/(.{6})/;
         this.loginURL = /^#Login/;
         this.detailsURL = /^#Detail(.{6})\/(\d{1,})-(\d{1,})/;
@@ -191,13 +265,13 @@ var app = {
     filter: function() {
         var self = this;
         if ($("#filter").css("max-height") !== "0px") {
-            if (!this.isMobile()) {
+            if (this.isMobile()) {
                 $("#search").css({"display": "block"});
                 $("#filter-done:visible").before('<a href="#Filter" class="button header-button header-button-right filter-button" id="filter-show" >');
                 $("#filter-done:visible").remove();
             }
             else {
-                $("#filter-done:visible").before('<a href="#Filter" class="button filter-button" id="filter-show"  style="background-image: url(img/filter.png); margin-top: 5px;background-size:43px 40px;" ></a>');
+                $("#filter-done:visible").before('<a href="#Filter" class="button filter-button" id="filter-show"  style="background-image: url(mobiBundle/images/header/mg_filter.png); margin-top: 6px;background-size:36px 36px;float:right;width:36px;height:36px;" ></a>');
                 $("#filter-done:visible").remove();
             }
             var i = 0;
@@ -228,13 +302,29 @@ var app = {
 
         } else {
 //            $("#header-list").hide();
-            if (!this.isMobile()) {
+            if (this.isMobile()) {
                 $("#search").css({"display": "none"});
-                $("#filter-show:visible").before('<a href="#Filter" class="button filter-button-done" id="filter-done" style="position:absolute;right:0;top:0;" >Done</a>')
-                $("#filter-show:visible").remove();
+                $("#mg_header_container").remove();
+                var headerData = {
+                    "leftButtonText": {
+                        "backgroundImage": {
+                            "basicType": "back",
+                            "link": "#"
+                        }
+                    },
+                    "rightButton1Text": {
+                        "backgroundImage": {
+                            "basicType": "filterSubmit",
+                            "link": "#Filter"
+                        }
+                    },
+                    "Header1Text": self.findMatch(self.mod),
+                    "Header2Text": self.user
+                };
+                app.attachHeader(headerData);
             }
             else {
-                $("#filter-show:visible").before('<a href="#Filter" class="button filter-button-done" id="filter-done"  >Done</a>')
+                $("#filter-show:visible").before('<a href="#Filter" class="button filter-button-done" id="filter-done"  >Done</a>');
                 $("#filter-show:visible").remove();
             }
             this.slideUp(document.getElementById("header-list"));
@@ -246,6 +336,24 @@ var app = {
     },
     filterResult: function() {
         var self = this;
+        if (app.isMobile()) {
+            $("#mg_header_container").remove();
+            var headerData = {
+                "leftButtonText": {
+                    "backgroundImage": {
+                        "basicType": "back",
+                        "link": "#"
+                    }
+                },
+                "rightButton1Image": {
+                    "basicType": "filter",
+                    "link": "#Filter"
+                },
+                "Header1Text": self.findMatch(self.mod),
+                "Header2Text": self.user
+            };
+            app.attachHeader(headerData);
+        }
         $.ajax({
             url: app.URL + "Filter/" + app.mod,
             data: "notify=" + self.data,
@@ -291,9 +399,9 @@ var app = {
 // Slide in the new page
             $(page.el).attr('class', 'page stage-center transition');
             self.currentPage = page;
-            window.setTimeout(function() {
-                $('.stage-right, .stage-left').remove();
-            }, 500);
+//        window.setTimeout(function() {
+            $('.stage-right, .stage-left').remove();
+//        }, 500);
         });
     },
     isMobile: function() {
@@ -324,12 +432,6 @@ var app = {
     isany: function() {
         return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
     },
-    tab: function(elem) {
-        var index = $(elem).index();
-        index = index + 1;
-        $("#ui-tab-content>div").removeClass('show');
-        $("#ui-tab-content>div:nth-child(" + index + ")").addClass('show');
-    },
     toggle: function(e) {
         var elem = this.next(e);
         if (elem.style.maxHeight === '100000px') {
@@ -353,11 +455,40 @@ var app = {
                     $(".loading").css({"display": "none"});
                     $("#popup-bckgrnd").attr("class", "popup-hide");
                     $("#popup-bckgrnd>div>div:nth-child(1)").attr("class", "popup-hide");
+                    var headerData;
                     if (app.isMobile()) {
                         app.slidePage(new NotificationHeaderView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render(), true);
+                        headerData = {
+                            "leftButtonText": {
+                                "backgroundImage": {
+                                    "basicType": "back",
+                                    "link": "#"
+                                }
+                            },
+                            "rightButton1Image": {
+                                "basicType": "filter",
+                                "link": "#Filter"
+                            },
+                            "Header1Text": app.findMatch(app.mod),
+                            "Header2Text": app.user
+                        };
                     } else {
                         app.slidePage(new NotificationFullView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render());
+                        var headerData = {
+                            "leftButtonText": {
+                                "backgroundImage": {
+                                    "basicType": "back",
+                                    "link": "#"
+                                }
+                            },
+                            "rightButton1Image": {
+                                "basicType": "action"
+                            },
+                            "Header1Text": app.findMatch(app.mod),
+                            "Header2Text": app.user
+                        };
                     }
+                    app.attachHeader(headerData);
                     return "success";
                 },
                 error: function(data) {
@@ -367,7 +498,7 @@ var app = {
                 }
             });
         } else {
-            app.showAlert("Plaese Select A Notification!");
+            app.showAlert("Please Select A Notification!");
         }
     },
     forward: function() {
@@ -377,7 +508,7 @@ var app = {
         match = match.match(app.detailsURL);
         if (match) {
             if ($("#user-list").find(":selected").val() === "") {
-                app.showAlert("Please Select A user to whome to be Forwarded", "Warning!");
+                app.showAlert("Please Select A user to whom to be Forwarded", "Warning!");
                 return;
             }
             $.ajax({
@@ -389,11 +520,40 @@ var app = {
                     $("#popup-bckgrnd").attr("class", "popup-hide");
                     $("#popup-bckgrnd>div>div:nth-child(2)").attr("class", "popup-hide");
                     $("#user-list").prop('selectedIndex', 0);
+                    var headerData;
                     if (app.isMobile()) {
                         app.slidePage(new NotificationHeaderView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render(), true);
+                        headerData = {
+                            "leftButtonText": {
+                                "backgroundImage": {
+                                    "basicType": "back",
+                                    "link": "#"
+                                }
+                            },
+                            "rightButton1Image": {
+                                "basicType": "filter",
+                                "link": "#Filter"
+                            },
+                            "Header1Text": app.findMatch(app.mod),
+                            "Header2Text": app.user
+                        };
                     } else {
                         app.slidePage(new NotificationFullView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render());
+                        headerData = {
+                            "leftButtonText": {
+                                "backgroundImage": {
+                                    "basicType": "back",
+                                    "link": "#"
+                                }
+                            },
+                            "rightButton1Image": {
+                                "basicType": "action"
+                            },
+                            "Header1Text": app.findMatch(app.mod),
+                            "Header2Text": app.user
+                        };
                     }
+                    app.attachHeader(headerData);
                 },
                 error: function(data) {
 //                    $(".loading").css({"display": "none"});
@@ -418,11 +578,40 @@ var app = {
                     $(".loading").css({"display": "none"});
                     $("#popup-bckgrnd").attr("class", "popup-hide");
                     $("#popup-bckgrnd>div>div:nth-child(3)").attr("class", "popup-hide");
+                    var headerData;
                     if (app.isMobile()) {
                         app.slidePage(new NotificationHeaderView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render(), true);
+                        headerData = {
+                            "leftButtonText": {
+                                "backgroundImage": {
+                                    "basicType": "back",
+                                    "link": "#"
+                                }
+                            },
+                            "rightButton1Image": {
+                                "basicType": "filter",
+                                "link": "#Filter"
+                            },
+                            "Header1Text": app.findMatch(app.mod),
+                            "Header2Text": app.user
+                        };
                     } else {
                         app.slidePage(new NotificationFullView({name: app.user, mod: app.mod, type: app.findMatch(app.mod)}).render());
+                        headerData = {
+                            "leftButtonText": {
+                                "backgroundImage": {
+                                    "basicType": "back",
+                                    "link": "#"
+                                }
+                            },
+                            "rightButton1Image": {
+                                "basicType": "action"
+                            },
+                            "Header1Text": app.findMatch(app.mod),
+                            "Header2Text": app.user
+                        };
                     }
+                    app.attachHeader(headerData);
                     return "success";
                 },
                 error: function(data) {
@@ -432,7 +621,7 @@ var app = {
                 }
             });
         } else {
-            app.showAlert("Plaese Select A Notification!");
+            app.showAlert("Please Select A Notification!");
         }
     },
     slideDown: function(elem)
@@ -454,6 +643,11 @@ var app = {
             elem = elem.nextSibling;
         } while (elem && elem.nodeType !== 1);
         return elem;
+    },
+    attachHeader: function(headerData) {
+        setTimeout(function() {
+            $(".page").prepend(Templates.headerTemplate(headerData));
+        }, 100);
     },
     popAlert: function(id) {
         var elem = document.getElementById(id);
@@ -535,14 +729,3 @@ function gotFileWriter(writer) {
 function fail(error) {
     alert("Failed to write: -----" + error.code);
 }
-$(window).on('orientationchange', function() {
-    setTimout(function() {
-        if ($("#list-items").is(":visible")) {
-            $("#list-items>div").css({height: $(window).height() - 175 + "px"});
-        } else if ($("#header-details-list").is(":visible")) {
-            $("#header-details-list").css({height: $(window).height() - 175 + "px"});
-        } else if ($("#history-list").is(":visible")) {
-            $("#history-list").css({height: $(window).height() - 175 + "px"});
-        }
-    }, 300);
-});

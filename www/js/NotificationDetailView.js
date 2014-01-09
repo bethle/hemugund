@@ -90,8 +90,11 @@ var NotificationDetailView = function(detail) {
     };
     this.initialize();
 };
-//
-NotificationDetailView.template = Handlebars.templates['notification-detail-view-tpl'];
+
+NotificationDetailView.template = Handlebars.templates['notification-detail-view-tpl']
+NotificationDetailView.linesListWrapper = Handlebars.templates['lines-list-wrapper-tpl'];
+NotificationDetailView.headerDetailsListWrapper = Handlebars.templates['header-details-wrapper-tpl'];
+NotificationDetailView.historyDetailsListWrapper = Handlebars.templates['history-details-wrapper-tpl'];
 
 NotificationDetailView.historyLiTemplate = Handlebars.templates['history-list-tpl'];
 NotificationDetailView.distLiTemplate = Handlebars.templates['distribution-list-tpl'];

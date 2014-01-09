@@ -38,14 +38,17 @@ var NotificationHeaderView = function(headers) {
     };
     this.loadHeaderList = function(data) {
         if (data.response === "SUCCESS") {
+            data.listItemArrow = {
+                "basicType": "listItemRightArrow"
+            }
             if (self.index <= 2 || data.searchSet || data.filterSet) {
-                $("#" + app.mod + "-header-list").html(NotificationHeaderView.liTemplate(data.result));
+                $("#" + app.mod + "-header-list").html(Templates.listType3Template(data));
                 if (data.filter) {
                     $('#filter').html(NotificationHeaderView.filterTemplate(data.filter));
                 }
             } else {
                 $("#more-notify-header").remove();
-                $("#" + app.mod + "-header-list").append(NotificationHeaderView.liTemplate(data.result));
+                $("#" + app.mod + "-header-list").append(Templates.listType3Template(data));
             }
             if (data.result.length < 20 || data.searchSet || data.filterSet) {
                 $("#more-notify-header").remove();
@@ -75,25 +78,6 @@ var NotificationHeaderView = function(headers) {
 NotificationHeaderView.template = Handlebars.templates['notification-header-view-tpl'];
 NotificationHeaderView.filterTemplate = Handlebars.templates['filter-view-tpl'];
 NotificationHeaderView.liTemplate = Handlebars.templates['header-list-tpl'];
-
-Handlebars.registerHelper('color', function() {
-    if (this.status === "OPEN")
-        return "open-status";
-    else if (this.status === "CLOSED")
-        return "close-status";
-    else if (this.status === "PROCESS")
-        return "inprocess-status";
-    else if (this.status === "CANCELED")
-        return "canceled-status";
-    else if (this.status === "INPROGRESS")
-        return "inprogress-status";
-});
-Handlebars.registerHelper('icon', function() {
-    if (this.action === "R")
-        return "required";
-    else
-        return "info";
-});
 
 
 
